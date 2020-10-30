@@ -1,0 +1,26 @@
+{
+  "name": "giggle-chat-web-app",
+  "version": "1.0.0",
+  "description": "This is Giggle Chat.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyan-chatter/giggle.git"
+  },
+  "author": "Sayan Chatterjee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cyan-chatter/giggle/issues"
+  },
+  "homepage": "https://github.com/cyan-chatter/giggle#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "hbs": "^4.1.1",
+    "lodash": "^4.17.20"
+  }
+}
