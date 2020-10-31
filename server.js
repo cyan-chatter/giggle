@@ -16,7 +16,7 @@ const passport = require('passport')
 
 ///////////////////////////////////////////////
 const _ = require('lodash')
-const users = require('./controllers/users')
+const {users, routeHandlers} = require('./controllers/users')
 
 
 //////////////////////////////////////////////
@@ -54,6 +54,8 @@ setServer = (users)=>{
 //Express Config
 configExpress = (app)=>{
     
+    
+
     //parse out the cookie 
     app.use(cookieParser())
 
@@ -86,6 +88,7 @@ configExpress = (app)=>{
     // need to use passport session function after the use of express session function
     app.use(passport.initialize())
     app.use(passport.session())
+    require('./passport/passport-local')
 
 }
 
