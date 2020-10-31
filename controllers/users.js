@@ -7,6 +7,12 @@ const loadIndexPage = async (req,res)=>{
     return res.render('index', {test: 'Testing the Server'})
 }
 
+const loadSignUp = async (req,res)=>{
+    return res.render('signup',{test : 'Testing Register User Page'})
+}
+
 router.get('/',loadIndexPage)
+router.get('/signup',loadSignUp)
+
 
 module.exports = router
