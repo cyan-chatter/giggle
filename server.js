@@ -8,9 +8,9 @@ const http = require('http')
 //const socketio = require('socket.io')
 const session = require('express-session')
 const validator = require('express-validator')
-const MongoStore = require('connect-mongo')(session)
-const mongoose = require('mongoose')
-const flash = require('connect-flash')
+//const MongoStore = require('connect-mongo')(session)
+require('./db/mongoose')
+//const flash = require('connect-flash')
 
 
 ///////////////////////////////////////////////
@@ -39,6 +39,25 @@ setServer = (users)=>{
     ////////////////////////////////
     //Use the Routers created -Express Routing
     app.use(users)
+    
+    app.get('/clcookie',(req,res) => {
+        res.clearCookie('token')
+        res.json({name:"'omaewahikarida'"})
+    })
+
+    app.get('/cookie',(req,res)=> {
+        console.log(req.cookies)
+        res.send("success")
+    })
+
+    app.get('*',(req,res)=>{
+        res.render('error404',{
+            status: '404',
+            message: 'Page Not Found',
+            destination: 'Login Page',
+            goto: '/'
+        })
+    })
 
 
 
@@ -74,15 +93,15 @@ configExpress = (app)=>{
     app.use(express.static(publicDirectoryPath))
     
     //
-    app.use(session({
-        secret: 'omaewahikarida',
-        resave: false,
-        saveUninitialized: false,
-        store: new MongoStore({mongooseConnection: mongoose.connection})
-    }))
+    // app.use(session({
+    //     secret: 'omaewahikarida',
+    //     resave: false,
+    //     saveUninitialized: false,
+    //     store: new MongoStore({mongooseConnection: mongoose.connection})
+    // }))
     
     // express flash messages
-    app.use(flash());
+    //app.use(flash())
 
     // need to use passport session function after the use of express session function
     

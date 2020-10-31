@@ -1,5 +1,9 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+const secretKey = process.env.JWT_SECRET || 'MazeRunner'
+const validator = require('validator')
+
 
 const userSchema = new mongoose.Schema({
     username: {type: String, unique: true},
@@ -10,8 +14,24 @@ const userSchema = new mongoose.Schema({
         required: true,
         trim: true,
         lowercase: true,
+        validate(value){
+            if(!validator.isEmail(value)){
+                throw new Error('E-mail is invalid')
+            }
+        }
     },
-    password: {type: String, default: ''},
+    password: {
+        type: String, 
+        default: '',
+        validate(value){
+            if(value.length<6){
+                throw new Error('Password must have atleast 6 characters')
+            }
+            if(value.toLowerCase().includes('password')){
+                throw new Error('Password must not contain the Word : password')
+            }
+        }
+    },
     userImage: {type: String, default: 'defaultPic.png'},
     facebook: {type: String, default: ''},
     fbTokens: Array,
@@ -27,10 +47,35 @@ const userSchema = new mongoose.Schema({
         friendId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
         friendName: {type: String, default: ''}
     }],
+    tokens: [{
+        token: {
+            type: String,
+            required: true
+        }
+    }],
     totalRequest: {type: Number, default: 0},
     country: {type: String, default: ''},
     mantra: {type: String, default: ''},
+    avatar: {
+        type: Buffer
+    }
 });
+
+userSchema.statics.findByCredentials = async (email, password) =>{
+    const user = await User.findOne({ email })
+    
+    if(!user){
+        throw new Error('E-mail not registered')
+    }
+    const isMatch = await bcrypt.compare(password, user.password)
+    
+    if(!isMatch){
+        throw new Error('Incorrect Password')
+    }
+
+    return user
+}
+
 
 // userSchema.methods.encryptPassword = function(password){
 //     console.log('encrypt called')
@@ -42,6 +87,22 @@ const userSchema = new mongoose.Schema({
 //     return bcrypt.compareSync(password, this.password);
 // };
 
+userSchema.methods.generateAuthToken = async function (){
+    const user = this
+    const token = jwt.sign({_id: user._id.toString()},secretKey)
+    user.tokens = user.tokens.concat({token})
+    await user.save()
+    return token 
+}
+
+userSchema.methods.toJSON = function(){
+    const user = this
+    const userObject = user.toObject()
+    delete userObject.password
+    delete userObject.tokens
+    delete userObject.avatar
+    return userObject
+}
 
 userSchema.pre('save',async function(next){
     const user = this
