@@ -11,7 +11,6 @@ const validator = require('express-validator')
 const MongoStore = require('connect-mongo')(session)
 const mongoose = require('mongoose')
 const flash = require('connect-flash')
-const passport = require('passport')
 
 
 ///////////////////////////////////////////////
@@ -76,7 +75,7 @@ configExpress = (app)=>{
     
     //
     app.use(session({
-        secret: 'thisisalottoexploreinuranus',
+        secret: 'omaewahikarida',
         resave: false,
         saveUninitialized: false,
         store: new MongoStore({mongooseConnection: mongoose.connection})
@@ -86,10 +85,7 @@ configExpress = (app)=>{
     app.use(flash());
 
     // need to use passport session function after the use of express session function
-    app.use(passport.initialize())
-    app.use(passport.session())
-    require('./passport/passport-local')
-
+    
 }
 
 ///////////////////////////
