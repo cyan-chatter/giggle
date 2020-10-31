@@ -8,7 +8,11 @@ const loadIndexPage = async (req,res)=>{
 }
 
 const loadSignUp = async (req,res)=>{
-    return res.render('signup',{test : 'Testing Register User Page'})
+    return res.render('signup',{
+        test : 'Testing Register User Page',
+        Errors: 'none',
+        ab : ['1','2']
+})
 }
 
 router.get('/',loadIndexPage)
