@@ -6,15 +6,14 @@
         <link rel="icon" href="../../utils/img/errorW.png">    
     </head>
     <body>
-        <div class = "notify">
-        {{>messages}}
-        </div>
-
+        
         <div class="main-content"> 
             
             <h1>{{status}}</h1>
             <br>
-            <h3>{{message}}</h3>
+            <div class = "notify">
+            {{>messages}}
+            </div>
             <br>
             <h4>Click here to go to the {{destination}}</h4>
             <br>

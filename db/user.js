@@ -17,6 +17,7 @@ const userSchema = new mongoose.Schema({
         validate(value){
             if(!validator.isEmail(value)){
                 throw new Error('E-mail is invalid')
+                                
             }
         }
     },
@@ -24,8 +25,8 @@ const userSchema = new mongoose.Schema({
         type: String, 
         default: '',
         validate(value){
-            if(value.length<6){
-                throw new Error('Password must have atleast 6 characters')
+            if(value.length<8){
+                throw new Error('Password must have atleast 8 characters')
             }
             if(value.toLowerCase().includes('password')){
                 throw new Error('Password must not contain the Word : password')
@@ -62,8 +63,9 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.statics.findByCredentials = async (email, password) =>{
+    //console.log('Find by Credentials called')
     const user = await User.findOne({ email })
-    
+    //console.log('Find by Credentials finds User')
     if(!user){
         throw new Error('E-mail not registered')
     }
@@ -92,6 +94,7 @@ userSchema.methods.generateAuthToken = async function (){
     const token = jwt.sign({_id: user._id.toString()},secretKey)
     user.tokens = user.tokens.concat({token})
     await user.save()
+    console.log('token generated')
     return token 
 }
 
@@ -112,4 +115,5 @@ userSchema.pre('save',async function(next){
     next()
 })
 
-module.exports = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema)
+module.exports = User;

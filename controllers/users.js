@@ -4,6 +4,8 @@ const User = require('../db/user')
 const jwt = require('jsonwebtoken')
 const router = new express.Router()
 var sessionStorage = require('sessionstorage');
+const auth = require('../middleware/autho')
+const isloggedin = require('../middleware/isloggedin')
 //const flash = require('connect-flash')
 //const em = require('express-messages')
 
@@ -16,7 +18,7 @@ var sessionStorage = require('sessionstorage');
 //     })
   
 const {notify, notifyType} = {
-    notify : ['Email already registered', 'You have successfylly registered', 'You have logged in', 'You have logged out'],
+    notify : ['Email already registered', 'You have successfylly registered', 'You have logged in', 'You have logged out', 'Email or Password Not Valid'],
     notifyType : ['info', 'success', 'error']
 }
 
@@ -39,13 +41,17 @@ const routeHandlers = {
             return res.render('index', {
                 test : 'Index Page', 
                 message : sessionStorage.getItem("m"),
-                messageType : sessionStorage.getItem("mT")
-            } ) /*{ items : items }*/
+                messageType : sessionStorage.getItem("mT"),
+                gotoLogin : '/login',
+                login : 'Login Here',
+                gotoRegister: '/signup',
+                register: 'Sign Up Here'
+            }) /*{ items : items }*/
         },
     //{ messages: req.flash('info') }
         loadSignUp : async (req,res)=>{
         return res.render('signup',{
-            test : 'Testing Register User Page',
+            goto: '/register',
             Errors: 'none',
             ab : ['1','2'],
             message : sessionStorage.getItem("m"),
@@ -56,6 +62,7 @@ const routeHandlers = {
         loadHomePage : async (req,res)=>{
         return res.render('home',{
             test: 'Testing Home Page',
+            base: 'users',
             message : sessionStorage.getItem("m"),
             messageType : sessionStorage.getItem("mT")
         })
@@ -76,7 +83,7 @@ const routeHandlers = {
                     //     goto: '/signup',
                     //     destination: 'Sign Up Page'
                     // })
-                    return res.redirect('/index')
+                    return res.redirect('/signup')
                 }
                 const user = new User({
                     username : req.body.username,
@@ -84,34 +91,93 @@ const routeHandlers = {
                     password : req.body.password
                 })
 
-                await user.save() 
-                //sendWelcomeEmail(user.email, user.name)
-                console.log('data saved successfully')
-                const token = await user.generateAuthToken()
-                console.log('token generated')
-                res.cookie('token',token,{
-                    maxAge:1000*60*60,
-                    httpOnly:true
-                })
-                sessionStorage.setItem("m", notify[1])
-                sessionStorage.setItem("mT", notifyType[1])
-                res.redirect('/home')
+                    await user.save()
+                    //sendWelcomeEmail(user.email, user.name)
+                    console.log('data saved successfully')
+                    const token = await user.generateAuthToken()
+                    
+                    res.cookie('token',token,{
+                        maxAge:1000*60*60,
+                        httpOnly:true
+                    })
+
+                    sessionStorage.setItem("m", notify[1])
+                    sessionStorage.setItem("mT", notifyType[1])
+                    return res.redirect('/home')
+                
             }catch(e){
-                res.status(400).render('error404',{
-                    status:'400 :(',
-                    message: e + 'Redirecting You to the Entry Page',
-                    goto: '/',
-                    destination: 'Entry Page'
-                })
+                    sessionStorage.setItem("m", e)
+                    sessionStorage.setItem("mT", notifyType[2])
+                    return res.redirect('/signup')     
             }
 
-        }
+        },
+        logout:  async (req,res)=>{
+            try{
+               req.user.tokens = req.user.tokens.filter((t)=>{
+                  return t.token !== req.token
+               })
+               await req.user.save()
+               res.clearCookie('token')
+               sessionStorage.setItem("m", "You have Logged out successfully")
+               sessionStorage.setItem("mT", notifyType[1])
+               return res.redirect('/')
+                
+            }catch(e){
+                sessionStorage.setItem("m", e)
+                sessionStorage.setItem("mT", notifyType[2])
+                return res.redirect(500,'/')
+            }
+         },
 
+      logoutAll : async(req,res)=>{
+        try{
+           req.user.tokens = []
+           await req.user.save()
+           res.clearCookie('token')
+            sessionStorage.setItem("m", "You have Logged out from all the devices successfully")
+            sessionStorage.setItem("mT", notifyType[1])
+           return res.redirect('/')
+        }catch(e){
+            sessionStorage.setItem("m", e)
+            sessionStorage.setItem("mT", notifyType[2])
+            return res.redirect(500,'/')
+        }
+     },
+     loadLogin : async(req,res)=>{
+        return res.render('login',{
+            goto: '/login',
+            message : sessionStorage.getItem("m"),
+            messageType : sessionStorage.getItem("mT")
+        })
+     },   
+
+     login : async(req,res)=>{
+        try{    
+            const user = await User.findByCredentials(req.body.email, req.body.password)  
+            const token = await user.generateAuthToken()
+            res.cookie('token',token,{
+               maxAge:3600000,
+               httpOnly:true
+            })
+            sessionStorage.setItem("m", "You have Logged in successfully")
+            sessionStorage.setItem("mT", notifyType[1])
+            return res.redirect('/home')
+          }catch(e){ 
+            sessionStorage.setItem("m", e)
+            sessionStorage.setItem("mT", notifyType[2])
+            return res.redirect('/')
+          }
+     }
 }
     
-router.get('/',routeHandlers.loadIndexPage)
-router.get('/signup',routeHandlers.loadSignUp)
+router.get('/', isloggedin('users'), routeHandlers.loadIndexPage)
+router.get('/signup', routeHandlers.loadSignUp)
 router.post('/signup',routeHandlers.register)
-router.get('/home',routeHandlers.loadHomePage)
-
+router.get('/home',auth('users'), routeHandlers.loadHomePage)
+router.post('/logout', auth('users'), routeHandlers.logout)
+router.post('/logoutAll', auth('users'), routeHandlers.logoutAll )
+router.get('/login', isloggedin('users'), routeHandlers.loadLogin)
+router.post('/login', routeHandlers.login)
+ 
 module.exports = {users : router, routeHandlers}

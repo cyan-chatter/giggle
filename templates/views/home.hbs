@@ -6,7 +6,15 @@
 <div class = "notify">
 {{>messages}}
 </div>
-{{test}}
+{{test}}- {{base}}
+<form action="/logout" method='post'>
+       <input type='submit' value='Logout'>
+       </form>
+       <br>
+       <form action="/logoutAll" method='post'>
+       <input type='submit' value='LogoutAll'>
+       </form>
+       </div>
 </body>
 <script src = "../../helpers/message-loader.js"></script>
 </html>

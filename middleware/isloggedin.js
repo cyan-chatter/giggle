@@ -5,7 +5,8 @@ const isloggedin = (type)=>{
           next()
       }
       else{
-        res.redirect('/' + type + '/home')
+        //res.redirect('/' + type + '/home')
+        res.redirect('/home')
       }
   }  
 }
