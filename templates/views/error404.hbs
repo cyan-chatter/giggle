@@ -6,6 +6,10 @@
         <link rel="icon" href="../../utils/img/errorW.png">    
     </head>
     <body>
+        <div class = "notify">
+        {{>messages}}
+        </div>
+
         <div class="main-content"> 
             
             <h1>{{status}}</h1>
@@ -19,4 +23,5 @@
 
         
     </body>
+    <script src = "../../helpers/message-loader.js"></script>
 </html>

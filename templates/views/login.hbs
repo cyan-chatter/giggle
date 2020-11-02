@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="./css/styles.css">
+        
+        <title>Giggle</title>
+        <link rel="icon" href="../../utils/img/searchW2.png">
+    </head>
+    <body>
+        <div class= "header">
+        <h1>{{title}}</h1>
+        </div>
+        <div class="main-content">
+                <br>
+                <form id="loginForm" method ="POST" action = "{{goto}}">
+                    <label for="email">Email</label><br>
+                    <input type="email" name="email" required><br>
+                    <label for="password">Password</label><br>
+                    <input type="password" name="password" required><br>
+                    <input type="submit" form="loginForm" value="Login">
+                </form>
+                
+                <br>
+        </div>
+        
+        
+   <!-- <div><script src="/js/face.js"></script></div> -->
+    
+    </body>
+</html>
