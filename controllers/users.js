@@ -1,3 +1,4 @@
+const notifyType = ['info', 'success', 'error']
 const _ = require('lodash')
 const express = require('express')
 const User = require('../db/user')
@@ -17,17 +18,11 @@ const isloggedin = require('../middleware/isloggedin')
 //         next();
 //     })
   
-const {notify, notifyType} = {
-    notify : ['Email already registered', 'You have successfylly registered', 'You have logged in', 'You have logged out', 'Email or Password Not Valid'],
-    notifyType : ['info', 'success', 'error']
-}
-
+    
 //var m,mT;
 
 //sessionStorage.SessionName = "SessionData" 
-sessionStorage.setItem("m",".")
-sessionStorage.setItem("mT",".")
-sessionStorage.getItem("m")
+sessionStorage.getItem("m")  // i think i need to remove this line here
 
 const routeHandlers = {
         loadIndexPage : async (req,res)=>{
@@ -59,14 +54,6 @@ const routeHandlers = {
         })
         },
     
-        loadHomePage : async (req,res)=>{
-        return res.render('home',{
-            test: 'Testing Home Page',
-            base: 'users',
-            message : sessionStorage.getItem("m"),
-            messageType : sessionStorage.getItem("mT")
-        })
-        },
         
         register : async(req, res)=>{
             const alreadyPresent = await User.findOne({email: req.body.email})
@@ -74,7 +61,7 @@ const routeHandlers = {
             try{
                 console.log('executed')
                 if(alreadyPresent){
-                    sessionStorage.setItem("m", notify[0])
+                    sessionStorage.setItem("m", 'Email already registered')
                     sessionStorage.setItem("mT", notifyType[2]) 
                     // return res.status(400).render('error404',{
                     //     status:'400',
@@ -101,7 +88,7 @@ const routeHandlers = {
                         httpOnly:true
                     })
 
-                    sessionStorage.setItem("m", notify[1])
+                    sessionStorage.setItem("m", 'You have successfully registered')
                     sessionStorage.setItem("mT", notifyType[1])
                     return res.redirect('/home')
                 
@@ -174,10 +161,9 @@ const routeHandlers = {
 router.get('/', isloggedin('users'), routeHandlers.loadIndexPage)
 router.get('/signup', routeHandlers.loadSignUp)
 router.post('/signup',routeHandlers.register)
-router.get('/home',auth('users'), routeHandlers.loadHomePage)
 router.post('/logout', auth('users'), routeHandlers.logout)
 router.post('/logoutAll', auth('users'), routeHandlers.logoutAll )
 router.get('/login', isloggedin('users'), routeHandlers.loadLogin)
 router.post('/login', routeHandlers.login)
  
-module.exports = {users : router, routeHandlers}
+module.exports = router

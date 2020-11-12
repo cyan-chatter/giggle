@@ -1,0 +1,43 @@
+body {
+    padding: 20px;
+    font-family: Helvetica;
+  }
+  
+  .wrapper {
+    display: grid;
+    grid-gap: 5px;
+  }
+  
+  .box {
+    background-color: #dce0e4;
+    color: rgba(19, 7, 75, 0.918);
+    border-radius: 3px;
+    padding: 20px;
+    font-size: 14px;
+  }
+  
+  .dashboardButton {
+      background-color: rgb(69, 165, 133);
+      color: rgb(6, 0, 27);
+      width: 20%;
+      height: 100%;
+      border-radius: 5px;
+      font-weight: bolder;
+   }
+
+   .upload-btn {
+    background-color: rgb(1, 126, 84);
+    color: rgb(6, 0, 27);
+    width: 20%;
+    height: 100%;
+    border-radius: 5px;
+    font-weight: bolder;
+ }
+
+
+.nameField { width: 300px; height: 50px; border: 1px solid #9b6565; padding: 5px; }
+.aboutField { width: 300px; height: 90px; border: 1px solid #999999; padding: 5px; }
+.tagsField{ 
+    width: 300px; height: 80px; border: 1px solid #999999; padding: 5px; 
+}
+.subjectField { width: 300px; height: 50px; border: 1px solid #9b6565; padding: 5px; }

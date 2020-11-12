@@ -4,21 +4,28 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const hbs = require('hbs')
 const http = require('http')
-//const container = require('./container')
-//const socketio = require('socket.io')
+var sessionStorage = require('sessionstorage');
 const session = require('express-session')
 const validator = require('express-validator')
+//const container = require('./container')
+//const socketio = require('socket.io')
 //const MongoStore = require('connect-mongo')(session)
 require('./db/mongoose')
-//const flash = require('connect-flash')
+const Camp = require('./db/camp')
 
-
+//C:/Users/DELL/mongo-4/mongodb/bin/mongod.exe --dbpath=C:/Users/DELL/mongo-4/mongodb-data
 ///////////////////////////////////////////////
 const _ = require('lodash')
-const {users, routeHandlers} = require('./controllers/users')
+const users = require('./controllers/users')
+const admins = require('./controllers/admins')
+const home = require('./controllers/home')
 
+////////////////////////////////////////////
 
-//////////////////////////////////////////////
+sessionStorage.setItem("m"," ")
+sessionStorage.setItem("mT"," ")
+
+////////////////////////////////////////////
 
 setServer = (users)=>{
 
@@ -36,7 +43,13 @@ setServer = (users)=>{
     ////////////////////////////////
     //Use the Routers created -Express Routing
     app.use(users)
+    app.use(admins) 
+    app.use(home)  
     
+    
+
+    ///////////////////////////////
+    //Set cookie config
     app.get('/clcookie',(req,res) => {
         res.clearCookie('token')
         res.json({name:"'omaewahikarida'"})
@@ -56,10 +69,11 @@ setServer = (users)=>{
         })
     })
 
-
+    
 
     ////////////////////////////////
-    const port = 3000
+    //const port = 3000
+    const port = process.env.PORT || 3000
     app.listen(port, ()=>{
         console.log('Server is Up on Port '+port)
     })
@@ -102,59 +116,15 @@ configExpress = (app)=>{
         cookie : {maxAge: 3600000}
     })); 
 
-    
-    // req.flash("info", "Email sent");
-    // req.flash("error", "Email delivery failed");          
-    
-    // app.get('/flash', function(req, res){
-    //     // Set a flash message by passing the key, followed by the value, to req.flash().
-    //     req.flash('info', 'Flash is back!')
-    //     req.flash('test', 'i am testing flash')
-    //     req.flash('success_msg', 'Flash is here!')
-    //     req.flash('error_msg', 'Flash is Not here!')
-    //     req.flash('error', 'This is an error!')
-        
-        
-    //     res.redirect('/');
-    // });
+    app.locals._ = _    
 
-    
-    //
-    // app.use(session({
-    //     secret: 'omaewahikarida',
-    //     resave: false,
-    //     saveUninitialized: false,
-    //     store: new MongoStore({mongooseConnection: mongoose.connection})
-    // }))
-    
-    // express flash messages
-    //app.use(flash())
 
     // need to use passport session function after the use of express session function
     
 }
 
-///////////////////////////
-//saving in memchached (Memory Cache Saver and Loader) via connect-memcached
-// var express      = require('express');
-// var session      = require('express-session');
-// var cookieParser = require('cookie-parser');
-// var app          = express();
-// var MemcachedStore = require('connect-memcached')(session);
- 
-// app.use(cookieParser());
-// app.use(session({
-//       secret  : 'some-private-key',
-//       key     : 'test',
-//       proxy   : 'true',
-//       store   : new MemcachedStore({
-//         hosts: ['127.0.0.1:11211'], //this should be where your Memcached server is running
-//         secret: 'memcached-secret-key' // Optionally use transparent encryption for memcache session data 
-//     })
-// }));
-///////////////////////////
-
-
 setServer(users);
 ////////////////////////////////
+
+
     
