@@ -1,3 +1,5 @@
+//C:/Users/DELL/mongo-4/mongodb/bin/mongod.exe --dbpath=C:/Users/DELL/mongo-4/mongodb-data
+
 const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
@@ -6,19 +8,25 @@ const hbs = require('hbs')
 const http = require('http')
 var sessionStorage = require('sessionstorage');
 const session = require('express-session')
+const socket = require('socket.io')
 const validator = require('express-validator')
-//const container = require('./container')
-//const socketio = require('socket.io')
+const _ = require('lodash')
 //const MongoStore = require('connect-mongo')(session)
+
+///////////////////////////////////////////////
 require('./db/mongoose')
 const Camp = require('./db/camp')
 
-//C:/Users/DELL/mongo-4/mongodb/bin/mongod.exe --dbpath=C:/Users/DELL/mongo-4/mongodb-data
+
+
+
 ///////////////////////////////////////////////
-const _ = require('lodash')
 const users = require('./controllers/users')
 const admins = require('./controllers/admins')
 const home = require('./controllers/home')
+const camps = require('./controllers/camps')
+
+
 
 ////////////////////////////////////////////
 
@@ -33,21 +41,24 @@ setServer = (users)=>{
     //Create this a server -Express server setup
     const app = express()
     app.use(express.json())
-    //->const server = http.createServer(app);
-    //->const io = socketio(server)
+    const server = http.createServer(app);
+    const io = socket(server)
     
     ////////////////////////////////
     configExpress(app)
     //configure Express here  
-       
+    
+    require('./chat/discuss')(io)
+    
+    
     ////////////////////////////////
     //Use the Routers created -Express Routing
     app.use(users)
     app.use(admins) 
-    app.use(home)  
+    app.use(home) 
+    app.use(camps) 
     
     
-
     ///////////////////////////////
     //Set cookie config
     app.get('/clcookie',(req,res) => {
@@ -72,9 +83,9 @@ setServer = (users)=>{
     
 
     ////////////////////////////////
-    //const port = 3000
-    const port = process.env.PORT || 3000
-    app.listen(port, ()=>{
+    
+    const port = process.env.PORT || 5500
+    server.listen(port, ()=>{
         console.log('Server is Up on Port '+port)
     })
     //app.listen->server.listen

@@ -1,17 +1,18 @@
 $(document).ready(function(){
     
-    $('.upload-btn').on('click', function(){ 
-        $('#upload-input').click();
+    var uploadButton = $('.upload-btn');
+    var fileUpload = $('#upload-input');
+    
+    uploadButton.on('click', function(){ 
+         fileUpload.click();
      });
     
-    $('#upload-input').on('change', function(){
+      fileUpload.on('change', function(){
         console.log('reaching inside')
-        var uploadInput = $('#upload-input');
-        
-        if(uploadInput.val() != ''){
+        if(fileUpload.val() != ''){
             var formData = new FormData();
-            formData.append('upload', uploadInput[0].files[0]);
-            console.log(uploadInput[0].files[0])
+            formData.append('upload', fileUpload[0].files[0]);
+            console.log(fileUpload[0].files[0])
             console.log('FormData:')
             console.log(formData)
             $.ajax({
@@ -21,7 +22,7 @@ $(document).ready(function(){
                 processData: false,
                 contentType: false,
                 success: function(){
-                    uploadInput.val('');
+                    fileUpload.val('');
                 }
             });
         }
