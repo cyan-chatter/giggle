@@ -25,6 +25,7 @@ $(document).ready(function(){
              console.log('user has joined this camp');
          });
     });
+
     
     messageForm.on('submit', function(e){
         e.preventDefault();
@@ -57,40 +58,11 @@ $(document).ready(function(){
         
     });
 
+    socket.on('campers', (campers)=>{
+      console.log(campers)  
+    })
 
-    // socket.on('usersList', function(users){
-    //     var ol = $('<ol></ol>');
-        
-    //     for(var i = 0; i < users.length; i++){
-    //         ol.append('<p><a id="val" data-toggle="modal" data-target="#myModal">'+users[i]+'</a></p>');
-    //     }
-        
-    //     $(document).on('click', '#val', function(){
-    //         $('#name').text('@'+$(this).text());
-    //         $('#receiverName').val($(this).text());
-    //         $('#nameLink').attr("href", "/profile/"+$(this).text());
-    //     });
-        
-    //     $('#numValue').text('('+users.length+')');
-    //     $('#users').html(ol);
-    // });
     
-    
-    
-    
-        
-        
-        // $.ajax({
-        //     url: '/group/'+room,
-        //     type: 'POST',
-        //     data: {
-        //         message: msg,
-        //         groupName: room
-        //     },
-        //     success: function(){
-        //         $('#msg').val('');
-        //     }
-        // })
         
     
     

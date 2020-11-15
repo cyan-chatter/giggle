@@ -6,7 +6,7 @@ const campSchema = mongoose.Schema({
     image: {type: String, default: 'default.png'},
     subject: {type: String, required: true},
     tags: { type: [String], index: true },
-    lancers: [{
+    members: [{
         username: {type: String, default: ''},
         email: {type: String, default: ''}
     }]

@@ -11,6 +11,7 @@ const session = require('express-session')
 const socket = require('socket.io')
 const validator = require('express-validator')
 const _ = require('lodash')
+const {Campers} = require('./utils/camper')
 //const MongoStore = require('connect-mongo')(session)
 
 ///////////////////////////////////////////////
