@@ -9,7 +9,7 @@ const isloggedin = require('../middleware/isloggedin')
 const notifyType = ['info', 'success', 'error']
 const formidable = require('formidable')
 const Camp = require('../db/camp')
-const awsSave = require('../helpers/saveaws')
+const awsSave = require('../utils/saveaws')
 
 
 const routeHandlers = {

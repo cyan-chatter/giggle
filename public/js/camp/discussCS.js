@@ -45,20 +45,17 @@ $(document).ready(function(){
     
     });
     
-    socket.on('sendNewMessage', (RecievingNewMessage)=>{
+    socket.on('sendNewMessage', (rnm)=>{
         
-        var messageBlock = $('#messageFromServerTemplate').html();
-        var newMessage = Mustache.render(messageBlock, {
-            textClient: RecievingNewMessage.text,
-            usernameClient: RecievingNewMessage.username,
-            campClient: RecievingNewMessage.camp
-        });
-        console.log(RecievingNewMessage);
+        console.log(rnm);
+        var messageBlock = $.trim($('#messageFromServerTemplate').html());
+        
+        var newMessage = messageBlock.replace(/!%!=usernameClient=!%!/ig, rnm.username).replace(/!%!=textClient=!%!/ig, rnm.text);
         $('#messages').append(newMessage);
+        
         //add autoscroll();
+        
     });
-
-
 
 
     // socket.on('usersList', function(users){
