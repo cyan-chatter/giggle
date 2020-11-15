@@ -8,7 +8,7 @@ const socketServer = (io)=>{
         socket.on('joinCampDiscuss', (params, callback)=>{
             socket.join(params.camp)
             campersInDiscuss.putCamper(socket.id, params.username, params.camp)
-            io.to(params.camp).emit('campers', campersInDiscuss.getCampers(params.camp))   
+            io.to(params.camp).emit('campersDisplay', campersInDiscuss.getCampers(params.camp))   
             callback()
         })
  
@@ -21,7 +21,13 @@ const socketServer = (io)=>{
             })    
             callback()
         })
-    
+        
+        socket.on('disconnect', ()=>{
+            var removedCamper = campersInDiscuss.removeCamperById(socket.id);
+            if(removedCamper){
+                io.to(removedCamper.camp).emit('campersDisplay', campersInDiscuss.getCampers(removedCamper.camp))
+            }
+        })
     
     })
 }

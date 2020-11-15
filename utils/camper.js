@@ -27,6 +27,24 @@ class Campers {
         }
         return campersInDiscuss
     }
+
+    getCamperById(id){
+        for(var index=0; index<this.campers.length; ++index){
+            if(this.campers[index].id === id){
+                return this.campers[index].username 
+            }
+        }
+        return
+    }
+
+    removeCamperById(id){
+        var camper = this.getCamperById(id)
+        if(camper){
+            this.campers = this.campers.filter((c)=>c.id !== id)
+        }
+        return camper
+    }
+
 }
 
 module.exports = {Campers}

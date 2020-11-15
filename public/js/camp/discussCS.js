@@ -48,7 +48,6 @@ $(document).ready(function(){
     
     socket.on('sendNewMessage', (rnm)=>{
         
-        console.log(rnm);
         var messageBlock = $.trim($('#messageFromServerTemplate').html());
         
         var newMessage = messageBlock.replace(/!%!=usernameClient=!%!/ig, rnm.username).replace(/!%!=textClient=!%!/ig, rnm.text);
@@ -58,13 +57,20 @@ $(document).ready(function(){
         
     });
 
-    socket.on('campers', (campers)=>{
-      console.log(campers)  
+    socket.on('campersDisplay', (campers)=>{
+       
+        var numDOM = $('#numValue')
+        var campersDOM = $('#users')
+        var NoCampers = campers.length
+        var displayList = $('<ol></ol>');
+        for(var i=0; i<NoCampers; ++i){
+            displayList.append('<h4><a>'+ campers[i] + '</a></h4>');
+        }
+        numDOM.text(NoCampers)
+        campersDOM.html(displayList)
+
     })
 
-    
-        
-    
     
 });
 

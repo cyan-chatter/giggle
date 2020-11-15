@@ -18,12 +18,12 @@ const notifyType = ['info', 'success', 'error']
 
 const routeHandlers = {
     loadCampPage : async (req,res)=>{
-        const campname = req.params.name
-        const username = req.user.username
+        
         res.render('camp/discuss', {
             title: 'Camp Discussion',
-            campname,
-            username
+            campname: req.params.name,
+            username: req.user.username,
+            fullname: req.user.fullname
         })
     }
 }

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const campSchema = mongoose.Schema({
-    name: {type: String, required: true},
+    name: {type: String, default:''},
     about: {type: String, default: ''},
     image: {type: String, default: 'default.png'},
     subject: {type: String, required: true},
