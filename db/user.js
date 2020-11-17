@@ -45,14 +45,14 @@ const userSchema = new mongoose.Schema({
             required: true
         }
     }],
-    recievedRequests: [{
+    receivedRequests: [{
         userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
         username: {type: String, default: ''}
     }],
     totalRequests: {type: Number, default: 0},
     friends: [{
-        friendId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-        friendName: {type: String, default: ''}
+        userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+        username: {type: String, default: ''}
     }],
     sentRequests: [{
         username: {type: String, default: ''}

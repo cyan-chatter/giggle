@@ -26,11 +26,12 @@ const routeHandlers = {
             fullname: req.user.fullname
         })
     }
+    
 }
 
 ///////////////
 
-router.get('/camps/:name',auth('users'), routeHandlers.loadCampPage)
-
+router.get('/camps/:name', auth('users'), routeHandlers.loadCampPage)
+//router.post('/camps/:name',auth('users'), routeHandlers.postCampPage)
 
 module.exports = router

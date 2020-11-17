@@ -7,8 +7,7 @@ $(document).ready(function(){
     
     var camp = campNameDOM.val()
     var username = userNameDOM.val()
-    var avatar = userImageDOM.val()
-
+    
 	socket.on('connect', function(){
 		var params = {
 			username
@@ -17,16 +16,34 @@ $(document).ready(function(){
 			console.log('I am in')
 		})
 	
-		//here
-
-		
-
 	})
-})
 
+    const addFriend = $('#add_friend')
 
-    
+    addFriend.on('submit', function(e){
+        e.preventDefault()
+        
+        var receiver = $('#receiverName').val()
+        
+        $.ajax({
+            url: '/camp/'+ camp,
+            type: 'POST',
+            data: {
+                receiver
+            },
+            success: function(){
+                socket.emit('friendRequest', {
+                    receiver,
+                    sender: username
+                }, function(){
+                    console.log('Friend Request Sent')
+                })
+            }
+        })
+    })
+
     socket.on('newFriendRequest', function(friend){
+        
         $('#reload').load(location.href + ' #reload');
         
         $(document).on('click', '#accept_friend', function(){
@@ -34,7 +51,7 @@ $(document).ready(function(){
             var senderName = $('#senderName').val();
 
             $.ajax({
-                url: '/group/'+room,
+                url: '/camp/'+camp,
                 type: 'POST',
                 data: {
                     senderId: senderId,
@@ -45,94 +62,24 @@ $(document).ready(function(){
                 }
             });
             $('#reload').load(location.href + ' #reload');
-        });
-        
+    }); 
+
+})
 
 
+    
 
-        $(document).on('click', '#cancel_friend', function(){
-            var user_Id = $('#user_Id').val();
 
-            $.ajax({
-                url: '/group/'+room,
-                type: 'POST',
-                data: {
-                    user_Id: user_Id
-                },
-                success: function(){
-                    $(this).parent().eq(1).remove();
-                }
-            });
-            $('#reload').load(location.href + ' #reload');
-        });
-    });
     
 
 
 
-    $('#add_friend').on('submit', function(e){
-        e.preventDefault();
-        
-        var receiverName = $('#receiverName').val();
-        
-        $.ajax({
-            url: '/group/'+room,
-            type: 'POST',
-            data: {
-                receiverName: receiverName
-            },
-            success: function(){
-                socket.emit('friendRequest', {
-                    receiver: receiverName,
-                    sender: sender
-                }, function(){
-                    console.log('Request Sent');
-                })
-            }
-        })
-    });
+    
     
 
 
 
-    $('#accept_friend').on('click', function(){
-        var senderId = $('#senderId').val();
-        var senderName = $('#senderName').val();
-        
-        $.ajax({
-            url: '/group/'+room,
-            type: 'POST',
-            data: {
-                senderId: senderId,
-                senderName: senderName
-            },
-            success: function(){
-                $(this).parent().eq(1).remove();
-            }
-        });
-        $('#reload').load(location.href + ' #reload');
-    });
     
-
-
-
-    $('#cancel_friend').on('click', function(){
-        var user_Id = $('#user_Id').val();
-        
-        $.ajax({
-            url: '/group/'+room,
-            type: 'POST',
-            data: {
-                user_Id: user_Id
-            },
-            success: function(){
-                $(this).parent().eq(1).remove();
-            }
-        });
-        $('#reload').load(location.href + ' #reload');
-    });
-});
-
 
 
 
