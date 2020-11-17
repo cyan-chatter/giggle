@@ -57,7 +57,7 @@ $(document).ready(function(){
         
     });
 
-    socket.on('campersDisplay', (campers)=>{
+    socket.on('campersDisplay', (sender, campers)=>{
        
         var numDOM = $('#numValue')
         var campersDOM = $('#users')
@@ -68,13 +68,13 @@ $(document).ready(function(){
         var ListItemBlock = $.trim($('#CampersListTemplate').html());
         
         for(var i=0; i<NoCampers; ++i){
-            var newCamper = ListItemBlock.replace(/!%!=usernameListed=!%!/ig, campers[i])
+            var newCamper = ListItemBlock.replace(/!%!=usernameListed=!%!/ig, campers[i]).replace(/!%!=usernameUser=!%!/ig,sender)
             displayListDOM.append(newCamper)
         }
 
     })
 
-    
+
     
 });
 

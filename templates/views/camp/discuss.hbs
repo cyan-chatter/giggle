@@ -170,11 +170,11 @@
                         <script id = "CampersListTemplate" type="template">
                                       <li class="right">
                                         <div class = "campersProfile">
-                                          <span id="camperName"><a href = "/home" target = "_blank">!%!=usernameListed=!%!</a></span>
+                                          <span id="camperName"><a href = "/profile/!%!=usernameListed=!%!" target = "_blank">!%!=usernameListed=!%!</a></span>
                                           <span id="addFriend">
                                             <form action="" method="get" id="add_friend">
-                                              <input type="hidden" name="receiverName" id="receiverName" value="">
-                                              <input type="hidden" name="sender-name" id="sender-name" value="">
+                                              <input type="hidden" name="receiverName" id="receiverName" value="!%!=usernameListed=!%!">
+                                              <input type="hidden" name="sender-name" id="sender-name" value="!%!=usernameUser=!%!">
                                               <button type="submit" id="friend-add" class="btn add"><i class="fa fa-user"></i>Add Friend</button>
                                               <div id="myTest">
                                               </div>                                          
