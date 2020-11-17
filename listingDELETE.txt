@@ -1,0 +1,11 @@
+1
+in 
+discuss.hbs
+in 
+<script id = ""CampersListTemplate"">
+line
+<li class="right"> 
+message 
+right css class has to be set
+
+2

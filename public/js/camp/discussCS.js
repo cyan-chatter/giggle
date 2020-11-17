@@ -62,15 +62,19 @@ $(document).ready(function(){
         var numDOM = $('#numValue')
         var campersDOM = $('#users')
         var NoCampers = campers.length
-        var displayList = $('<ol></ol>');
-        for(var i=0; i<NoCampers; ++i){
-            displayList.append('<h4><a>'+ campers[i] + '</a></h4>');
-        }
+        var displayListDOM = $('#camperList');
         numDOM.text(NoCampers)
-        campersDOM.html(displayList)
+
+        var ListItemBlock = $.trim($('#CampersListTemplate').html());
+        
+        for(var i=0; i<NoCampers; ++i){
+            var newCamper = ListItemBlock.replace(/!%!=usernameListed=!%!/ig, campers[i])
+            displayListDOM.append(newCamper)
+        }
 
     })
 
+    
     
 });
 

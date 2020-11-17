@@ -50,6 +50,7 @@ setServer = (users)=>{
     //configure Express here  
     
     require('./chat/discuss')(io)
+    require('./chat/friend')(io)
     
     
     ////////////////////////////////

@@ -33,33 +33,33 @@ const userSchema = new mongoose.Schema({
             }
         }
     },
+    about: {type: String, default: ''},
+    country: {type: String, default: ''},
     userImage: {type: String, default: 'defaultPic.png'},
-    facebook: {type: String, default: ''},
-    fbTokens: Array,
-    google: {type: String, default: ''},
-    sentRequest: [{
-        username: {type: String, default: ''}
-    }],
-    request: [{
-        userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-        username: {type: String, default: ''}
-    }],
-    friendsList: [{
-        friendId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-        friendName: {type: String, default: ''}
-    }],
+    avatar: {
+        type: Buffer
+    },
     tokens: [{
         token: {
             type: String,
             required: true
         }
     }],
-    totalRequest: {type: Number, default: 0},
-    country: {type: String, default: ''},
-    mantra: {type: String, default: ''},
-    avatar: {
-        type: Buffer
-    }
+    recievedRequests: [{
+        userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+        username: {type: String, default: ''}
+    }],
+    totalRequests: {type: Number, default: 0},
+    friends: [{
+        friendId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+        friendName: {type: String, default: ''}
+    }],
+    sentRequests: [{
+        username: {type: String, default: ''}
+    }],
+    facebook: {type: String, default: ''},
+    fbTokens: Array,
+    google: {type: String, default: ''}
 });
 
 userSchema.statics.findByCredentials = async (email, password) =>{

@@ -164,43 +164,41 @@
 
 
 
-                        <div class="gr-rightsidebar">
 
-                            <div id="myModal" class="modal fade" role="dialog">
-                              <div class="modal-dialog">
+                      <div class="gr-rightsidebar">
+                        
+                        <script id = "CampersListTemplate" type="template">
+                                      <li class="right">
+                                        <div class = "campersProfile">
+                                          <span id="camperName"><a href = "/home" target = "_blank">!%!=usernameListed=!%!</a></span>
+                                          <span id="addFriend">
+                                            <form action="" method="get" id="add_friend">
+                                              <input type="hidden" name="receiverName" id="receiverName" value="">
+                                              <input type="hidden" name="sender-name" id="sender-name" value="">
+                                              <button type="submit" id="friend-add" class="btn add"><i class="fa fa-user"></i>Add Friend</button>
+                                              <div id="myTest">
+                                              </div>                                          
+                                            </form>
+                                          </span>
+                                        </div>  
+                                      </li>
+                                      
+                          </script>
 
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h3 class="modal-title" id="name"></h3>
-                                  </div>
-                                  <div class="modal-body">
-                                    <form action="" method="get" id="add_friend">
-                                        <input type="hidden" name="receiverName" id="receiverName" value="">
-                                        <input type="hidden" name="sender-name" id="sender-name" value="">
-                                        <button type="submit" id="friend-add" class="btn add"><i class="fa fa-user"></i> Add Friend</button>
-                                        
-                                        <a id="nameLink" class="btn ">View Profile</a>
 
-                                        <div id="myTest">
-                                            
-                                        </div>
-                                    </form>
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn_close" data-dismiss="modal">Close</button>
-                                  </div>
+
+                        <div class="col-md-12"  id="main">
+                                <div id="users">
+                                  <ul style="list-style-type: disc;color: green" id="camperList">
+                                  </ul>
                                 </div>
-
-                              </div>
-                            </div>
-
-                            <div class="col-md-12"  id="main">
-                                <div id="users"></div>
-                                
-                            </div>
-
                         </div>
+
+                      </div>    
+
+
+
+                        
                     </div>
 
                 </div>
@@ -216,6 +214,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.js" integrity="sha512-vGcPDqyonHb0c11UofnOKdSAt5zYRpKI4ow+v6hat4i96b7nHSn8PQyk0sT5L9RECyksp+SztCPP6bqeeGaRKg==" crossorigin="anonymous"></script>
 <script src="/js/camp/discussCS.js"></script>
+<script src="/js/camp/friendRequestCS.js"></script>
 </body>
 
 </html>

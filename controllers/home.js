@@ -36,6 +36,8 @@ const routeHandlers = {
         return res.render('home',{
             camps: campTents,
             base: 'users',
+            username: req.user.username,
+            fullname: req.user.fullname,
             subjects: filterSubjectsLexico,
             message : sessionStorage.getItem("m"),
             messageType : sessionStorage.getItem("mT")
