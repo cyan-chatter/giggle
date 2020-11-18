@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="./css/styles.css">
+        <title>giggle</title>
+        <link rel="icon" href="../../utils/img/searchW2.png">
+    </head>
+    <body>
+        
+
+        <h3>Fill Those Fields which are required to be updated and Leave others blank</h3>
+
+    <form id="theImageForm" action = "/profile/avatar" method = "post" enctype="multipart/form-data">
+        <label for="theImageField" id="theImageContainer">
+            <input type="file" id="theImageField" accept="image/png, image/jpeg" name="avatar">
+            <p>Click here to Upload an Image, Select Image and then Click Upload to Set new Profile Picture </p>
+        </label>
+        <button class="btn btn-lg btn-primary" type="submit">Update Profile Picture</button>
+        <button><a href="/profile/avatar/delete" id="clearImage" method = "get">Remove</a></button>
+    </form>
+    <br>
+    
+
+
+        <div class="main-content">
+
+                <br>
+                <form id="updateForm" method ="post" action = {{goto}}>
+                    
+                    <label for="email">Email</label><br>
+                    <input type="email" name="email" id="email" ><br>
+                    <label for="name">Name</label><br>
+                    <input type="text" name="name" id="name" ><br>
+                    <label for="age">About</label><br>
+                    <input type="number" name="about" id="about" ><br>
+                    
+                    <label for="password">Password</label><br>
+                    <input type="password" name="password" id="password" minlength=6 ><br>
+                    <input type="submit" form="updateForm" id="submit" value="Submit">
+                </form>
+                
+                <br>
+        </div>
+        
+    </body>
+</html>

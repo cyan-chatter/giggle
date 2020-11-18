@@ -33,8 +33,7 @@ const userSchema = new mongoose.Schema({
             }
         }
     },
-    about: {type: String, default: ''},
-    country: {type: String, default: ''},
+    about: {type: String, default: 'Hello :) I am Available'},
     userImage: {type: String, default: 'defaultPic.png'},
     avatar: {
         type: Buffer
@@ -57,9 +56,11 @@ const userSchema = new mongoose.Schema({
     sentRequests: [{
         username: {type: String, default: ''}
     }],
-    facebook: {type: String, default: ''},
-    fbTokens: Array,
-    google: {type: String, default: ''}
+
+    favcamps: [{
+        favcamp: {type: type: mongoose.Schema.Types.ObjectId, ref: 'Camp'}
+    }]
+
 });
 
 userSchema.statics.findByCredentials = async (email, password) =>{

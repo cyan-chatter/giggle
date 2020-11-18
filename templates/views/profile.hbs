@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="./css/styles.css">
+        <title>Profile</title>
+        <link rel="icon" href="../../utils/img/searchW2.png">
+    </head>
+
+
+    <body class="main-content">
+    
+        {{>navbar}}
+
+        <div class = "details">
+            <p>{{email}}</p>
+            <p>{{username}}</p>
+            <p>{{fullname}}</p>
+            <p>{{about}}</p>
+        <br>
+            <button><a href="/profile/patch" class="updateProfile" method = "get">Update Profile</a></button>
+        <br>
+            <hr>
+            <div>
+                {{!-- <picture>{{pic}}</picture> --}}
+                <img id='profilepic'>
+            </div>
+            <hr>
+        </div>
+
+        <script>
+            // var picture = document.getElementById('profilepic')
+            // var pic = {{{pic}}}
+            // picture.src= "data:image/png;base64, "+pic
+        </script>
+        
+    
+    </body>
+</html>

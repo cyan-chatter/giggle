@@ -6,18 +6,16 @@
         <link rel="icon" href="../../utils/img/errorW.png">    
     </head>
     <body>
-        
+        {{> navbar}}
+
         <div class="main-content"> 
             
             <h1>{{status}}</h1>
             <br>
-            <div class = "notify">
-            {{>messages}}
             </div>
             <br>
-            <h4>Click here to go to the {{destination}}</h4>
-            <br>
-            <h3><a href = "{{goto}}">{{destination}}</a></h3>
+            <h4>{{message}}</h4>
+            
         </div>
 
         
