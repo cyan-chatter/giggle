@@ -30,7 +30,8 @@
             <h4>{{fullname}}</h4>
             <h5>{{about}}</h5>
             <p>hi</p>
-            <form class = "addFriendBtnClass" action = "/friendRequests" method="POST">
+            <form class = "addFriendBtnClass" action = "/addFriendRequest" method="POST">
+                <input name = "friendRequestRecieverUsername" value="{{username}}" style="display: none;">
                 <input class = "addFriendBtn" type = "submit" value = "Add Friend">
             </form>
     
