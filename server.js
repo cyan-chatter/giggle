@@ -27,6 +27,7 @@ const admins = require('./controllers/admins')
 const home = require('./controllers/home')
 const camps = require('./controllers/camps')
 const profile = require('./controllers/profile')
+const findUser = require('./controllers/findUser')
 
 
 
@@ -61,7 +62,7 @@ setServer = (users)=>{
     app.use(home) 
     app.use(camps) 
     app.use(profile)
-    
+    app.use(findUser)
     
     ///////////////////////////////
     //Set cookie config

@@ -29,6 +29,8 @@ const routeHandlers = {
                 _id: "$subject"
             }    
         }])
+
+        
         
         const filterSubjectsLexico = _.sortBy(filterSubjects, '_id')
         // use own DFS on Trie (Radix Tree) Algo 

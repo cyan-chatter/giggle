@@ -9,3 +9,6 @@ message
 right css class has to be set
 
 2
+
+findUser
+also send the image of the person found
