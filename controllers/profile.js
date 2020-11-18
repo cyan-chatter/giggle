@@ -98,7 +98,7 @@ router.get('/profile/patch', auth('users'), async (req,res)=>{
     }  
   })
  
- router.post('profile/patch', auth('users'), async (req, res)=>{
+ router.post('/profile/patch', auth('users'), async (req, res)=>{
    const allowedUpdates = ['fullname','about','email','password']
    const updates = Object.keys(req.body)
    const isValidOperation = updates.every((update)=>{

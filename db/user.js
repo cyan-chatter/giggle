@@ -58,7 +58,7 @@ const userSchema = new mongoose.Schema({
     }],
 
     favcamps: [{
-        favcamp: {type: type: mongoose.Schema.Types.ObjectId, ref: 'Camp'}
+        favcamp: {type: mongoose.Schema.Types.ObjectId, ref: 'Camp'}
     }]
 
 });

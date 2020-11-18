@@ -1,5 +1,5 @@
 //C:/Users/DELL/mongo-4/mongodb/bin/mongod.exe --dbpath=C:/Users/DELL/mongo-4/mongodb-data
-
+//D:\sayan\mongodb\bin\mongod.exe --dbpath=D:\sayan\mongodata
 const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
@@ -51,7 +51,7 @@ setServer = (users)=>{
     //configure Express here  
     
     require('./chat/discuss')(io)
-    require('./chat/friend')(io)
+    //require('./chat/friend')(io)
     
     
     ////////////////////////////////

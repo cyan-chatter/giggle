@@ -8,7 +8,7 @@ const friendRequest = (io)=>{
 		})
 	})
 
-	socket.on('friendRequest', (req, callback) => {
+	socket.on('friendRequest', async (req, callback) => {
            
 		//sentRequests- username  receivedRequests- userId, username  totalRequests
  			const senderData = await User.findOne({username:req.sender})

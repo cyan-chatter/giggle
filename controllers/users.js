@@ -55,7 +55,8 @@ const routeHandlers = {
                 const user = new User({
                     username : req.body.username,
                     email : req.body.email,
-                    password : req.body.password
+                    password : req.body.password,
+                    fullname : req.body.fullname
                 })
 
                     await user.save()
@@ -141,7 +142,7 @@ const routeHandlers = {
 router.get('/', isloggedin('users'), routeHandlers.loadIndexPage)
 router.get('/signup', routeHandlers.loadSignUp)
 router.post('/signup',routeHandlers.register)
-router.post('/logout', auth('users'), routeHandlers.logout)
+router.get('/logout', auth('users'), routeHandlers.logout)
 router.post('/logoutAll', auth('users'), routeHandlers.logoutAll )
 router.get('/login', isloggedin('users'), routeHandlers.loadLogin)
 router.post('/login', routeHandlers.login)
