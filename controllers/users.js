@@ -7,32 +7,13 @@ const router = new express.Router()
 var sessionStorage = require('sessionstorage');
 const auth = require('../middleware/autho')
 const isloggedin = require('../middleware/isloggedin')
-//const flash = require('connect-flash')
-//const em = require('express-messages')
 
-// router.use(flash()); 
-//     router.use(function(req, res, next) {
-//         res.locals.message =  em(req,res)
-//          const messages = JSON.stringify(res.locals.message)
-//          console.log(messages)
-//         next();
-//     })
-  
-    
 //var m,mT;
-
 //sessionStorage.SessionName = "SessionData" 
 sessionStorage.getItem("m")  // i think i need to remove this line here
 
 const routeHandlers = {
         loadIndexPage : async (req,res)=>{
-            //req.flash("info", "Email sent")
-            //var i=0
-            //var items = []
-            // Object.keys(messages).forEach((type)=>{
-            //    items[i] = messages[type];
-            //    ++i;
-            // })
             return res.render('index', {
                 test : 'Index Page', 
                 message : sessionStorage.getItem("m"),
@@ -41,9 +22,8 @@ const routeHandlers = {
                 login : 'Login Here',
                 gotoRegister: '/signup',
                 register: 'Sign Up Here'
-            }) /*{ items : items }*/
+            }) 
         },
-    //{ messages: req.flash('info') }
         loadSignUp : async (req,res)=>{
         return res.render('signup',{
             goto: '/register',

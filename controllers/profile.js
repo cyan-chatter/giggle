@@ -7,7 +7,7 @@ const auth = require('../middleware/autho')
 
 const bodyParser = require('body-parser')
 const multer = require('multer')
-//const sharp = require('sharp')
+const sharp = require('sharp')
 
 
 router.get('/profile', auth('users'), async(req,res)=>{
@@ -15,7 +15,6 @@ router.get('/profile', auth('users'), async(req,res)=>{
    if(!req.user){
       throw new Error()
    }
-   //const noTests = await TestMap.count({student : req.user._id})
    
    if(!req.user.avatar){
       var pic = "Profile Picture Not Uploaded"
@@ -49,7 +48,7 @@ const uploadS = multer({
    
 })
 
-router.post('//profile/avatar', auth('users'), uploadS.single('avatar'), async (req,res)=>{
+router.post('/profile/avatar', auth('users'), uploadS.single('avatar'), async (req,res)=>{
    
   const buffer = await sharp(req.file.buffer).resize({ width: 250, height: 250}).png().toBuffer()
   try{
