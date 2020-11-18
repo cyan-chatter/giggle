@@ -26,6 +26,7 @@ const users = require('./controllers/users')
 const admins = require('./controllers/admins')
 const home = require('./controllers/home')
 const camps = require('./controllers/camps')
+const profile = require('./controllers/profile')
 
 
 
@@ -59,6 +60,7 @@ setServer = (users)=>{
     app.use(admins) 
     app.use(home) 
     app.use(camps) 
+    app.use(profile)
     
     
     ///////////////////////////////
