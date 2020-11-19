@@ -26,15 +26,19 @@
     </form>
 
         <div id= "foundUser">
+            <div id="sResults">
             <h3>{{username}}</h3>
             <h4>{{fullname}}</h4>
             <h5>{{about}}</h5>
-            <p>hi</p>
-            <form class = "addFriendBtnClass" action = "/addFriendRequest" method="POST">
-                <input name = "friendRequestRecieverUsername" value="{{username}}" style="display: none;">
-                <input class = "addFriendBtn" type = "submit" value = "Add Friend">
+            </div>
+            
+            <div id="friendRequest">
+            <p id="identifier">Want to become a friend?</p>
+            <div id = "friendRequestRecieverUsername"  style="display: none;">{{username}}</div>
+            <button id = "addFriendBtn" class="btn btn-lg btn-primary">Send Friend Request</button>    
             </form>
-    
+            </div>
+
         </div>
         <br>
         
@@ -46,7 +50,40 @@
             if(v === 'no'){
                  document.getElementById('foundUser').style.display = "none"
             }
-        </script>    
+            const receiverUserName = document.querySelector("#friendRequestRecieverUsername").innerHTML
+            const messageIdentifier = document.querySelector('#identifier')
+            const friendBtn = document.querySelector('#addFriendBtn')
+            
+            friendBtn.addEventListener('click', (e)=>{
+                e.preventDefault();
+                var actionURL = "/sendFriendRequest";
+                if(friendBtn.innerHTML === "Send Friend Request"){
+                    messageIdentifier.innerHTML = "Sending...."
+                    friendBtn.innerHTML = "Revoke Friend Request"
+                    console.log('sending')
+                    actionURL = "/sendFriendRequest"
+
+                }
+                else if(friendBtn.innerHTML === "Revoke Friend Request"){
+                    messageIdentifier.innerHTML = "Revoking...."
+                    friendBtn.innerHTML = "Send Friend Request"
+                    console.log('revoking')
+                    actionURL = "/revokeFriendRequest"
+                }
+                    var receiverUsername = {receiverUserName}
+                $.ajax({
+                    url: actionURL,
+                    type: "POST",
+                    data: JSON.stringify(receiverUsername),
+                    contentType: 'application/json',
+                    success: function(res){
+                        console.log(JSON.stringify(res))
+                        messageIdentifier.innerHTML = JSON.stringify(res)
+                    }
+                });
+            })
+
+        </script>   
     </body>
 
 

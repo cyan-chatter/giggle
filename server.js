@@ -1,4 +1,3 @@
-//C:/Users/DELL/mongo-4/mongodb/bin/mongod.exe --dbpath=C:/Users/DELL/mongo-4/mongodb-data
 //D:\sayan\mongodb\bin\mongod.exe --dbpath=D:\sayan\mongodata
 const express = require('express')
 const path = require('path')
@@ -28,6 +27,8 @@ const home = require('./controllers/home')
 const camps = require('./controllers/camps')
 const profile = require('./controllers/profile')
 const findUser = require('./controllers/findUser')
+const friends = require('./controllers/friends')
+
 
 
 
@@ -63,7 +64,7 @@ setServer = (users)=>{
     app.use(camps) 
     app.use(profile)
     app.use(findUser)
-    
+    app.use(friends)    
     ///////////////////////////////
     //Set cookie config
     app.get('/clcookie',(req,res) => {

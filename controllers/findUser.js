@@ -30,7 +30,7 @@ const routeHandlers = {
         
     const searchedUser = req.body.sUsername
     const foundUser = await User.find({username: searchedUser})
-    console.log(foundUser[0])
+    
     try{
         if(!foundUser[0]){
             return res.render('tempPage',{
