@@ -1,5 +1,5 @@
             const v = document.querySelector('#activator').innerHTML
-            var checkForAccept = 0, checkForReject = 0;
+            var checkForAccept = [0], checkForReject = [0];
             
             if(v === 'no'){
                  document.getElementById('foundUsers').style.display = "none"
@@ -9,63 +9,69 @@
             //listen to events on the basis of class
             //but as event starts, extract the id of the button group (accept+reject) clicked and operate effects only on them
 
-            const senderUserName = document.querySelector(".friendRequestSenderUsername").innerHTML
-            const messageIdentifier1 = document.querySelector('.identifier1')
-            const acceptBtn = document.querySelector('.acceptFriendBtn')
-            const rejectBtn = document.querySelector('.rejectFriendBtn')
+            const senderUsernameDOM = document.querySelectorAll(".friendRequestSenderUsername")
+            const messageIdentifier1 = document.querySelectorAll('.identifier1')
+            const acceptBtn = document.querySelectorAll('.acceptFriendBtn')
+            const rejectBtn = document.querySelectorAll('.rejectFriendBtn')
             
-            const disablebuttons = ()=>{
-                
-                acceptBtn.disabled = true
-                rejectBtn.disabled = true
-                acceptBtn.style.display = 'none'
-                rejectBtn.style.display = 'none'
-                
+            const disablebuttons = (Btn1, Btn2)=>{    
+                Btn1.disabled = true
+                Btn2.disabled = true
+                Btn1.style.display = 'none'
+                Btn2.style.display = 'none'
             }
 
-            
-            acceptBtn.addEventListener('click', (e)=>{
-                e.preventDefault()
-                disablebuttons()
-                
-                if(checkForReject === 0 && checkForAccept === 0){
-                    messageIdentifier1.innerHTML = '....'
-                    var actionURL = "/acceptFriendRequest";
-                    var senderUsername = {senderUserName}
-                    $.ajax({
-                        url: actionURL,
-                        type: "POST",
-                        data: JSON.stringify(senderUsername),
-                        contentType: 'application/json',
-                        success: function(res){
-                            console.log(JSON.stringify(res))
-                            messageIdentifier1.innerHTML = JSON.stringify(res)
-                        }
-                    })
-                    checkForAccept = 1
-                    
-                }
-            })
+            for(var i=0; i<senderUsernameDOM.length; ++i){
 
-             rejectBtn.addEventListener('click', (e)=>{
-                e.preventDefault()
-                disablebuttons()
+                const senderUserName = senderUsernameDOM[i].innerHTML
                 
-                if(checkForReject === 0 && checkForAccept === 0){
-                    messageIdentifier1.innerHTML = '....'
-                    var actionURL = "/rejectFriendRequest";
-                    var senderUsername = {senderUserName}
-                    $.ajax({
-                        url: actionURL,
-                        type: "POST",
-                        data: JSON.stringify(senderUsername),
-                        contentType: 'application/json',
-                        success: function(res){
-                            console.log(JSON.stringify(res))
-                            messageIdentifier1.innerHTML = JSON.stringify(res)
-                        }
-                    })
-                    checkForReject = 1
+                acceptBtn[i].addEventListener('click', (e)=>{
+                    e.preventDefault()
+                    disablebuttons(acceptBtn[i], rejectBtn[i])
                     
-                }
-            })
+                    if(checkForReject[i] === 0 && checkForAccept[i] === 0){
+                        messageIdentifier1[i].innerHTML = '....'
+                        var actionURL = "/acceptFriendRequest";
+                        var senderUsername = {senderUserName}
+                        $.ajax({
+                            url: actionURL,
+                            type: "POST",
+                            data: JSON.stringify(senderUsername),
+                            contentType: 'application/json',
+                            success: function(res){
+                                console.log(JSON.stringify(res))
+                                messageIdentifier1[i].innerHTML = JSON.stringify(res)
+                            }
+                        })
+                        checkForAccept[i] = 1
+                        
+                    }
+                })
+    
+                 rejectBtn[i].addEventListener('click', (e)=>{
+                    e.preventDefault()
+                    disablebuttons(acceptBtn[i], rejectBtn[i])
+                   const senderUserName =  senderUsernameDOM[i].innerHTML
+                    if(checkForReject[i] === 0 && checkForAccept[i] === 0){
+                        messageIdentifier1[i].innerHTML = '....'
+                        var actionURL = "/rejectFriendRequest";
+                        var senderUsername = {senderUserName}
+                        $.ajax({
+                            url: actionURL,
+                            type: "POST",
+                            data: JSON.stringify(senderUsername),
+                            contentType: 'application/json',
+                            success: function(res){
+                                console.log(JSON.stringify(res))
+                                messageIdentifier1[i].innerHTML = JSON.stringify(res)
+                            }
+                        })
+                        checkForReject[i] = 1
+                        
+                    }
+                })
+    
+            }
+
+
+            

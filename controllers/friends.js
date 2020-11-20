@@ -117,13 +117,29 @@ routeHandlers = {
             totalRequests,
             activator: 'yes'
         })
+    },
+    acceptFriendRequest: async (req,res)=>{
+        const sendername = JSON.stringify(req.body)
+        const senderName = JSON.parse(sendername)
+        const sender = senderName.senderUserName
+        console.log('Accept: '+sender)
+        res.send('Friend Request Accepted. ' + sender + ' is a Friend now.')    
+    },
+
+    rejectFriendRequest: async (req,res)=>{
+        const sendername = JSON.stringify(req.body)
+        const senderName = JSON.parse(sendername)
+        const sender = senderName.senderUserName
+        console.log('Reject: '+sender)
+        res.send('Friend Request Rejected.')
     }
 
 }
 
-
 router.post('/sendFriendRequest', auth('users'), routeHandlers.sendFriendRequest)
 router.post('/revokeFriendRequest', auth('users'), routeHandlers.cancelFriendRequest)
-router.post('/loadFriendRequest', auth('users'), routeHandlers.loadFriendRequest)
+router.get('/loadFriendRequests', auth('users'), routeHandlers.loadFriendRequest)
+router.post('/acceptFriendRequest', auth('users'), routeHandlers.acceptFriendRequest)
+router.post('/rejectFriendRequest', auth('users'), routeHandlers.rejectFriendRequest)
 
 module.exports = router
