@@ -12,3 +12,13 @@ right css class has to be set
 
 findUser
 also send the image of the person found
+
+before displaying add friend on findUser page Check if a Friend Request is already received by the same user 
+
+3
+put navbar on update profile page
+
+4
+in friendRequests.hbs
+update totalRequests on each button event
+

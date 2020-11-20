@@ -93,29 +93,27 @@ routeHandlers = {
          }    
     },
     loadFriendRequest: async(req,res)=>{
+        
         var fr = []
-        var smol = 0
-        if(totalRequests === 0){
+        if(req.user.totalRequests === 0){
             return res.render('friendRequests', {
                 requesters: fr,
-                totalRequests,
-                activator: 'no'
+                totalRequests: req.user.totalRequests
             })
         }
         
         for(var i=0; i<req.user.totalRequests; ++i){
             var d = req.user.receivedRequests[i].timing.getTime()
-            console.log(d)
-            const index = searchInsertAtIndex(f, d)
+            const index = searchInsertAtIndex(fr, d)
             fr.splice(index,0,req.user.receivedRequests[i])
             ++i;
         }
         fr.reverse()
+        console.log(fr)
 
         return res.render('friendRequests', {
             requesters: fr,
-            totalRequests,
-            activator: 'yes'
+            totalRequests: req.user.totalRequests
         })
     },
     acceptFriendRequest: async (req,res)=>{

@@ -1,4 +1,4 @@
-//D:\sayan\mongodb\bin\mongod.exe --dbpath=D:\sayan\mongodata
+//E:\Apps\mongodb\bin\mongod.exe --dbpath="E:\Apps\mongodata"
 const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
@@ -64,7 +64,8 @@ setServer = (users)=>{
     app.use(camps) 
     app.use(profile)
     app.use(findUser)
-    app.use(friends)    
+    app.use(friends) 
+       
     ///////////////////////////////
     //Set cookie config
     app.get('/clcookie',(req,res) => {

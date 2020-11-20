@@ -1,4 +1,4 @@
-// C:/Users/DELL/mongo-4/mongodb/bin/mongod.exe --dbpath=C:/Users/DELL/mongo-4/mongodb-data
+//E:\Apps\mongodb\bin\mongod.exe --dbpath="E:\Apps\mongodata"
 
 const mongodb = require('mongodb')
 const mongoose = require('mongoose')

@@ -1,36 +1,37 @@
-            const v = document.querySelector('#activator').innerHTML
-            var checkForAccept = [0], checkForReject = [0];
+            var checkForAccept = [], checkForReject = [];
             
-            if(v === 'no'){
-                 document.getElementById('foundUsers').style.display = "none"
-            }
+            var senderUsernameDOM = document.querySelectorAll('.friendRequestSenderUsername')
+            var messageIdentifier1 = document.querySelectorAll('.identifier1')
+            var acceptBtn = document.querySelectorAll('.acceptFriendBtn')
+            var rejectBtn = document.querySelectorAll('.rejectFriendBtn')
             
-            //attach a unique id to each element div(2 buttons + 1 info) of the loop
-            //listen to events on the basis of class
-            //but as event starts, extract the id of the button group (accept+reject) clicked and operate effects only on them
+            // const disablebuttons = (Button)=>{    
+            //     Button.btn1.disabled = true
+            //     Button.btn2.disabled = true
+            //     Button.btn1.style.display = 'none'
+            //     Button.btn2.style.display = 'none'
+            // }
 
-            const senderUsernameDOM = document.querySelectorAll(".friendRequestSenderUsername")
-            const messageIdentifier1 = document.querySelectorAll('.identifier1')
-            const acceptBtn = document.querySelectorAll('.acceptFriendBtn')
-            const rejectBtn = document.querySelectorAll('.rejectFriendBtn')
-            
-            const disablebuttons = (Btn1, Btn2)=>{    
-                Btn1.disabled = true
-                Btn2.disabled = true
-                Btn1.style.display = 'none'
-                Btn2.style.display = 'none'
-            }
+            for(var i=0; i<senderUsernameDOM.length; ++i){
+                checkForAccept[i] = 0
+                checkForReject[i] = 0
+            }            
 
             for(var i=0; i<senderUsernameDOM.length; ++i){
 
                 const senderUserName = senderUsernameDOM[i].innerHTML
-                
+                  
                 acceptBtn[i].addEventListener('click', (e)=>{
                     e.preventDefault()
-                    disablebuttons(acceptBtn[i], rejectBtn[i])
-                    
-                    if(checkForReject[i] === 0 && checkForAccept[i] === 0){
-                        messageIdentifier1[i].innerHTML = '....'
+                    //disablebuttons({btn1: acceptBtn[i], btn2: rejectBtn[i]})
+                    // var acceptBtn1 = document.querySelectorAll('.acceptFriendBtn')
+                    // var rejectBtn1 = document.querySelectorAll('.rejectFriendBtn')
+            
+                    // acceptBtn1[i].disabled = true 
+                    // rejectBtn1[i].disabled = true
+
+                    if(checkForReject[i] !== 1 && checkForAccept[i] !== 1){
+                        //messageIdentifier1[i].innerHTML = '....'
                         var actionURL = "/acceptFriendRequest";
                         var senderUsername = {senderUserName}
                         $.ajax({
@@ -40,20 +41,20 @@
                             contentType: 'application/json',
                             success: function(res){
                                 console.log(JSON.stringify(res))
-                                messageIdentifier1[i].innerHTML = JSON.stringify(res)
+                                //messageIdentifier1[i].innerHTML = JSON.stringify(res)
                             }
                         })
-                        checkForAccept[i] = 1
-                        
+                        checkForAccept.push(1) 
+                        checkForReject.push(1)
                     }
+            
                 })
     
                  rejectBtn[i].addEventListener('click', (e)=>{
                     e.preventDefault()
-                    disablebuttons(acceptBtn[i], rejectBtn[i])
-                   const senderUserName =  senderUsernameDOM[i].innerHTML
-                    if(checkForReject[i] === 0 && checkForAccept[i] === 0){
-                        messageIdentifier1[i].innerHTML = '....'
+                    //disablebuttons({btn1: acceptBtn[i], btn2: rejectBtn[i]})
+                    if(checkForReject[i] !== 1 && checkForAccept[i] !== 1){
+                        //messageIdentifier1[i].innerHTML = '....'
                         var actionURL = "/rejectFriendRequest";
                         var senderUsername = {senderUserName}
                         $.ajax({
@@ -63,14 +64,13 @@
                             contentType: 'application/json',
                             success: function(res){
                                 console.log(JSON.stringify(res))
-                                messageIdentifier1[i].innerHTML = JSON.stringify(res)
+                                //messageIdentifier1[i].innerHTML = JSON.stringify(res)
                             }
                         })
-                        checkForReject[i] = 1
-                        
-                    }
+                        checkForReject.push(1)
+                        checkForAccept.push(1)
+                    } 
                 })
-    
             }
 
 
