@@ -119,16 +119,20 @@ routeHandlers = {
     acceptFriendRequest: async (req,res)=>{
         const sendername = JSON.stringify(req.body)
         const senderName = JSON.parse(sendername)
-        const sender = senderName.senderUserName
-        console.log('Accept: '+sender)
+        const username = senderName.senderUserName
+        console.log('Accept: '+username)
+        const sender = await User.findOne({username})
+
+        req.user.friends.push({userId: sender._id , username: sender.username})
+        sender.friends.push({userId: req.user._id, username: req.user.username})
+
+        
+
         res.send('Friend Request Accepted. ' + sender + ' is a Friend now.')    
     },
 
     rejectFriendRequest: async (req,res)=>{
-        const sendername = JSON.stringify(req.body)
-        const senderName = JSON.parse(sendername)
-        const sender = senderName.senderUserName
-        console.log('Reject: '+sender)
+        
         res.send('Friend Request Rejected.')
     }
 
