@@ -7,8 +7,28 @@ const auth = require('../middleware/autho')
 const formidable = require('formidable')
 const Camp = require('../db/camp');
 
+const searchInsertAtIndex = (nums,target)=>{
+            
+    var low = 0
+    var high = nums.length-1;
+    var mid;
+    while(low<=high)
+    {
+        mid = low + (high-low)/2;
+        if(nums[mid]===target)
+            return mid;
+        else if(nums[mid]<target)
+            low = mid+1;
+        else
+            high = mid-1;
+    }
+    return low;
+}
+    
+
 routeHandlers = {
     sendFriendRequest: async (req,res)=>{
+
         const senderData = await User.findOne({username: req.user.username})
          try{
             const receivername = JSON.stringify(req.body)
@@ -23,7 +43,7 @@ routeHandlers = {
             receiverData.receivedRequests.push({"userId": senderData._id, "username": senderData.username})
             receiverData.totalRequests += 1;
             await receiverData.save()
-                          
+            console.log(receiverData)
             return res.send('Friend Request Sent')
                
 
@@ -72,11 +92,38 @@ routeHandlers = {
              console.log('Error in Friend Request Mechanism: ' + e)
          }    
     },
+    loadFriendRequest: async(req,res)=>{
+        var fr = []
+        var smol = 0
+        if(totalRequests === 0){
+            return res.render('friendRequests', {
+                requesters: fr,
+                totalRequests,
+                activator: 'no'
+            })
+        }
+        
+        for(var i=0; i<req.user.totalRequests; ++i){
+            var d = req.user.receivedRequests[i].timing.getTime()
+            console.log(d)
+            const index = searchInsertAtIndex(f, d)
+            fr.splice(index,0,req.user.receivedRequests[i])
+            ++i;
+        }
+        fr.reverse()
+
+        return res.render('friendRequests', {
+            requesters: fr,
+            totalRequests,
+            activator: 'yes'
+        })
+    }
 
 }
 
 
 router.post('/sendFriendRequest', auth('users'), routeHandlers.sendFriendRequest)
 router.post('/revokeFriendRequest', auth('users'), routeHandlers.cancelFriendRequest)
+router.post('/loadFriendRequest', auth('users'), routeHandlers.loadFriendRequest)
 
 module.exports = router

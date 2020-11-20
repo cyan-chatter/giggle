@@ -36,7 +36,6 @@
             <p id="identifier">Want to become a friend?</p>
             <div id = "friendRequestRecieverUsername"  style="display: none;">{{username}}</div>
             <button id = "addFriendBtn" class="btn btn-lg btn-primary">Send Friend Request</button>    
-            </form>
             </div>
 
         </div>
@@ -45,43 +44,16 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>  
+<script src ="/js/friendRequestMethod.js"></script>        
+        
         <script>
+
             const v = document.querySelector('#activator').innerHTML
             if(v === 'no'){
                  document.getElementById('foundUser').style.display = "none"
             }
-            const receiverUserName = document.querySelector("#friendRequestRecieverUsername").innerHTML
-            const messageIdentifier = document.querySelector('#identifier')
-            const friendBtn = document.querySelector('#addFriendBtn')
-            
-            friendBtn.addEventListener('click', (e)=>{
-                e.preventDefault();
-                var actionURL = "/sendFriendRequest";
-                if(friendBtn.innerHTML === "Send Friend Request"){
-                    messageIdentifier.innerHTML = "Sending...."
-                    friendBtn.innerHTML = "Revoke Friend Request"
-                    console.log('sending')
-                    actionURL = "/sendFriendRequest"
 
-                }
-                else if(friendBtn.innerHTML === "Revoke Friend Request"){
-                    messageIdentifier.innerHTML = "Revoking...."
-                    friendBtn.innerHTML = "Send Friend Request"
-                    console.log('revoking')
-                    actionURL = "/revokeFriendRequest"
-                }
-                    var receiverUsername = {receiverUserName}
-                $.ajax({
-                    url: actionURL,
-                    type: "POST",
-                    data: JSON.stringify(receiverUsername),
-                    contentType: 'application/json',
-                    success: function(res){
-                        console.log(JSON.stringify(res))
-                        messageIdentifier.innerHTML = JSON.stringify(res)
-                    }
-                });
-            })
+            friendRequestMethod();
 
         </script>   
     </body>
