@@ -125,14 +125,65 @@ routeHandlers = {
 
         req.user.friends.push({userId: sender._id , username: sender.username})
         sender.friends.push({userId: req.user._id, username: req.user.username})
-
         
+        var i,i2;
+        var flag = 0, flag2 =0;
+        for(i=0; i<req.user.receivedRequests.length; ++i){
+            if(req.user.receivedRequests[i].username === username){
+                flag = 1;
+                break;
+            }    
+        }
+        if(flag === 1){
+            req.user.receivedRequests.splice(i,1)
+        }
 
-        res.send('Friend Request Accepted. ' + sender + ' is a Friend now.')    
+        for(i2=0; i2<sender.sentRequests.length; ++i2){
+            if(sender.sentRequests[i].username === req.user.username){
+                flag2 = 1;
+                break;
+            }    
+        }
+        if(flag2 === 1){
+            sender.sentRequests.splice(i,1)
+        }
+
+        await req.user.save()
+        await sender.save()
+
+        res.send('Friend Request Accepted. ' + sender.username + ' is a Friend now.')    
     },
-
     rejectFriendRequest: async (req,res)=>{
-        
+        const sendername = JSON.stringify(req.body)
+        const senderName = JSON.parse(sendername)
+        const username = senderName.senderUserName
+        console.log('Accept: '+username)
+        const sender = await User.findOne({username})
+        var i,i2;
+        var flag = 0, flag2 =0;
+        for(i=0; i<req.user.receivedRequests.length; ++i){
+            if(req.user.receivedRequests[i].username === username){
+                flag = 1;
+                break;
+            }    
+        }
+        if(flag === 1){
+            req.user.receivedRequests.splice(i,1)
+        }
+
+        for(i2=0; i2<sender.sentRequests.length; ++i2){
+            if(sender.sentRequests[i].username === req.user.username){
+                flag2 = 1;
+                break;
+            }    
+        }
+        if(flag2 === 1){
+            sender.sentRequests.splice(i,1)
+        }
+
+        await req.user.save()
+        await sender.save()
+
         res.send('Friend Request Rejected.')
     }
 
