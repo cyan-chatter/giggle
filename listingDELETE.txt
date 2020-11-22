@@ -37,12 +37,5 @@ fix navbar Camps link (campers->camps <- /home)
 9. 
 fix navbar Username Dropdown Links Text and Actions
 
-10. 
-give option to cancel friendship
 
-11.
-in findUser, when found yourself, give message "Look Who's Here." Remove the option of sending the Friend Request
-
-12. 
-SET RESPONSES IN friends.js, friendRequestMethod.js, friendResponseMethod.js IN restr = {str:'', act: ''} manner and put Inner HTML for "act" in friendRequests.hbs and findUser.hbs to support this
 

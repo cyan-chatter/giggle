@@ -35,7 +35,9 @@
                             data: JSON.stringify(senderUsername),
                             contentType: 'application/json',
                             success: function(res){
-                                messageIdentifier1.innerHTML = JSON.stringify(res)
+                                const x = JSON.stringify(res)
+                                const y = JSON.parse(x)
+                                messageIdentifier1.innerHTML = y.str
                             }
                         })
                         checkForAccept.push(1) 
@@ -63,8 +65,9 @@
                             data: JSON.stringify(senderUsername),
                             contentType: 'application/json',
                             success: function(res){
-                                console.log(JSON.stringify(res))
-                                messageIdentifier1.innerHTML = JSON.stringify(res)
+                                const x = JSON.stringify(res)
+                                const y = JSON.parse(x)
+                                messageIdentifier1.innerHTML = y.str
                             }
                         })
                         checkForReject.push(1)

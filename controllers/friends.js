@@ -25,7 +25,6 @@ const searchInsertAtIndex = (element,key)=>{
     return start;
 }
     
-
 routeHandlers = {
     sendFriendRequest: async (req,res)=>{
 
@@ -35,21 +34,29 @@ routeHandlers = {
             const receiverName = JSON.parse(receivername)
             const receiver = receiverName.receiverUserName
             
+            if(receiver === req.user.username){
+                const restr = {str: 'Want to be a friend of yourself? This is not the place.' , act: 'e'}
+                return res.send(restr)
+            }
+
             const receiverData = await User.findOne({username: receiver})
             try{
                 if(!receiverData){
                     const restr = {str: 'This User Does Not Exist :(', act: 'e'}
-                    return res.send('This User Does Not Exist :(')
+                    return res.send(restr)
                 }
 
                 for(var i=0; i<senderData.sentRequests.length; ++i){
                     if(Object.values(senderData.sentRequests[i]) === receiver){
-                        return res.send('Friend Request Already Sent. The Friend Request Sent Earlier Has Not Been Accepted Yet :(')
+                        const restr = { str: 'Friend Request Already Sent. The Friend Request Sent Earlier Has Not Been Accepted Yet :(', act: 'e'}
+                        return res.send(restr)
                     }
                 }
                 for(var i=0; i<req.user.friends.length; ++i){
                     if(Object.values(req.user.friends[i]) === receiver){
-                        return res.send('This Person is Your Friend Already')
+                        const restr = { str: 'This Person is Your Friend Already', act: 'e'}
+                        
+                        return res.send(restr)
                     }   
                 }
                 senderData.sentRequests.push({"username": receiver})
@@ -60,21 +67,31 @@ routeHandlers = {
                     await receiverData.save()
                     try{
                         console.log(receiverData)
-                        return res.send('Friend Request Sent')
+                        const restr = { str: 'Friend Request Sent', act: 's'}
+                        
+                        return res.send(restr)
                     }catch(e){
-                        return res.send('Error in Sending Friend Request: ' + e)
+                        const restr = { str: ('Error in Sending Friend Request: '+e), act: 'e'}
+                        
+                        return res.send(restr)
                     }
                 }catch(e){
-                    return res.send('Error: '+ e +'Sorry, There is some error with your account. Try to Login Again. :O')
+                    const restr = { str: 'Error: '+ e +'Sorry, There is some error with your account. Try to Login Again. :O', act: 'e'}
+                        
+                    return res.send(restr)
                 }
                 
             }catch(e){
-                return res.send('This User Does Not Exist :(')
+                const restr = { str: 'This User Does Not Exist :(', act: 'e'}
+                        
+                return res.send(restr)
             }
   
          }catch(e){
              console.log('Error in Sending Friend Request: ' + e)
-             return res.send('Error in Sending Friend Request')
+             const restr = { str: 'Error in Sending Friend Request: ' + e, act: 'e'}
+                        
+             return res.send(restr)
          }    
             
     },
@@ -88,7 +105,9 @@ routeHandlers = {
             const receiverData = await User.findOne({username: receiver})
             try{
                 if(!receiverData){
-                    return res.send('This User Does Not Exist :(')
+                    const restr = { str: 'This User Does Not Exist :(', act:'e' }
+                        
+                    return res.send(restr)
                 }
     
                 const checkParams = (params)=>{
@@ -111,20 +130,30 @@ routeHandlers = {
                      receiverData.totalRequests -= 1;
                     await receiverData.save()
                     try{
-                        return res.send('Friend Request Revoked')
+                        const restr = { str: 'Friend Request Revoked', act: 's'}
+                        
+                        return res.send(restr)
                     }catch(e){
-                        return res.send('Error in saving receiver data: '+ e)
+                        const restr = { str: ('Error in saving receiver data: '+ e), act:'e' }
+                        
+                        return res.send(restr)
                     }
                 }catch(e){
-                    return res.send('Error in saving sender data: '+ e)
+                    const restr = { str: ('Error in saving sender data: '+ e), act:'e'}
+                        
+                    return res.send(restr)
                 }
                  
             }catch(e){
-                return res.send('This User Does Not Exist :(')
+                const restr = { str: 'This User Does Not Exist :(', act: 'e'}
+                        
+                return res.send(restr)
             }
             
          }catch(e){
-             console.log('Error in Friend Request Mechanism: ' + e)
+            const restr = { str: ('Error in Friend Request Mechanism: ' + e), act: 'e'}
+                        
+             return res.send(restr)
          }    
     },
     loadFriendRequest: async(req,res)=>{
@@ -168,10 +197,13 @@ routeHandlers = {
         const sender = await User.findOne({username})
         try{
             if(!sender){
-                return res.send('This Sender Does Not Exist :(')
+                const restr = { str: 'This Sender Does Not Exist :(', act: 'e'}
+                        
+                return res.send(restr)
             }    
-            req.user.friends.push({userId: sender._id , username: sender.username})
-            sender.friends.push({userId: req.user._id, username: req.user.username})
+            req.user.friends.push({userId: sender._id , username: sender.username, fullname: sender.fullname})
+            sender.friends.push({userId: req.user._id, username: req.user.username, fullname: req.user.fullname})
+
             
             var i,i2;
             var flag = 0, flag2 =0;
@@ -199,16 +231,24 @@ routeHandlers = {
             try{
                 await sender.save()
                 try{
-                    res.send('Friend Request Accepted. ' + sender.username + ' is a Friend now.')
+                    const restr = { str: ('Friend Request Accepted. ' + sender.username + ' is a Friend now.'), act: 's'}
+                        
+                    res.send(restr)
                 }catch(e){
-                  return res.send('Error. Friend Request Not Accepted. Sender data cannot be saved' + e)       
+                    const restr = { str: ('Error. Friend Request Not Accepted. Sender data cannot be saved' + e), act: 'e'}
+                        
+                  return res.send(restr)
                 }
             }catch(e){
-                return res.send('Error. Friend Request Not Accepted.' + e)
+                const restr = { str: ('Error. Friend Request Not Accepted.' + e), act: 'e'}
+                        
+                return res.send(restr)
             }
             
         }catch(e){
-            return res.send('The Sender has Deleted His Account :(')
+            const restr = { str: 'The Sender has Deleted His Account :(', act: 'e'}
+                        
+            return res.send(restr)
         }
             
     },
@@ -220,7 +260,9 @@ routeHandlers = {
         const sender = await User.findOne({username})
         try{
             if(!sender){
-                return res.send('The Sender Does Not Exist, might have Deleted His Account :(')
+                const restr = { str: 'The Sender Does Not Exist, might have Deleted His Account :(', act: 'e'}
+                        
+                return res.send(restr)
             }
             var i,i2;
             var flag = 0, flag2 =0;
@@ -248,17 +290,88 @@ routeHandlers = {
             try{
                 await sender.save()
                 try{
-                    return res.send('Friend Request Rejected.')        
+                    const restr = { str: 'Friend Request Rejected.', act: 's'}
+                        
+                    return res.send(restr)        
                 }catch(e){
-                    res.send('Error in saving sender data: ' + e)
+                    const restr = { str: 'Error in saving sender data: ' + e, act: 'e'}
+                        
+                    res.send(restr)
                 }
             }catch(e){
-                return res.send('Error: '+ e +'Sorry, There is some error with your account. Try to Login Again. :O')
+                const restr = { str: ('Error: '+ e +'Sorry, There is some error with your account. Try to Login Again. :O'), act: 'e'}
+                        
+                return res.send(restr)
             }
         }catch(e){
-            return res.send('The Sender has Deleted His Account :(')
+            const restr = { str: 'The Sender has Deleted His Account :(', act: 'e'}
+                        
+            return res.send(restr)
         }
-    }
+    },
+    loadFriendsList : async(req,res)=>{
+        try{
+            if(req.user.friends.length === 0){
+                return res.render('friends',{
+                    message: 'So Empty Here. Try To Find a Person and Send a Friend Request'
+                })
+            }
+
+            var punyJudge, sugg;
+            const len = req.user.friends.length;
+            if(len <= 3 && len > 0){
+                punyJudge = 'a few'
+                sugg = ' Try making some more.'
+            }
+            else if(len <= 20 && len > 3){
+                punyJudge = 'some'
+                sugg = ' Good Going'
+            }
+            else{
+                punyJudge = 'a lot of'
+                sugg = ' Wow!'
+            }
+
+            return res.render('friends', {
+                message : ('You have ' + punyJudge + ' friends here' + sugg),
+                friends : req.user.friends
+            })
+
+        }catch(e){
+            return res.render('friends',{
+                message: 'Cannot Display Friends. Something Wrong Happenned. Please Login Again.'
+            })
+        }
+    },
+    removeFriend : async (req,res)=>{
+        const rf = JSON.stringify(req.body)
+        const notFriendUsername = JSON.parse(rf)
+        var i = 0; flag = 0;
+        for(i=0; i<req.user.friends.length; ++i){
+            if(notFriendUsername === req.user.friends[i]){
+                flag = 1;
+                break;
+            }
+        }
+        var j = 0; f = 0;
+        for(j=0; j<notFriendUsername.friends.length; ++j){
+            if(req.user.username === notFriendUsername.friends[i]){
+                f = 1;
+                break;
+            }
+        }    
+        if(f === 0 || flag === 0){
+            const restr = {str: 'Friendship has already been Terminated!', act: 'e'}
+            return res.send(restr)
+        }
+
+        req.user.friends.splice(i,1)
+        notFriendUsername.friends.splice(j,1)
+        const restr = {str: 'Friendship has been removed', act: 's'}
+        return res.send(restr)
+        
+    }    
+
 }
 
 router.post('/sendFriendRequest', auth('users'), routeHandlers.sendFriendRequest)
@@ -266,5 +379,9 @@ router.post('/revokeFriendRequest', auth('users'), routeHandlers.cancelFriendReq
 router.get('/loadFriendRequests', auth('users'), routeHandlers.loadFriendRequest)
 router.post('/acceptFriendRequest', auth('users'), routeHandlers.acceptFriendRequest)
 router.post('/rejectFriendRequest', auth('users'), routeHandlers.rejectFriendRequest)
-
+router.get('/friends', auth('users'), routeHandlers.loadFriendsList)
+router.post('/friends/remove', auth('users'), routeHandlers.removeFriend)
 module.exports = router
+
+
+    

@@ -48,11 +48,32 @@ const routeHandlers = {
     catch(e){
         console.log("Error in Loading User: "+ e)
     }
-  }
+  },
+  findUserProfile : async(req,res)=>{
+    try{
+        const username = req.params.user
+        const user = await User.findOne({username})
+        try{
+            res.render('publicProfile', {
+                username: user.username,
+                about: user.about,
+                fullname: user.fullname,
+                email: user.email
+            })
+        }catch(e){
+            console.log(e)
+        }
+        
+    }catch(e){
+       console.log(e)
+    }
+ }
 
 }
 
+ 
+
 router.get('/findUser', auth('users'), routeHandlers.loadFindUserPage)
 router.post('/findUser', auth('users'), routeHandlers.findUserLoad)
-
+router.get('/findUser/:user', auth('users'), routeHandlers.findUserProfile)
 module.exports = router
