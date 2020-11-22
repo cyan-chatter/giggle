@@ -114,10 +114,6 @@ userSchema.pre('save',async function(next){
     if(user.isModified('password')){
         user.password = await bcrypt.hash(user.password, 8)
     }
-    for(var i=0; i<user.receivedRequests.length; ++i){
-        var d = new Date()
-        user.receivedRequests[i].timing = d
-    }
     next()
 })
 

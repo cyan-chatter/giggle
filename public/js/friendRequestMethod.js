@@ -7,17 +7,25 @@ const friendRequestMethod = ()=>{
         e.preventDefault();
         var actionURL = "/sendFriendRequest";
         if(friendBtn.innerHTML === "Send Friend Request"){
-            messageIdentifier.innerHTML = "Sending...."
-            friendBtn.innerHTML = "Revoke Friend Request"
-            console.log('sending')
-            actionURL = "/sendFriendRequest"
-
+            if(messageIdentifier.innerHTML === '"Friend Request Already Sent. The Friend Request Sent Earlier Has Not Been Accepted Yet :("' || messageIdentifier.innerHTML === '"This Person is Your Friend Already"'){
+                friendBtn.style.display = 'none'
+            }else{
+                messageIdentifier.innerHTML = "Sending...."
+                friendBtn.innerHTML = "Revoke Friend Request"
+                console.log('sending')
+                actionURL = "/sendFriendRequest"
+            }
         }
         else if(friendBtn.innerHTML === "Revoke Friend Request"){
-            messageIdentifier.innerHTML = "Revoking...."
-            friendBtn.innerHTML = "Send Friend Request"
-            console.log('revoking')
-            actionURL = "/revokeFriendRequest"
+            if(messageIdentifier.innerHTML === '"Friend Request Already Sent. The Friend Request Sent Earlier Has Not Been Accepted Yet :("' || messageIdentifier.innerHTML === '"This Person is Your Friend Already"'){
+                friendBtn.style.display = 'none'
+            }
+            else{
+                messageIdentifier.innerHTML = "Revoking...."
+                friendBtn.innerHTML = "Send Friend Request"
+                console.log('revoking')
+                actionURL = "/revokeFriendRequest"
+            }
         }
             var receiverUsername = {receiverUserName}
         $.ajax({

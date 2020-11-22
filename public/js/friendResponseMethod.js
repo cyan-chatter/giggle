@@ -11,21 +11,24 @@
                 checkForReject[i] = 0
             }            
 
+            var senderUserName = []
             for(var i=0; i<senderUsernameDOM.length; ++i){
 
-                const senderUserName = senderUsernameDOM[i].innerHTML
-                          
+                 senderUserName[i] = senderUsernameDOM[i].innerHTML
+            }      
+
                 function acceptBtnWork (e){
 
                      e.disabled = true
-                     e.parentNode.childNodes[3].disabled = true;
+                     e.parentNode.childNodes[5].disabled = true;
+                     senderUserName = e.parentNode.childNodes[1].innerHTML;
 
                     if(checkForReject[i] !== 1 && checkForAccept[i] !== 1){
                         messageIdentifier1.innerHTML = '....'
                         var actionURL = "/acceptFriendRequest"
                         var senderUsername = {senderUserName}
                         e.style.display = 'none'
-                        e.parentNode.childNodes[3].style.display = 'none';
+                        e.parentNode.childNodes[5].style.display = 'none';
                         $.ajax({
                             url: actionURL,
                             type: "POST",
@@ -41,18 +44,19 @@
             
                 }
 
-                
                  function rejectBtnWork(e){
                        
                     e.disabled = true
-                    e.parentNode.childNodes[1].disabled = true;
-
+                    console.log(e.parentNode.childNodes)
+                    e.parentNode.childNodes[3].disabled = true;
+                    senderUserName = e.parentNode.childNodes[1].innerHTML;
+                     
                     if(checkForReject[i] !== 1 && checkForAccept[i] !== 1){
                         messageIdentifier1.innerHTML = '....'
                         var actionURL = "/rejectFriendRequest"
                         var senderUsername = {senderUserName}
                         e.style.display = 'none'
-                        e.parentNode.childNodes[1].style.display = 'none'
+                        e.parentNode.childNodes[3].style.display = 'none'
                         $.ajax({
                             url: actionURL,
                             type: "POST",
@@ -67,7 +71,7 @@
                         checkForAccept.push(1)
                     } 
                 }
-            }
+            
 
 
             
