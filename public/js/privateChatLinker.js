@@ -9,7 +9,7 @@ function privateChatLinkage(e){
         data: JSON.stringify({Username, fUsername}),
         contentType: 'application/json',
         success: function(res){
-            location.replace("/private/" + Username + "." + fUsername)
+            location.replace("/private/")
         }
     })
 
