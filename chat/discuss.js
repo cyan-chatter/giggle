@@ -23,9 +23,9 @@ const socketServer = (io)=>{
         })
         
         socket.on('disconnect', ()=>{
-            var removedCamper = campersInDiscuss.removeCamperById(socket.id);
-            if(removedCamper){
-                io.to(removedCamper.camp).emit('campersDisplay', campersInDiscuss.getCampers(removedCamper.camp))
+            var stillConnectedCamper = campersInDiscuss.removeCamperById(socket.id);
+            if(stillConnectedCamper){
+                io.to(stillConnectedCamper.camp).emit('campersDisplay', campersInDiscuss.getCampers(stillConnectedCamper.camp))
             }
         })
     

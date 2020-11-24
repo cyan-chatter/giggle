@@ -32,10 +32,12 @@ $(document).ready(function(){
                 receiver
             },
             success: function(){
-                socket.emit('friendRequest', {
+                socket.emit('friendRequest', 
+                {
                     receiver,
                     sender: username
-                }, function(){
+                }, 
+                function(){
                     console.log('Friend Request Sent')
                 })
             }
@@ -64,35 +66,5 @@ $(document).ready(function(){
             $('#reload').load(location.href + ' #reload');
     }); 
 
+    })
 })
-
-
-    
-
-
-    
-
-
-
-    
-    
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

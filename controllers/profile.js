@@ -28,7 +28,8 @@ router.get('/profile', auth('users'), async(req,res)=>{
       fullname : req.user.fullname,
       about: req.user.about,
       email : req.user.email,
-      pic: JSON.stringify(pic)
+      pic: JSON.stringify(pic),
+      usernameH: req.user.username
    })
 })
 
@@ -62,7 +63,8 @@ router.post('/profile/avatar', auth('users'), uploadS.single('avatar'), async (r
       message: 'Choose an image before Pressing Upload Button',
       status: '400',
       destination: 'users Profile',
-      goto: '/profile/patch'
+      goto: '/profile/patch',
+      usernameH: req.user.username
    })
   }
   
@@ -80,7 +82,8 @@ router.get('/profile/avatar/delete', auth('users'), async (req,res)=>{
          message: e,
          status: '400',
          destination: 'users Profile',
-         goto: '/profile/patch'
+         goto: '/profile/patch',
+         usernameH: req.user.username
       })
    } 
  }) 
@@ -91,7 +94,8 @@ router.get('/profile/patch', auth('users'), async (req,res)=>{
     try{
        res.render('update',{
           title: 'Update Profile',
-          goto: '/profile/patch'
+          goto: '/profile/patch',
+          usernameH: req.user.username
        })
     }catch(e){
        res.status(500).render(e)
@@ -123,7 +127,8 @@ router.get('/profile/patch', auth('users'), async (req,res)=>{
 
       res.status(200).render('tempPage',{
          username: req.user.username,
-         message: 'Profile Data Updated'
+         message: 'Profile Data Updated',
+         usernameH: req.user.username
       })
    }
 
@@ -131,6 +136,7 @@ router.get('/profile/patch', auth('users'), async (req,res)=>{
       return res.render('error404', {
          status: '400',
          message: e + 'Unable to Update Profile Data. Please Try Again',
+         usernameH: req.user.username
       })
    }
    

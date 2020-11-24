@@ -13,11 +13,11 @@ const awsSave = require('../utils/saveaws')
 
 
 const routeHandlers = {
-    adminPage: async (req, res)=>{
-        res.render('dashboard');
+    loadCreateCamp: async (req, res)=>{
+        res.render('createCamp', {usernameH: req.user.username});
     },
 
-    adminPostPage: async (req, res)=>{
+    createCamp: async (req, res)=>{
         const newCamp = new Camp()
         newCamp.name = req.body.name
         newCamp.about = req.body.about
@@ -41,7 +41,7 @@ const routeHandlers = {
         
         await newCamp.save()
         try{
-            res.render('dashboard');
+            res.redirect('/home')
         }
         catch{
             console.log('Error in Creating and Saving Camp in DB')
@@ -68,8 +68,8 @@ const routeHandlers = {
 }
 
 
-router.get('/admins/dashboard', routeHandlers.adminPage);    
-router.post('/uploadFile', awsSave.any(), routeHandlers.uploadFile);
-router.post('/admins/dashboard', routeHandlers.adminPostPage);
+router.get('/camps/create', auth('users'), routeHandlers.loadCreateCamp);    
+router.post('/uploadFile', auth('users'), awsSave.any(), routeHandlers.uploadFile);
+router.post('/camps/create', auth('users'), routeHandlers.createCamp);
 
 module.exports = router

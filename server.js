@@ -18,8 +18,6 @@ require('./db/mongoose')
 const Camp = require('./db/camp')
 
 
-
-
 ///////////////////////////////////////////////
 const users = require('./controllers/users')
 const admins = require('./controllers/admins')
@@ -28,6 +26,10 @@ const camps = require('./controllers/camps')
 const profile = require('./controllers/profile')
 const findUser = require('./controllers/findUser')
 const friends = require('./controllers/friends')
+const private = require('./controllers/private')
+
+
+
 
 
 
@@ -65,7 +67,7 @@ setServer = (users)=>{
     app.use(profile)
     app.use(findUser)
     app.use(friends) 
-       
+    app.use(private)       
     ///////////////////////////////
     //Set cookie config
     app.get('/clcookie',(req,res) => {

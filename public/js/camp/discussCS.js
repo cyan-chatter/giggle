@@ -53,9 +53,10 @@ $(document).ready(function(){
         var newMessage = messageBlock.replace(/!%!=usernameClient=!%!/ig, rnm.username).replace(/!%!=textClient=!%!/ig, rnm.text);
         $('#messages').append(newMessage);
         
-        //add autoscroll();
-        
+        //autoscroll(); 
     });
+
+    
 
     socket.on('campersDisplay', (sender, campers)=>{
        

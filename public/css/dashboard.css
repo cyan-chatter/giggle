@@ -2,7 +2,7 @@ body {
     padding: 20px;
     font-family: Helvetica;
   }
-  
+
   .wrapper {
     display: grid;
     grid-gap: 5px;

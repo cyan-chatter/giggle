@@ -23,8 +23,12 @@ const routeHandlers = {
             title: 'Camp Discussion',
             campname: req.params.name,
             username: req.user.username,
-            fullname: req.user.fullname
+            fullname: req.user.fullname,
+            usernameH: req.user.username
         })
+    }, 
+    postCampPage: async (req, res)=>{
+        
     }
     
 }
@@ -32,6 +36,6 @@ const routeHandlers = {
 ///////////////
 
 router.get('/camps/:name', auth('users'), routeHandlers.loadCampPage)
-//router.post('/camps/:name',auth('users'), routeHandlers.postCampPage)
+router.post('/camps/:name',auth('users'), routeHandlers.postCampPage)
 
 module.exports = router

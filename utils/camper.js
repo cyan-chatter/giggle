@@ -1,10 +1,12 @@
+const { authenticate } = require("passport")
+
 class Campers {
     constructor(){
         this.campers = []
     }
 
     putCamper(id, username, camp){
-        var user = {
+        var user = { 
             id,
             username,
             camp
@@ -28,19 +30,24 @@ class Campers {
         return campersInDiscuss
     }
 
-    getCamperById(id){
-        for(var index=0; index<this.campers.length; ++index){
-            if(this.campers[index].id === id){
-                return this.campers[index].username 
-            }
-        }
-        return
+    getCamperById(verifier){
+        var verifiedCamper = this.campers.filter((authenticate)=>{
+            return authenticate.id === verifier
+        })[0]
+        return verifiedCamper
+        
+        // for(var index=0; index<this.campers.length; ++index){
+        //     if(this.campers[index].id === id){
+        //         return this.campers[index].username 
+        //     }
+        // }
+        //return
     }
 
-    removeCamperById(id){
-        var camper = this.getCamperById(id)
+    removeCamperById(verifier){
+        var camper = this.getCamperById(verifier)
         if(camper){
-            this.campers = this.campers.filter((c)=>c.id !== id)
+            this.campers = this.campers.filter((c)=>c.verifier !== verifier)
         }
         return camper
     }

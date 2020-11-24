@@ -1,7 +1,6 @@
 function cancelFriendshipBtnWork (e){
     const messageN = document.querySelector('.messageN')
     e.parentNode.style.display = 'none'
-    console.log(e.parentNode.childNodes[3].textContent)
     const friendUsername = e.parentNode.childNodes[3].textContent
     const pJ = document.querySelector('#punyJudge') 
     $.ajax({

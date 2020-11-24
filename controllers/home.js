@@ -33,8 +33,7 @@ const routeHandlers = {
         
         
         const filterSubjectsLexico = _.sortBy(filterSubjects, '_id')
-        // use own DFS on Trie (Radix Tree) Algo 
-
+        
         return res.render('home',{
             camps: campTents,
             base: 'users',
@@ -42,16 +41,29 @@ const routeHandlers = {
             fullname: req.user.fullname,
             subjects: filterSubjectsLexico,
             message : sessionStorage.getItem("m"),
-            messageType : sessionStorage.getItem("mT")
+            messageType : sessionStorage.getItem("mT"),
+            usernameH: req.user.username
         })
     }        
     catch(e){
         console.log("Error in Loading Camps: "+ e)
     }
+
+  },
+
+  addToMyCamps: async(req,res)=>{
+    const x2 = JSON.stringify(req.body.campName)
+    const y2 = JSON.parse(x2)
+    const name = y2.campName
+    console.log('server of add to camps: '+name)
+
+
+    res.send({name})
+
   }
 }
 
-router.get('/home',auth('users'), routeHandlers.loadHomePage)
-
+router.get('/home', auth('users'), routeHandlers.loadHomePage)
+router.post('/home/addToMyCamps', auth('users'), routeHandlers.addToMyCamps)
 
 module.exports = router

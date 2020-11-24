@@ -103,6 +103,18 @@ routeHandlers = {
             const receiver = receiverName.receiverUserName
             
             const receiverData = await User.findOne({username: receiver})
+            
+            const checkParams3 = (params)=>{
+                params.username.normalize() === receiver.normalize() 
+            }
+
+            const alreadyF = req.user.friends.findIndex(checkParams3)
+
+            if(alreadyF !== -1){
+                const restr = { str: 'Can\'t Revoke Request Now as the User has already Accepted the Request', act:'e' }        
+                return res.send(restr)
+            }
+
             try{
                 if(!receiverData){
                     const restr = { str: 'This User Does Not Exist :(', act:'e' }
@@ -159,20 +171,22 @@ routeHandlers = {
     loadFriendRequest: async(req,res)=>{
         
         var fr = []
-        if(req.user.totalRequests === 0){
+        if(req.user.receivedRequests.length === 0){
             return res.render('friendRequests', {
                 requesters: fr,
                 totalRequests: req.user.totalRequests,
-                message: '' 
+                message: 'You Don\'t have any Friend Requests' ,
+                usernameH: req.user.username
             })
         }
         
-        for(var i=0; i<req.user.totalRequests; ++i){
+        for(var i=0; i<req.user.receivedRequests.length; ++i){
             if(!req.user.receivedRequests[i]){
                 return res.render('friendRequests', {
                     requesters: fr,
                     totalRequests: req.user.totalRequests,
-                    message: 'No New Friend Requests'
+                    message: 'No New Friend Requests',
+                    usernameH: req.user.username
                 })
             }
             var d = req.user.receivedRequests[i].timing.getTime()
@@ -181,12 +195,12 @@ routeHandlers = {
             ++i;
         }
         fr.reverse()
-        console.log(fr)
-
+        
         return res.render('friendRequests', {
             requesters: fr,
             totalRequests: req.user.totalRequests,
-            message: ''
+            message: '',
+            usernameH: req.user.username
         })
     },
     acceptFriendRequest: async (req,res)=>{
@@ -198,56 +212,42 @@ routeHandlers = {
         try{
             if(!sender){
                 const restr = { str: 'This Sender Does Not Exist :(', act: 'e'}
-                        
                 return res.send(restr)
-            }    
+            }   
+
             req.user.friends.push({userId: sender._id , username: sender.username, fullname: sender.fullname})
             sender.friends.push({userId: req.user._id, username: req.user.username, fullname: req.user.fullname})
-
             
-            var i,i2;
-            var flag = 0, flag2 =0;
-            for(i=0; i<req.user.receivedRequests.length; ++i){
-                if(req.user.receivedRequests[i].username === username){
-                    flag = 1;
-                    break;
-                }    
+            const checkParams = (params)=>{
+                return params.username === sender.username
             }
-            if(flag === 1){
-                req.user.receivedRequests.splice(i,1)
+            
+            const i1 = req.user.receivedRequests.findIndex(checkParams)
+
+            if(i1 !== -1){
+                req.user.receivedRequests.splice(i1,1)
             }
-    
-            for(i2=0; i2<sender.sentRequests.length; ++i2){
-                if(sender.sentRequests[i].username === req.user.username){
-                    flag2 = 1;
-                    break;
-                }    
+            req.user.totalRequests -= 1
+            
+            const checkParams2 = (params)=>{
+                return params.username === req.user.username
             }
-            if(flag2 === 1){
-                sender.sentRequests.splice(i,1)
+            
+            const i2 = sender.sentRequests.findIndex(checkParams2)
+
+            if(i2 !== -1){
+                sender.sentRequests.splice(i2,1)
             }
     
             await req.user.save()
-            try{
-                await sender.save()
-                try{
-                    const restr = { str: ('Friend Request Accepted. ' + sender.username + ' is a Friend now.'), act: 's'}
-                        
-                    res.send(restr)
-                }catch(e){
-                    const restr = { str: ('Error. Friend Request Not Accepted. Sender data cannot be saved' + e), act: 'e'}
-                        
-                  return res.send(restr)
-                }
-            }catch(e){
-                const restr = { str: ('Error. Friend Request Not Accepted.' + e), act: 'e'}
-                        
-                return res.send(restr)
-            }
-            
+            await sender.save()
+                
+            const restr = { str: ('Friend Request Accepted. ' + sender.username + ' is a Friend now.'), act: 's'}
+            res.send(restr)
+                
         }catch(e){
-            const restr = { str: 'The Sender has Deleted His Account :(', act: 'e'}
-                        
+            const restr = { str: 'Error: Friend Request Not Accepted', act: 'e'}
+            console.log(e)            
             return res.send(restr)
         }
             
@@ -260,8 +260,7 @@ routeHandlers = {
         const sender = await User.findOne({username})
         try{
             if(!sender){
-                const restr = { str: 'The Sender Does Not Exist, might have Deleted His Account :(', act: 'e'}
-                        
+                const restr = { str: 'The Sender Does Not Exist, might have Deleted His Account :(', act: 'e'}            
                 return res.send(restr)
             }
             var i,i2;
@@ -275,7 +274,8 @@ routeHandlers = {
             if(flag === 1){
                 req.user.receivedRequests.splice(i,1)
             }
-    
+            req.user.totalRequests -= 1
+            
             for(i2=0; i2<sender.sentRequests.length; ++i2){
                 if(sender.sentRequests[i].username === req.user.username){
                     flag2 = 1;
@@ -313,7 +313,8 @@ routeHandlers = {
         try{
             if(req.user.friends.length === 0){
                 return res.render('friends',{
-                    message: 'So Empty Here. Try To Find a Person and Send a Friend Request'
+                    message: 'So Empty Here. Try To Find a Person and Send a Friend Request',
+                    usernameH: req.user.username
                 })
             }
 
@@ -334,12 +335,15 @@ routeHandlers = {
 
             return res.render('friends', {
                 message : ('You have ' + punyJudge + ' friends here' + sugg),
-                friends : req.user.friends
+                friends : req.user.friends,
+                usernameH: req.user.username,
+                myUsername: req.user.username
             })
 
         }catch(e){
             return res.render('friends',{
-                message: 'Cannot Display Friends. Something Wrong Happenned. Please Login Again.'
+                message: 'Cannot Display Friends. Something Wrong Happenned. Please Login Again.',
+                usernameH: req.user.username
             })
         }
     },
@@ -354,16 +358,18 @@ routeHandlers = {
             var i = 0, flag = 0;
             for(i=0; i<req.user.friends.length; ++i){
                 if(notFriendUsername.normalize() === req.user.friends[i].username.normalize()){
-                flag = 1;
-                break;
+                    req.user.friends.splice(i,1)
+                    flag = 1;
+                    break;
                 }
             }
             console.log('i: ' + i)
             var j = 0, f = 0;
             for(j=0; j<notAFriend.friends.length; ++j){
                 if(req.user.username.normalize() === notAFriend.friends[i].username.normalize()){
-                f = 1;
-                break;
+                    notAFriend.friends.splice(j,1)
+                    f = 1;
+                    break;
                 }
             }
             console.log('j: ' + j)    
@@ -372,9 +378,7 @@ routeHandlers = {
                 return res.send(restr)
             }
 
-            req.user.friends.splice(i,1)
-            notAFriend.friends.splice(j,1)
-
+            
             console.log('User Friends: ' + req.user.friends)
             console.log('notAFriend Friends: ' + notAFriend.friends)
 

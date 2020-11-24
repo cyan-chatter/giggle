@@ -1,8 +1,9 @@
  <!DOCTYPE html>
 <head>
-    <title>home</title>
+    <title>giggle</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="icon" href="../../utils/img/searchW2.png">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -18,7 +19,7 @@
    <form action="#" method="post">
        <div class="form-group ad-30" style="margin-top:8px;">
             <div class="input-group search-style">
-                <input class="form-control new-search-bar"  name="country" id="search" placeholder="Enter Your Club Name" type="text">
+                <input class="form-control new-search-bar"  name="searchCamp" id="search" placeholder="Enter Camp Name" type="text">
                 <span class="input-group-btn">
                     <button class="btn input-btn" type="" id="search-form">Search</button>
                 </span>
@@ -82,8 +83,9 @@
                                                     </h5>
                                                 </div>
                                                 <div class="col-xs-12 col-md-6">
-                                                    <button class="btn add-fav">
-                                                        Mark Favourite
+                                                    <p id="CampName" style="display: none;">{{name}}</p>
+                                                    <button class="addToMyCampsBtn" onclick="addToMyCamps(this)">
+                                                       Add to My Camps
                                                     </button>
                                                 </div>
                                             </div>
@@ -101,7 +103,7 @@
         </div>
     </div>
 </div>
-
+<p id = "message"></p>
     <div>
         <br>
         <form action="/logoutAll" method='post'>
@@ -112,6 +114,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>  
 <script src = "../../utils/message-loader.js"></script>
+<script src ="/js/homeTasks.js"></script>
 
 </body>
 </html>

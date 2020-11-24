@@ -22,7 +22,8 @@ const routeHandlers = {
         username,
         fullname,
         about,
-        activate 
+        activate,
+        usernameH: req.user.username 
     })
   },
   
@@ -35,14 +36,16 @@ const routeHandlers = {
         if(!foundUser[0]){
             return res.render('tempPage',{
                 username: req.user.username,
-                message: 'There is No User with that Username'
+                message: 'There is No User with that Username',
+                usernameH: req.user.username
             })
         }
         return res.render('findUserPost',{
             username: foundUser[0].username,
             fullname: foundUser[0].fullname,
             about: foundUser[0].about,
-            activate : 'yes'
+            activate : 'yes',
+            usernameH: req.user.username
         })
     }        
     catch(e){
@@ -58,7 +61,9 @@ const routeHandlers = {
                 username: user.username,
                 about: user.about,
                 fullname: user.fullname,
-                email: user.email
+                email: user.email,
+                usernameH: req.user.username
+                
             })
         }catch(e){
             console.log(e)
