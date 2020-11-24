@@ -22,7 +22,7 @@
             {{#each friends}}
             <div class= "friendsLoopBlock">
                 <h3 class = "friendName">{{this.fullname}}</h3>
-                <h4><a href="/findUser/:{{this.username}}" style="text-decoration: none;" class ="friendUserName">{{this.username}}</a></h4>
+                <h4><a href="/findUser/{{this.username}}" style="text-decoration: none;" class ="friendUserName">{{this.username}}</a></h4>
                 <button class="cancelFriendButton btn btn-lg btn-primary" onclick="cancelFriendshipBtnWork(this)">Remove Friendship</button>
             </div>
             {{/each}}
@@ -30,6 +30,7 @@
         </div> 
 
         <p class = "messageN"></p>
+        <a style="display: none;" id="anchorToFriendsPage" href="/friends"></a>
         <br>
         
 

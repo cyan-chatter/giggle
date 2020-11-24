@@ -345,30 +345,53 @@ routeHandlers = {
     },
     removeFriend : async (req,res)=>{
         const rf = JSON.stringify(req.body)
-        const notFriendUsername = JSON.parse(rf)
-        var i = 0; flag = 0;
-        for(i=0; i<req.user.friends.length; ++i){
-            if(notFriendUsername === req.user.friends[i]){
+        const cancelFriendUsername = JSON.parse(rf).friendUsername
+        const notAFriend = await User.findOne({username : cancelFriendUsername})
+        try{
+            const notFriendUsername = notAFriend.username
+            console.log('NotAFriend: ' + notAFriend.friends)
+            console.log('User: ' + req.user.friends) 
+            var i = 0, flag = 0;
+            for(i=0; i<req.user.friends.length; ++i){
+                if(notFriendUsername.normalize() === req.user.friends[i].username.normalize()){
                 flag = 1;
                 break;
+                }
             }
-        }
-        var j = 0; f = 0;
-        for(j=0; j<notFriendUsername.friends.length; ++j){
-            if(req.user.username === notFriendUsername.friends[i]){
+            console.log('i: ' + i)
+            var j = 0, f = 0;
+            for(j=0; j<notAFriend.friends.length; ++j){
+                if(req.user.username.normalize() === notAFriend.friends[i].username.normalize()){
                 f = 1;
                 break;
+                }
             }
-        }    
-        if(f === 0 || flag === 0){
-            const restr = {str: 'Friendship has already been Terminated!', act: 'e'}
+            console.log('j: ' + j)    
+            if(f === 0 || flag === 0){
+                const restr = {str: 'Friendship has already been Terminated!', act: 'n'}
+                return res.send(restr)
+            }
+
+            req.user.friends.splice(i,1)
+            notAFriend.friends.splice(j,1)
+
+            console.log('User Friends: ' + req.user.friends)
+            console.log('notAFriend Friends: ' + notAFriend.friends)
+
+            await notAFriend.save()
+            await req.user.save()
+
+            
+            const restr = {str: 'Friendship has been removed', act: 'n'}
+            if(req.user.friends.length === 0){
+                restr.act = 'y'
+            }
+            return res.send(restr)
+           
+        }catch(e){
+            const restr = {str: 'Friendship cannot be Removed. Please Login and Try Again', act: 'n'}
             return res.send(restr)
         }
-
-        req.user.friends.splice(i,1)
-        notFriendUsername.friends.splice(j,1)
-        const restr = {str: 'Friendship has been removed', act: 's'}
-        return res.send(restr)
         
     }    
 
