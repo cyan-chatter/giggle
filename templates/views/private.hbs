@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>giggle</title>
     
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/discuss.css">
 
@@ -18,10 +18,13 @@
 <body>
 
 {{>navbar}}
-<p>{{test}}</p>
+  
+    <p id='myNameHidden' style="display: none;"> {{myName}} </p>
+    <p id='fNameHidden' style="display: none;"> {{fName}} </p>
+    <p id='roomNamesCombined' style="display: none;"> {{roomNamesCombined}} </p>
+
     <div class="col-md-12">
-        <input type="hidden" id="name-user" value="<%= user.username %>">
-        <input type="hidden" id="name-image" value="<%= user.userImage %>">
+        <input type="hidden" id="name-image" value="">
 
         <div class="col-md-12">
             <div class="chat_container">
@@ -41,14 +44,14 @@
                                             </div>
                                             <div class="content">
                                                 <div class="main">
-                                                    <h3 class="name">Username</h3>
-                                                    <h3 class="name">Fullname</h3>
+                                                    <h3 class="name">{{fName}}</h3>
+                                                    <h3 class="name">{{fFullname}}</h3>
                                                     <p class="profession-online">
                                                         <i class="fa fa-circle online" aria-hidden="true"></i>
-                                                        Online
+                                                       
                                                     </p>
                                                     <p class="text-center">
-                                                    	About
+                                                    	{{fAbout}}
                                                     </p>
                                                 </div>
                                             </div>
@@ -89,7 +92,7 @@
  -->                                   
                                 </ul>
                                 
-                                <script id = "messageFromServerTemplate" type="template">
+                                <script id = "directFromServerTemplate" type="template">
                                     <li class="left">
                                        <span class="chat-img1 pull-left">
                                            <img src="https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_1280.png" class="img-circle" alt="">
@@ -134,8 +137,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.js" integrity="sha512-vGcPDqyonHb0c11UofnOKdSAt5zYRpKI4ow+v6hat4i96b7nHSn8PQyk0sT5L9RECyksp+SztCPP6bqeeGaRKg==" crossorigin="anonymous"></script>
-<script src="/js/camp/discussCS.js"></script>
-<script src="/js/camp/friendRequestCS.js"></script>
+<script src="/js/private/directCS.js"></script>
 </body>
 
 </html>
