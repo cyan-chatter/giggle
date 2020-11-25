@@ -11,11 +11,8 @@ const routeHandlers = {
     generatePrivateChatURI : async(req,res)=>{
         const myName1 = sessionStorage.getItem("myName").replace(/ /g, "-")
         const fName1 = sessionStorage.getItem("fName").replace(/ /g, "-")
-        
         const action = '/direct/' + myName1 + '.' + fName1  
-        
         return res.redirect(action)        
-        
     },
 
     linkPrivateChat: async(req,res)=>{
@@ -25,24 +22,40 @@ const routeHandlers = {
         sessionStorage.setItem("fName", friendName)
         sessionStorage.setItem("myName", req.user.username)
         res.send('The Usernames are Set')        
+    
     },
 
     loadPrivateChat: async(req,res)=>{
         const myName = sessionStorage.getItem("myName")
         const fName = sessionStorage.getItem("fName")
-        const roomNamesCombined = req.params.room
-        console.log('server: '+ roomNamesCombined)
-        const fUser = await User.findOne({username:fName})  
-        const fFullname = fUser.fullname 
-        const fAbout = fUser.about    
-        return res.render('private',{
-            myName, 
-            fName, 
-            fAbout,
-            fFullname,
-            usernameH: req.user.username,
-            roomNamesCombined
-        })
+        
+        const fUser = await User.findOne({username:fName}) 
+        try{
+            const fFullname = fUser.fullname 
+            const fAbout = fUser.about    
+            var friendsList = []
+            for(var i = 0; i< req.user.friends.length; ++i){
+                if(fName !== req.user.friends[i].username){
+                    var fino = req.user.friends[i].username
+                    friendsList.push(fino)
+                }   
+            }
+
+            console.log(friendsList)
+
+            return res.render('private',{
+                myName, 
+                fName, 
+                fAbout,
+                fFullname,
+                usernameH: req.user.username,
+                friendsList,
+                username: req.user.username
+            })
+        }catch(e){
+            res.redirect('/friends')
+        } 
+        
     }
 }
 

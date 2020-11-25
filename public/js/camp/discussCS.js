@@ -8,7 +8,7 @@ $(document).ready(function(){
     var camp = campNameDOM.val();
     var username = userNameDOM.val();
     var avatar = userImageDOM.val();
-    var messageForm = $('#message-form') 
+    var messageForm = $('#message-form')  
     var MessageDOM = $('#msg')
         
     //var userPic = $('#name-image').val();

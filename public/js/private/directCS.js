@@ -1,23 +1,19 @@
 $(document).ready(()=>{
     var socket = io()
     
-    const myName = $('#myNameHidden').val()
-    const fName = $('#fNameHidden').val()
-    const roomNamesCombined = $('#roomNamesCombined').val()
-
     var messageForm = $('#message_form')  
     var MessageDOM = $('#msg')
     
-    const rooms = roomNamesCombined.split('.')
-    const direct1 = rooms[0] + '.' + rooms[1]
-    const direct2 = rooms[1] + '.' + rooms[0]
+    var direct1 = $.deparam(window.location.pathname);
+    var rooms = direct1.split('.')
+    var direct2 = rooms[1] + '.' + rooms[0]
     
     socket.on('connect', ()=>{
         var rooms = {
             direct1, direct2
-        }
+        } 
         socket.emit('joinedDirect', rooms, ()=>{
-            console.log('joined to direct room')
+            console.log('direct client')
         })
     })
 
@@ -29,8 +25,8 @@ $(document).ready(()=>{
         if(sendingMessageText.trim().length > 0){
             var message = {
                 text: sendingMessageText,
-                sender: myName,
-                direct: direct1
+                sender: rooms[0],
+                direct: direct1,
                 //userPic: userPic
             }
 
@@ -39,7 +35,6 @@ $(document).ready(()=>{
             socket.emit('newDirectMessage', message, ()=>{
                 MessageDOM.val('');
                 MessageDOM.focus();
-                console.log('message submitted');
             });
         }
     });
@@ -47,11 +42,9 @@ $(document).ready(()=>{
     socket.on('incomingDirect', (rnm)=>{
         
         //decrypt message
-        
+        //direct2      
         var messageBlock = $.trim($('#directFromServerTemplate').html());
-        var newMessage = messageBlock
-                            .replace(/!%!=usernameClient=!%!/ig, rnm.sender)
-                            .replace(/!%!=textClient=!%!/ig, rnm.text);
+        var newMessage = messageBlock.replace(/!%!=usernameClient=!%!/ig, rnm.sender).replace(/!%!=textClient=!%!/ig, rnm.text);
         $('#messages').append(newMessage);
         //autoscroll();
     })
