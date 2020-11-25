@@ -59,21 +59,23 @@
 
                     <div class="col-sm-5 col-md-6 message_section">
                         <div class="row">
-                            
+                            <p id = "loadError"></p>
                             <div class="chat_area">
                                 <ul id="messages" class="list-unstyled">
-<!--                                   
+                                   
                                     <li class="left">
                                        <span class="chat-img1 pull-left">
                                            <img src="http://placehold.it/300x300" class="img-circle" alt="">
                                        </span>
+                                      {{#each pchat}} 
                                        <div class="chat-body1">
-                                           <span class="chat-name">Username</span>
+                                           <span class="chat-name">{{this.senderName}}</span>
                                            <br>
-                                            Message body                                     
+                                            {{this.message}}                                     
                                         </div>
+                                      {{/each}}  
                                     </li>
- -->                                   
+                                   
                                 </ul>
                                 
                                 <script id = "directFromServerTemplate" type="template">

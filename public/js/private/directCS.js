@@ -23,14 +23,16 @@ $(document).ready(()=>{
         var sendingMessageText = MessageDOM.val();
         
         if(sendingMessageText.trim().length > 0){
+
             var message = {
                 text: sendingMessageText,
                 sender: rooms[0],
-                direct: direct1,
+                receiver: rooms[1],
+                direct: direct1
                 //userPic: userPic
             }
 
-            //encrypt and send encrypted message 
+          //encrypt and send encrypted message 
 
             socket.emit('newDirectMessage', message, ()=>{
                 MessageDOM.val('');
@@ -49,4 +51,25 @@ $(document).ready(()=>{
         //autoscroll();
     })
 
+    socket.on('loadError', function() {
+        document.querySelector('#loadError').innerHTML = "Sorry, Error in Loading Messages :("
+        console.log('client error catcher')
+        //location.replace("/friends")
+     })
+
+
+     $('#send-message').on('click', function(){
+        var text = $('#msg').val();
+        
+        $.ajax({
+            url:'/direct/'+direct1,
+            type: 'POST',
+            data: {
+                text
+            },
+            success: function(){
+                $('#msg').val('');
+            }
+        })
+    });
 })

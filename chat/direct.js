@@ -1,4 +1,4 @@
-module.exports = function(io){
+const socketServer = (io)=>{
 
     io.on('connection', (socket)=>{
                         
@@ -10,13 +10,17 @@ module.exports = function(io){
             callback()
         })
 
-        socket.on('newDirectMessage', (incoming, callback)=>{
+        socket.on('newDirectMessage', async (incoming, callback)=>{
             io.to(incoming.direct).emit('incomingDirect', {
                 text : incoming.text,
                 sender: incoming.sender
-            }) 
+            })
             callback()
+            //incoming -- text sender receiver direct    
         })
 
     })
 }
+
+
+module.exports = socketServer
