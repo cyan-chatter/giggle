@@ -43,17 +43,17 @@ const routeHandlers = {
                 }   
             }
 
-            const pchat = await Direct.find({senderName: myName , receiverName: fName })
-            //debug this 
+            var pchat1 = await Direct.find({senderName: myName, receiverName: fName })
+            var pchat2 = await Direct.find({senderName: fName, receiverName: myName })
+            var dchat = pchat1.concat(pchat2)
+            console.log('dchat:::::::');
+            console.log(dchat)
             //add encryption
-            //add correct html css rendering to messsages
-            //add sort by timestamp
             
-            //const dchat = sortArrayByTime(pchat)
             
-            // pchat.sort(function(x, y){
-            //     return x.createdAt - y.createdAt;
-            // })
+            var pchat = dchat.slice().sort((x, y)=>{
+                return x.createdAt - y.createdAt;
+            })
 
             
             console.log('pchat messages: ' )
@@ -61,7 +61,6 @@ const routeHandlers = {
                 console.log(pchat[i].message)
             }
             
-
             return res.render('private',{
                 myName, 
                 fName, 
