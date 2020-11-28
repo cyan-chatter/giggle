@@ -46,17 +46,14 @@ const routeHandlers = {
             var pchat1 = await Direct.find({senderName: myName, receiverName: fName })
             var pchat2 = await Direct.find({senderName: fName, receiverName: myName })
             var dchat = pchat1.concat(pchat2)
-            console.log('dchat:::::::');
-            console.log(dchat)
+            
             //add encryption
-            
-            
+                        
             var pchat = dchat.slice().sort((x, y)=>{
                 return x.createdAt - y.createdAt;
             })
-
             
-            console.log('pchat messages: ' )
+            console.log('private chat messages :::: ')
             for(var i = 0; i<pchat.length; ++i ){
                 console.log(pchat[i].message)
             }
