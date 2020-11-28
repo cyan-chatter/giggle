@@ -44,7 +44,7 @@ $(document).ready(()=>{
     socket.on('incomingDirect', (rnm)=>{
         
         //decrypt message
-        //direct2      
+        
         var messageBlock = $.trim($('#directFromServerTemplate').html());
         var newMessage = messageBlock.replace(/!%!=usernameClient=!%!/ig, rnm.sender).replace(/!%!=textClient=!%!/ig, rnm.text);
         $('#messages').append(newMessage);

@@ -27,9 +27,9 @@
                         <div class="row">
                             <div class="new_message_head">
                                 <div class="pull-left">
-                                <button class="club_name">
+                                <h3 class="club_name">
                                   {{campname}}
-                                </button>
+                                </h3>
                                 </div>
                                 <div class="pull-right">
                                 </div>
@@ -86,10 +86,8 @@
                     <div class="col-sm-3 col-md-3 mob-50 mob-clearfix">
                         <div class="new_message_head">
                             <div class="pull-left">
-                                <button class="club_fans">
-                                    <i class="fa fa-users" aria-hidden="true" style="padding-right:15px; color:#4aa1f3 !important;"></i>
-                                    Campers <span id="numValue"></span>
-                                </button>
+                                    
+                                    <h3 class="club_name">Campers <span style="color:green" id="numValue"></span></h3>
                             </div>
                         </div>
 
@@ -98,17 +96,9 @@
                         <script id = "CampersListTemplate" type="template">
                                       <li class="right">
                                         <div class = "campersProfile">
-                                          <span id="camperName"><a href = "/profile/!%!=usernameListed=!%!" target = "_blank">!%!=usernameListed=!%!</a></span>
-                                          <span id="addFriend">
-                                            <form action="" method="get" id="add_friend">
-                                              <input type="hidden" name="receiverName" id="receiverName" value="!%!=usernameListed=!%!">
-                                              <input type="hidden" name="sender-name" id="sender-name" value="!%!=usernameUser=!%!">
-                                              </div>                                          
-                                            </form>
-                                          </span>
+                                          <span id="camperName"><a href = "/findUser/!%!=usernameListed=!%!" target = "_blank">!%!=usernameListed=!%!</a></span>
                                         </div>  
                                       </li>
-                                      
                           </script>
 
 

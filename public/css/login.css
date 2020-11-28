@@ -9,22 +9,6 @@ body {
     color: white !important;
 }
 
-.logo-container{
-    margin-bottom:5px;
-}
-
-.logo-div a{
-    color: #4aa1f3 !important;
-    text-decoration: none !important;
-}
-
-.reg-div a{
-    color: #4aa1f3 !important;
-    font-size:18px;
-    text-decoration:none !important;
-    z-index: 1000;
-}
-
 .main {
     width: 36%;
     margin:0 auto;
@@ -32,7 +16,7 @@ body {
 }
 
 #main{
-    background: #4aa1f3 !important;
+    background: rgba(26, 163, 111, 0.788) !important;
     border: 1px solid white;
     height: 100%;
 /*    min-height: 300px;*/
@@ -65,7 +49,7 @@ form {
         border-radius: 50%;
         left: 34%;
         top: -7px;
-        /*box-shadow: 0 0 6px 4px #fff;*/
+        
     }
 
 .login-log {
@@ -78,7 +62,6 @@ form {
 
 .inset {
     padding: 20px 20px 0px 20px;
-    /*border-top: 1px solid #000;*/
 }
 
 form h1 {
@@ -91,7 +74,7 @@ form h1 {
 
 
 form h1 {
-    color: #4aa1f3;
+    color: rgba(26, 163, 111, 0.788);
     /*text-shadow: 0 1px 0 #000;*/
     font-size: 35px;
     font-weight: 600;
@@ -103,15 +86,13 @@ form h1 {
 
 form h1 span {
     padding: 5px;
-    background: #0184ff;
+    background: rgba(26, 163, 111, 0.788);
 }
 
 label {
-    /*color: rgba(137, 192, 243, 0.8);*/
     color: #858585;
     display: block;
     font-size: 13px;
-    /*padding-bottom: 9px;*/
 }
 
 input[type=text],
@@ -221,46 +202,6 @@ footer .container .text-muted {
   padding-right: 15px;
   padding-left: 15px;
 }
-
-.btn-facebook{
-    background: #4aa1f3;
-    border-radius: 0;
-    color: #fff;
-    width: 100px;
-}
-
-.btn-facebook:link, .btn-facebook:visited {
-    color: #fff;
-    text-decoration: none;
-    background: #4aa1f3;
-}
-
-.btn-facebook:active, .btn-facebook:hover {
-    background: #4aa1f3;
-    color: #fff;
-}
-
-.btn-gplus{
-    background: #e44b34;
-    border-radius: 0;
-    color: #fff;
-    width: 100px;
-}
-
-.btn-gplus:link, .btn-gplus:visited {
-    color: #fff;
-    text-decoration: none;
-    background: #e44b34;
-}
-
-.btn-gplus:active, .btn-gplus:hover {
-    background: #e44b34;
-    color: #fff;
-}
-
-
-
-
 
 
 

@@ -14,50 +14,10 @@
 </div>
 
 {{> navbar}}
-  
-<div class="col-md-12">
-   <form action="#" method="post">
-       <div class="form-group ad-30" style="margin-top:8px;">
-            <div class="input-group search-style">
-                <input class="form-control new-search-bar"  name="searchCamp" id="search" placeholder="Enter Camp Name" type="text">
-                <span class="input-group-btn">
-                    <button class="btn input-btn" type="" id="search-form">Search</button>
-                </span>
-            </div>
-        </div>
-   </form>
-</div>
-  
+    
 <div class="col-md-12">
     <div class="">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="filter-container">
-                            <div class="card">
-                                <form action="" method="post">
-                                    <div class="content">
-                                        <p class="filter">
-                                            FILTER
-                                        </p>
-                                        <hr/>
-                                        <select class="" name="country" id="country" >
-                                            <option value="">Filter By Subject</option>
-											{{#each subjects}}
-                                            <option value="{{_id}}">{{_id}}</option>
-											{{/each}}
-                                        </select>
-                                        <div class="clearfix"></div>
-                                        <input class="btn add-apply" type="submit" value="Apply">
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
+        <div class="row"> 
             <div class="col-md-9"> 
                 <div>
                     {{#each camps}}
@@ -105,7 +65,7 @@
     <div>
         <br>
         <form action="/logoutAll" method='post'>
-            <input type='submit' value='LogoutAll'>
+            <input type='submit' value='Logout of All Devices'>
         </form>
     </div>
 

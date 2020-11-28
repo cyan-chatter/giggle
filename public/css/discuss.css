@@ -38,23 +38,23 @@ h3 {
 
 .navbar-brand:hover{
     color: #fff !important;
-    background-color: #4aa1f3;
+    background-color: rgba(26, 163, 111, 0.788);;
 }
 
 .navbar-default .navbar-nav > li > a {
     color: #fff !important;
-    background-color: #4aa1f3;
+    background-color: rgba(26, 163, 111, 0.788);;
     font-size: 16px;
     font-weight: bold;
 }
 
 .navbar-default .navbar-nav > li > a:hover {
     color: #fff !important;
-    background-color: #4aa1f3;
+    background-color: rgba(26, 163, 111, 0.788);;
 }
 
 .dropdown-toggle:active, .open .dropdown-toggle {
-    background:#4aa1f3 !important; 
+    background: rgba(26, 163, 111, 0.788) !important; 
     border: none !important;
     color:#000 !important;
 }
@@ -146,8 +146,8 @@ h3 {
     width: 100%;
 }
 
-member_list li:hover {
-    background: #428bca none repeat scroll 0 0;
+.member_list li:hover {
+    background: rgba(26, 163, 111, 0.788) none repeat scroll 0 0;
     color: #fff;
     cursor: pointer;
 }
@@ -261,8 +261,6 @@ member_list li:hover {
 }
 
 
-
-
 .main-scroll {
     height: 300px;
     overflow-x: hidden;
@@ -277,11 +275,11 @@ member_list li:hover {
 }
 
 .name, .friends, #numOfFriends, .club_name, .club_fans{
-    color: #4aa1f3 !important;
+    color:rgba(26, 163, 111, 0.788) !important;
 }
 
 .bl {
-    color: #03a9f4;
+    color:rgba(26, 163, 111, 0.788);
     font-weight: 500;
 }
 

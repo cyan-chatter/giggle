@@ -30,7 +30,8 @@ const routeHandlers = {
     loadMyCamps : async (req,res)=>{
         const myCamps = await Camp.find({admin: req.user._id})
         res.render('myCamps',{
-            camps : myCamps
+            camps : myCamps,
+            usernameH: req.user.username
         })
     },
     deleteCamp: async (req,res)=>{
