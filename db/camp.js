@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const campSchema = mongoose.Schema({
-    name: {type: String, default:''},
+    name: {type: String, unique: true, required: true},
     about: {type: String, default: ''},
     image: {type: String, default: 'default.png'},
     subject: {type: String, required: true},
@@ -9,7 +9,8 @@ const campSchema = mongoose.Schema({
     members: [{
         username: {type: String, default: ''},
         email: {type: String, default: ''}
-    }]
+    }],
+    admin: {type: mongoose.Schema.Types.ObjectId, ref: 'User'} 
 });
 const Camp = mongoose.model('Camp', campSchema)
 

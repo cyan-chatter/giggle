@@ -11,19 +11,33 @@ const formidable = require('formidable')
 const Camp = require('../db/camp')
 const awsSave = require('../utils/saveaws')
 
+sessionStorage.setItem("validateM", " ")
 
 const routeHandlers = {
     loadCreateCamp: async (req, res)=>{
-        res.render('createCamp', {usernameH: req.user.username});
+        const validate = sessionStorage.getItem("validateM")
+        res.render('createCamp', {usernameH: req.user.username, validate})
     },
 
     createCamp: async (req, res)=>{
+        
+        const repeat = await Camp.find({name: req.body.name})
+        if(repeat.length > 0){
+            sessionStorage.setItem("validateM", "The Camp Name is already used. Use a different Name")
+            return res.redirect('/camps/create')  
+        }
+        if(!req.body.subject || !req.body.name){
+            sessionStorage.setItem("validateM", "Missing Required Information. Try Again and Fill the Required Details")
+            return res.redirect('/camps/create')
+        }
+        
         const newCamp = new Camp()
         newCamp.name = req.body.name
         newCamp.about = req.body.about
         newCamp.image = req.body.image
         newCamp.subject = req.body.subject
         newCamp.tags.push('giggle')
+        newCamp.admin = req.user._id
 
         var tagString = req.body.hashtags
         for(var i=0; i<tagString.length; ++i){
@@ -71,5 +85,6 @@ const routeHandlers = {
 router.get('/camps/create', auth('users'), routeHandlers.loadCreateCamp);    
 router.post('/uploadFile', auth('users'), awsSave.any(), routeHandlers.uploadFile);
 router.post('/camps/create', auth('users'), routeHandlers.createCamp);
+
 
 module.exports = router

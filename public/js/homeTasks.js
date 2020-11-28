@@ -16,6 +16,5 @@ const campName = campNameDOM.innerHTML
             message.innerHTML = y.name
         }
     })
-
     
 }

@@ -27,8 +27,22 @@ const routeHandlers = {
             usernameH: req.user.username
         })
     }, 
-    postCampPage: async (req, res)=>{
-        
+    loadMyCamps : async (req,res)=>{
+        const myCamps = await Camp.find({admin: req.user._id})
+        res.render('myCamps',{
+            camps : myCamps
+        })
+    },
+    deleteCamp: async (req,res)=>{
+        const c = JSON.stringify(req.body)
+        const d = JSON.parse(c)
+        const del = d.campToDelName
+        //console.log(del)
+        const delCamp = await Camp.findOne({name: del})
+        await delCamp.remove()
+
+        res.send('D');
+
     }
     
 }
@@ -36,6 +50,8 @@ const routeHandlers = {
 ///////////////
 
 router.get('/camps/:name', auth('users'), routeHandlers.loadCampPage)
-router.post('/camps/:name',auth('users'), routeHandlers.postCampPage)
+//router.post('/camps/:name',auth('users'), routeHandlers.postCampPage)
+router.get('/mycamps', auth('users'), routeHandlers.loadMyCamps);
+router.post('/mycamps/delete', auth('users'), routeHandlers.deleteCamp);
 
 module.exports = router

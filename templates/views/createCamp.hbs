@@ -12,14 +12,12 @@
 <body>
 
     {{> navbar}}
-
+    <p id = "validateM">{{validate}}</p>
     <form id="groupForm" class="wrapper" action = '/camps/create' method = 'post'>
         <input type = "text" name = "name" placeholder = "Enter Camp Name (required)" class="nameField" required>
         <input type = "text" name = "subject" placeholder = "Mention Subject (required)" class= "subjectField" required>
         <input type = "text" name = "about" placeholder = "Add some Description" class= "aboutField">
         <input type = "text" name = "hashtags" placeholder = "#Hashtags help to find the Camp Easily" class= "tagsField">
-        <button class="btn btn-lg upload-btn" type="button" >Upload File</button>
-        <input type="file" name="upload" id="upload-input" style="display:none">
         <input type="submit" form="groupForm" value="AddGroup" class="dashboardButton">            
     </form>
 

@@ -7,7 +7,8 @@ const auth = require('../middleware/autho')
 const formidable = require('formidable')
 const Camp = require('../db/camp')
 const Direct = require('../db/direct')
-
+var CryptoJS = require("crypto-js");
+ 
 
 const routeHandlers = {
     generateDirectChatURI : async(req,res)=>{
@@ -47,15 +48,20 @@ const routeHandlers = {
             var pchat2 = await Direct.find({senderName: fName, receiverName: myName })
             var dchat = pchat1.concat(pchat2)
             
-            //add encryption
-                        
             var pchat = dchat.slice().sort((x, y)=>{
                 return x.createdAt - y.createdAt;
             })
             
+            
             console.log('private chat messages :::: ')
             for(var i = 0; i<pchat.length; ++i ){
-                console.log(pchat[i].message)
+                
+                console.log('Before Decrypt:' + pchat[i].message); // my message
+                // Decrypt
+                var bytes  = CryptoJS.AES.decrypt(pchat[i].message, 'secret key 123');
+                pchat[i].message = bytes.toString(CryptoJS.enc.Utf8);
+    
+                console.log('After Decrypt:' + pchat[i].message); // my message
             }
             
             return res.render('private',{
@@ -82,7 +88,11 @@ const routeHandlers = {
                 console.log(recUser)
                 const receiverData = await User.findOne({username: recUser})
              try{
-                 
+
+                // Encrypt
+                var ciphertext = CryptoJS.AES.encrypt(req.body.text, 'secret key 123').toString();
+                
+                //add encryption
                 const newDirect = new Direct();
 
                 newDirect.createdAt = new Date();
@@ -90,7 +100,7 @@ const routeHandlers = {
                 newDirect.receiverName = receiverData.username
                 newDirect.senderId = senderData._id
                 newDirect.receiverId = receiverData._id
-                newDirect.message = req.body.text;
+                newDirect.message = ciphertext;
                 
                 await newDirect.save();
                 try{

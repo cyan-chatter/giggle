@@ -8,9 +8,7 @@ var sessionStorage = require('sessionstorage');
 const auth = require('../middleware/autho')
 const isloggedin = require('../middleware/isloggedin')
 
-//var m,mT;
-//sessionStorage.SessionName = "SessionData" 
-sessionStorage.getItem("m")  // i think i need to remove this line here
+sessionStorage.getItem("m") 
 
 const routeHandlers = {
         loadIndexPage : async (req,res)=>{
