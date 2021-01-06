@@ -4,7 +4,6 @@ const User = require('../db/user')
 const jwt = require('jsonwebtoken')
 const router = new express.Router()
 const auth = require('../middleware/autho')
-
 const bodyParser = require('body-parser')
 const multer = require('multer')
 const sharp = require('sharp')
@@ -116,11 +115,9 @@ router.get('/profile/patch', auth('users'), async (req,res)=>{
    try{
      
       updates.forEach((update)=>{
-        
         if(req.body[update]){
          req.user[update] = req.body[update]
         }
-         
       }) 
 
       await req.user.save()       

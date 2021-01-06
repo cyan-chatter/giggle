@@ -1,6 +1,3 @@
-// C:/Users/DELL/mongo-4/mongodb/bin/mongod.exe --dbpath=C:/Users/DELL/mongo-4/mongodb-data
-//D:\sayan\mongodb\bin\mongod.exe --dbpath=D:\sayan\mongodata
-
 const _ = require('lodash')
 const express = require('express')
 const User = require('../db/user')

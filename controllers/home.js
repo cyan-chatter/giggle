@@ -1,4 +1,3 @@
-// C:/Users/DELL/mongo-4/mongodb/bin/mongod.exe --dbpath=C:/Users/DELL/mongo-4/mongodb-data
 //aws image url to be added in home.hbs 
 const _ = require('lodash')
 const express = require('express')

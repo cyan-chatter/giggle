@@ -1,6 +1,6 @@
 $(document).ready(()=>{
     var socket = io()
-    
+     
     var messageForm = $('#message_form')  
     var MessageDOM = $('#msg')
     

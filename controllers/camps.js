@@ -1,4 +1,4 @@
-// C:/Users/DELL/mongo-4/mongodb/bin/mongod.exe --dbpath=C:/Users/DELL/mongo-4/mongodb-data
+ // C:/Users/DELL/mongo-4/mongodb/bin/mongod.exe --dbpath=C:/Users/DELL/mongo-4/mongodb-data
 
 const User = require('../db/user')
 const Camp = require('../db/camp')
@@ -41,9 +41,7 @@ const routeHandlers = {
         //console.log(del)
         const delCamp = await Camp.findOne({name: del})
         await delCamp.remove()
-
         res.send('D');
-
     }
     
 }

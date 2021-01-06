@@ -1,0 +1,53 @@
+.main-content{
+    background-color: rgba(99, 192, 145, 0.918);
+    height: 100%;
+    width: 70%;
+	display: flex; 
+	justify-content: center;
+    align-items: center;
+    padding: 4% 4% 4% 4%;
+    flex-direction:row;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.thumbnail{
+    background-color: rgb(219, 253, 235);
+}
+
+.thumbnail:hover{
+    background-color: aquamarine;
+}
+
+.footer{
+    margin-bottom: 4%;
+    margin-left: 15%;
+    margin-right: auto;
+}
+
+.campName{
+    background-color:rgba(26, 163, 111, 0.788);
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 7px 7px 7px 7px;
+    border-radius: 5px;
+}
+
+.campName:hover{
+    background-color: rgb(80, 139, 3);
+}
+
+.campAbout{
+    padding: 4px 4px 4px 4px;
+}    
+
+.campSubject{
+    background-color: rgb(80, 139, 3);
+    color: rgb(219, 253, 235);
+    width: fit-content;
+    padding: 5px 5px 5px 5px;
+    border-radius: 4px;
+}
