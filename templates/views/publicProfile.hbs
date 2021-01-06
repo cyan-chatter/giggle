@@ -5,17 +5,18 @@
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
      <link rel="stylesheet" href="/css/style.css">
+     <link rel="stylesheet" href="/css/profile.css">
     </head>
-
-    <body class="main-content">
-    
-        {{>navbar}}
-
+    {{>navbar}}
+    <body> 
+        <div class="main-content">
         <div class = "details">
-            <p>{{email}}</p>
-            <p>{{username}}</p>
-            <p>{{fullname}}</p>
-            <p>{{about}}</p>
+            <br>
+            <p class="d">{{email}}</p>
+            <p class="d">{{username}}</p>
+            <p class="d">{{fullname}}</p>
+            <p class="d">{{about}}</p>
+        </div>
             <hr>
             <div>
                 {{!-- <picture>{{pic}}</picture> --}}
@@ -23,7 +24,6 @@
             </div>
             <hr>
         </div>
-
         <script>
             // var picture = document.getElementById('profilepic')
             // var pic = {{{pic}}}
