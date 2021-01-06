@@ -8,34 +8,35 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/findUser.css">
     </head>
-    <body>        
+<body>        
     {{> navbar}}
     <div class="main-content">
-    <p style="display: none;" id="activator">{{activate}}</p>
-    
-    <form class = "findUser" action="/findUser" method="POST">
-        <label for="sUsername"><b>Search by Unique Username</b></label>
-        <input type = "text" name = "sUsername">
-        <input type = "submit" value = "Search" id = "searchByUsernameBtn">
-    </form>
+        <p style="display: none;" id="activator">{{activate}}</p>
+        
+        <form class = "findUser" action="/findUser" method="POST">
+            <label for="sUsername" style="display:none;"></label>
+            <input type = "text" name = "sUsername" placeholder="Search by Unique Username" class="findInput">
+            <input type = "submit" value = "Search" id = "searchByUsernameBtn" class="findBtn">
+        </form>
 
-        <div id= "foundUser">
-            <div id="sResults">
-            <h3><a href="/findUser/{{username}}">{{username}}</a></h3>
-            <h4>{{fullname}}</h4>
-            <h5>{{about}}</h5>
-            </div>
-            
-            <div id="friendRequest">
-            <p id="identifier">Want to become a friend?</p>
-            <div id = "friendRequestRecieverUsername"  style="display: none;">{{username}}</div>
-            <button id = "addFriendBtn" class="btn btn-lg btn-primary">Send Friend Request</button>    
-            </div>
+            <div id= "foundUser">
+                <div id="sResults">
+                    <p id="un"><a style="text-decoration:none" href="/findUser/{{username}}">{{username}}</a></p>
+                    <h3 id="fn">{{fullname}}</h3>
+                    <h5 id="ab">{{about}}</h5>
+                </div>
+                
+                <div id="friendRequest">
+                    <p id="identifier"></p>
+                    <div id = "friendRequestRecieverUsername"  style="display: none;">{{username}}</div>
+                    <button id = "addFriendBtn" class="action-btn">Send Friend Request</button>    
+                </div>
 
-        </div>
-        <br>
-        </div>
+            </div>
+            <br>
+    </div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>  
@@ -51,6 +52,6 @@
             friendRequestMethod();
 
         </script>   
-    </body>
+</body>
 
 </html>

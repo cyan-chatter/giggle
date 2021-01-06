@@ -5,28 +5,24 @@
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
      <link rel="stylesheet" href="/css/style.css">
+     <link rel="stylesheet" href="/css/update.css">
     </head>
     <body>
         
         {{> navbar}}
         
-        <h3>Fill Those Fields which are required to be updated and Leave others blank</h3>
-
-    <form id="theImageForm" action = "/profile/avatar" method = "post" enctype="multipart/form-data">
+    {{!-- <form id="theImageForm" action = "/profile/avatar" method = "post" enctype="multipart/form-data">
         <label for="theImageField" id="theImageContainer">
             <input type="file" id="theImageField" accept="image/png, image/jpeg" name="avatar">
             <p>Click here to Upload an Image, Select Image and then Click Upload to Set new Profile Picture </p>
         </label>
         <button class="btn btn-lg btn-primary" type="submit">Update Profile Picture</button>
         <button><a href="/profile/avatar/delete" id="clearImage" method = "get">Remove</a></button>
-    </form>
-    <br>
+    </form> --}}
     
-
-
         <div class="main-content">
-
-                <br>
+            <h4 class="constMessage">Fill Those Fields which are required to be updated and Leave others blank</h4>
+                
                 <form id="updateForm" method ="post" action = {{goto}}>
                     
                     <label for="email">Email</label><br>
@@ -38,7 +34,7 @@
                     
                     <label for="password">Password</label><br>
                     <input type="password" name="password" id="password" minlength=8 ><br>
-                    <input type="submit" form="updateForm" id="submit" value="Submit">
+                    <input type="submit" form="updateForm" id="submit" class="action-btn" value="Submit">
                 </form>
                 
                 <br>

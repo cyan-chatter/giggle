@@ -1,44 +1,44 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="./css/styles.css">
-        
+        <link rel="stylesheet" href="./css/styles.css">        
         <title>giggle</title>
         <link rel="icon" href="../../utils/img/searchW2.png">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/friendRequests.css">
     </head>
 
+    <body>        
 
-    <body>
-        
-        {{> navbar}}
-
-        <div class="main-content">        
+    {{> navbar}} 
+    
+    <div class="main-content">        
        <div id="foundUsers"> 
-
-        {{#each requesters}}
-        <div class= 'loopBlock'>
-
-            <h3><a href="/findUser/:{{this.username}}" style="text-decoration: none;">{{this.username}}</a></h3>
             
-            <div class='friendRequest'>
+            {{#each requesters}}
+            <div class= 'loopBlock'>
 
-                <div class="midButtons">
-                 <div class = 'friendRequestSenderUsername'  style="display: none;">{{this.username}}</div>   
-                <button class='acceptFriendBtn btn btn-lg btn-primary' onclick="acceptBtnWork(this)">Accept Friend Request</button>
-                <button class='rejectFriendBtn btn btn-lg btn-primary'onclick="rejectBtnWork(this)">Reject Friend Request</button>
+                <h3 class="friendUserName"><a href="/findUser/{{this.username}}" style="text-decoration: none;">{{this.username}}</a></h3>
+                
+                <div class='friendRequest'>
+                    <div class='midButtons'>
+                    <div class = 'friendRequestSenderUsername' style="display: none;">{{this.username}}</div>   
+                    <button class='acceptFriendBtn action-btn' onclick="acceptBtnWork(this)">Accept</button>
+                    <button class='rejectFriendBtn action-btn'onclick="rejectBtnWork(this)">Reject</button>
+                    </div>
                 </div>
+            
             </div>
-        
-        </div>
-        {{/each}}
-        <p class='identifier1'> </p>  
-        <p>{{message}}</p>         
+            {{/each}}
+            
+            <p class='identifier1'> </p>  
+            <p class='identifier2'>{{message}}</p>         
+       
        </div> 
         <br>
-       </div> 
+    </div> 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>  

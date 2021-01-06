@@ -1,0 +1,97 @@
+ .findUser{
+    display: grid;
+    grid-template: 0.1fr 0.8fr 0.1fr/ 0.02fr auto 0.15fr 0.15fr auto 0.01fr auto 0.02fr;
+    grid-template-areas:
+        ". . . . . . . ."
+        ". i i i i . b ."
+        ". . . . . . . .";
+            
+ }
+
+ .findInput{
+    grid-area: i;
+    background-color: rgb(183, 238, 226);
+    text-align: center;
+    border-top-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    font-weight: bold;
+    
+ }
+
+ .findBtn{
+    grid-area: b;
+    background-color: rgb(101, 196, 141);
+    color: rgb(255, 255, 255);
+    border-color:  rgb(92, 194, 92);
+    font-weight: bold;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+ }
+
+ .findBtn:hover{
+    background-color: rgb(39, 248, 126); 
+    color: black;
+ }
+
+
+
+#sResults{
+    display: grid;
+    grid-template: 0.1fr 0.2fr 0.4fr 0.2fr 0.1fr/ 0.2fr auto 0.2fr;
+    grid-template-areas: 
+        ". . ."
+        ". u ."
+        ". f ."
+        ". a ."
+        ". . ."; 
+        
+}
+
+ #un{
+    grid-area: u;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 1.4em;
+    background-color: rgb(175, 252, 209);
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-top: 7px;
+    border-radius: 3px;
+ }
+
+ #fn{
+    grid-area: f;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-weight: bold;
+ }
+
+ #ab{
+    grid-area: a;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+ }
+
+ #friendRequest{
+     display: grid;
+     grid-template: 0.2fr 0.8fr / 0.2fr auto 0.2fr;
+     grid-template-areas: 
+        ". m ."
+        ". s .";
+ }
+
+ #identifier{
+    grid-area: m;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+ }
+
+ #addFriendBtn{
+    grid-area: s;
+    margin-left: auto;
+    margin-right: auto;
+ } 

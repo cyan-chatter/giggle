@@ -1,0 +1,21 @@
+.profile-content{
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 4px 2px 4px 2px;
+}
+
+.t{
+    background-color: rgb(162, 238, 209);
+    padding: 4px 2px 4px 2px;
+    border-radius: 2px;
+    font-weight: lighter;
+}
+
+.d{
+    background-color: lightblue;
+    text-align: center;
+    font-weight: bold;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+

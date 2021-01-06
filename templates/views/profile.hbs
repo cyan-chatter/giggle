@@ -5,29 +5,31 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/profile.css">
     </head>
 
     <body> 
         {{>navbar}}
-        <div class="profile-content">    
-        <div class = "details">
-            <p>{{email}}</p>
-            <p>{{username}}</p>
-            <p>{{fullname}}</p>
-            <p>{{about}}</p>
-        <br>
-            <button><a href="/profile/patch" class="updateProfile" method = "get">Update Profile</a></button>
-        <br>
-            <hr>
-            <div>
-                {{!-- <picture>{{pic}}</picture> --}}
-                <img id='profilepic'>
+        <div class="main-content">
+            <div class="profile-content">    
+            <div class = "details">
+                <p class="t">Email:<span class="d"> {{email}} </span> </p>
+                <p class="t">Username:<span class="d"> {{username}} </span> </p>
+                <p class="t">Name:<span class="d"> {{fullname}} </span> </p>
+                <p class="t">About:<span class="d"> {{about}} </span> </p>
+            <br>
+                <button><a href="/profile/patch" class="updateProfile" method = "get">Edit Profile</a></button>
+            <br>
+                <hr>
+                <div>
+                    {{!-- <picture>{{pic}}</picture> --}}
+                    <img id='profilepic'>
+                </div>
+                <hr>
             </div>
-            <hr>
-        </div>
 
+            </div>
         </div>
-
 
         <script>
             // var picture = document.getElementById('profilepic')

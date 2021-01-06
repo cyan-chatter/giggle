@@ -5,39 +5,37 @@ body {
 
   .wrapper {
     display: grid;
+    grid-template: 2fr 2fr 2fr 1fr 1fr / 0.1fr auto 0.3fr auto 0.1fr;
+    grid-template-areas: 
+      ". n n n ."
+      ". s s s ."
+      ". d d d ."
+      ". h h h ."
+      ". . b . .";
     grid-gap: 5px;
+    padding: 2px 2px 2px 2px;
   }
-  
-  .box {
-    background-color: #dce0e4;
-    color: rgba(19, 7, 75, 0.918);
-    border-radius: 3px;
-    padding: 20px;
-    font-size: 14px;
-  }
-  
+
   .dashboardButton {
-      background-color: rgb(69, 165, 133);
-      color: rgb(6, 0, 27);
-      width: 20%;
-      height: 100%;
-      border-radius: 5px;
-      font-weight: bolder;
+    color: rgb(6, 0, 27);
+    grid-area: b;
+    background-color: rgba(116, 252, 138, 0.7);
+    border-top-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    font-weight: bold;
+    width: fit-content;
+    border-width: 1px;
+    border-color: chartreuse;
    }
 
-   .upload-btn {
-    background-color: rgb(1, 126, 84);
-    color: rgb(6, 0, 27);
-    width: 20%;
-    height: 100%;
-    border-radius: 5px;
-    font-weight: bolder;
- }
+   .dashboardButton:hover{
+    background-color: rgba(87, 238, 213, 0.7);;
+   }
 
 
-.nameField { width: 300px; height: 50px; border: 1px solid #9b6565; padding: 5px; }
-.aboutField { width: 300px; height: 90px; border: 1px solid #999999; padding: 5px; }
-.tagsField{ 
-    width: 300px; height: 80px; border: 1px solid #999999; padding: 5px; 
-}
-.subjectField { width: 300px; height: 50px; border: 1px solid #9b6565; padding: 5px; }
+
+
+.nameField {  border: 1px solid #9b6565; padding: 5px; grid-area: n; }
+.aboutField {  border: 1px solid #999999; padding: 5px; grid-area: d; }
+.tagsField{ border: 1px solid #999999; padding: 5px; grid-area: h; }
+.subjectField {  border: 1px solid #9b6565; padding: 5px; grid-area: s; }

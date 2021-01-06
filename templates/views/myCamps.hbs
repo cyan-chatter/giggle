@@ -2,6 +2,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="./css/styles.css">
+        <link rel="stylesheet" href="./css/myCamps.css">
         
         <title>giggle</title>
         <link rel="icon" href="../../utils/img/searchW2.png">
@@ -15,15 +16,15 @@
         
         {{> navbar}}
 
-        
+    <div class="main-content">
        <div id="myCampsList"> 
 
             {{#each camps}}
             <div class= "myCampsLoopBlock">
                 <h3 class = "campName">{{this.name}}</h3>
-                <h4 class = "campSubject">{{this.subject}}</h4>
-                <h4 class = "campAbout">{{this.about}}</h4>
-                <button class="deleteCampBtn btn btn-lg btn-primary" onclick="deleteCamp(this)">Delete Camp</button>
+                <h5 class = "campSubject">{{this.subject}}</h5>
+                <p class = "campAbout">{{this.about}}</p>
+                <button class="deleteCampBtn action-btn" onclick="deleteCamp(this)">Delete Camp</button>
             </div>
             {{/each}}
 
@@ -33,7 +34,7 @@
         <a style="display: none;" id="anchorToFriendsPage" href="/friends"></a>
         <p style="display: none;" id = "myUsername">{{myUsername}}</p>
         <br>
-        
+    </div>    
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>  

@@ -12,15 +12,17 @@
 <body>
 
     {{> navbar}}
+    <div class="main-content">
     <p id = "validateM">{{validate}}</p>
     <form id="groupForm" class="wrapper" action = '/camps/create' method = 'post'>
-        <input type = "text" name = "name" placeholder = "Enter Camp Name (required)" class="nameField" required>
-        <input type = "text" name = "subject" placeholder = "Mention Subject (required)" class= "subjectField" required>
-        <input type = "text" name = "about" placeholder = "Add some Description" class= "aboutField">
-        <input type = "text" name = "hashtags" placeholder = "#Hashtags help to find the Camp Easily" class= "tagsField">
-        <input type="submit" form="groupForm" value="AddGroup" class="dashboardButton">            
+        <input id="n" type = "text" name = "name" placeholder = "Enter Camp Name (required)" class="nameField" required>
+        <input id="s" type = "text" name = "subject" placeholder = "Mention Subject (required)" class= "subjectField" required>
+        <input id="d" type = "text" name = "about" placeholder = "Add some Description" class= "aboutField">
+        <input id="h" type = "text" name = "hashtags" placeholder = "#Hashtags help to find the Camp Easily" class= "tagsField">
+        <input id="b" type="submit" form="groupForm" value="Add Group" class="dashboardButton">            
+        
     </form>
-
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>  
     <script src ="/js/upload.js"></script>
