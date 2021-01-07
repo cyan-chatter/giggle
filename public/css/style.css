@@ -75,7 +75,40 @@ body {
 
 .action-btn:hover{
     background-color: rgba(87, 238, 213, 0.7);
+    cursor: pointer;
 }
+
+.notify{
+    padding: 4px 4px 4px 4px;
+    margin: 2px 0px 2px 0px;
+    background-color: rgb(204, 250, 235);
+}
+
+.outHead, .inset{
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+
+.outHead{
+    background-color: rgb(3, 173, 12);
+    color: azure; 
+    padding: 2px 8px 2px 8px;
+    border-radius: 6px;
+}
+
+.outLabel{
+    font-weight: bold;
+    background-color: rgb(3, 173, 12);
+    padding: 2px 4px 2px 4px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    width: auto;
+    color: azure;
+    border-radius: 4px;
+}
+
+
 /* 
 #custom-search-input {
     background: #e8e6e7 none repeat scroll 0 0;

@@ -7,20 +7,27 @@
         <link rel="icon" href="../../utils/img/searchW2.png">
     </head>
     <body>
-        <div class= "header">
-        <h1>Login</h1>
-        </div>
         <div class="main-content">
+            <div class = "notify">
+            {{>messages}}
+            </div>
+                <h1 class="outHead">Login</h1>
                 <br>
+                <div class="inset">
                 <form id="loginForm" method ="POST" action = "{{goto}}">
-                    <label for="email">Email</label><br>
+                    <p>
+                    <label class="outLabel" for="email">Email</label><br>
                     <input type="email" name="email" required  autocomplete="off" ><br>
-                    <label for="password">Password</label><br>
+                    </p>
+                    <p>
+                    <label class="outLabel" for="password">Password</label><br>
                     <input type="password" name="password" required  autocomplete="off" ><br>
-                    <input type="submit" form="loginForm" value="Login">
+                    </p>
+                    <input type="submit" form="loginForm" value="Login" class="action-btn">
                 </form>
-                
+                </div>
                 <br>
         </div>    
     </body>
+    <script src = "../../utils/message-loader.js"></script>
 </html>

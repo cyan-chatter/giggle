@@ -5,17 +5,19 @@
     <title>giggle</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/signup.css">
 </head>
-
 <body>
+
+<div class="main-content">
 <div class = "notify">
 {{>messages}}
-
+</div>
 <div id="main" class="registerMain">
-    <div class="main">
+    
         <form action="/signup" method="post">
-            
+          <div id="errorsSignup"> 
           {{#if hasErrors}}
                 <div class="alert alert-danger text-center">
                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -26,39 +28,40 @@
                    </ul>>    
                 </div>
             {{/if}}
-
+            </div> 
+            <h1 class="outHead">Register</h1>
+            <br>
             <div class="inset">
-                <p>
-                  <label for="username">USERNAME</label>
+                <p class="insetObject">
+                  <label class="outLabel" for="username">USERNAME</label>
+                  <br>
                   <input type="text" name="username" class="" placeholder="unique username" autocomplete="off" >
                 </p>
                 
-                <p>
-                  <label for="fullname">NAME</label>
+                <p class="insetObject">
+                  <label class="outLabel" for="fullname">NAME</label>
+                  <br>
                   <input type="text" name="fullname" class="" placeholder="enter full name" autocomplete="off" >
                 </p>
 
-                <p>
-                    <label for="email">EMAIL ADDRESS</label>
+                <p class="insetObject">
+                    <label class="outLabel" for="email">EMAIL ADDRESS</label>
+                    <br>
                     <input type="text" name="email" placeholder="unique email" autocomplete="off" />
                 </p>
-                <p>
-                    <label for="password">PASSWORD</label>
+                <p class="insetObject">
+                    <label class="outLabel" for="password">PASSWORD</label>
+                    <br>
                     <input type="password" name="password" placeholder="atleast 8 letters"  autocomplete="off" />
                 </p>
-
+                <p class="insetObject">
+                    <input type="submit" class="action-btn" style=" background: rgba(26, 163, 111, 0.788); border: rgba(26, 163, 111, 0.788);" value="Register">
+                </p>
+                <p id="loginFromSignupPage">Already have an account? <span><button><a href="/login">Login</a></button></span></p>
             </div>
-
-            <p class="p-container">
-                <span><a href="" style="color:white;padding-left:10px;padding-right:10px">|</a></span>
-                <span><a href="/login">Login</a></span>
-                <input type="submit" class="login-log" style=" background: rgba(26, 163, 111, 0.788); border: rgba(26, 163, 111, 0.788);" value="Register">
-            </p>
         </form>
     </div>
 </div>
-
+   
 </body>
-
-<script src = "../../helpers/message-loader.js"></script>
 </html>

@@ -1,24 +1,21 @@
 <!DOCTYPE html>
-<head>
-    <title>
-        index
-        </title>
+<head>  
+    <title>giggle</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<div class = "notify">
-{{>messages}}
-</div>
-<h1>giggle</h1>
-{{test}}
         <div class="main-content">
+                <div class = "notify">
+                {{>messages}}
+                </div>
+                <h1 class="outHead">giggle</h1>
+                <div class="inset">
+                <span><button  class = "login-btn" ><a href="{{gotoLogin}}">{{login}}</a></button></span>
+                <span><button class = "register-btn" ><a href="{{gotoRegister}}">{{register}}</a></button></span> 
                 <br>
                 <br>
-                <button  class = "login-btn" ><a href="{{gotoLogin}}">{{login}}</a></button> 
-                <br>
-                <br>
-                <button class = "register-btn" ><a href="{{gotoRegister}}">{{register}}</a></button> 
-                <br>    
+                </div>    
         </div>
 </body>
-<script src = "../../helpers/message-loader.js"></script>
+<script src = "../../utils/message-loader.js"></script>
 </html>
