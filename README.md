@@ -1,15 +1,15 @@
-#Giggle 
-###Private Chat and Public Live Chat
+# Giggle 
+### Private Chat and Public Live Chat
 
 Giggle Chat is a chat application with a Node.js backend which provides a blazingly fast and secure communication line for text-based chatting.
 
-##General Features
+## General Features
 - Chats saved into the database are Encrypted 
 - Communication Links with Friend Request System
 - Private Chats 
 - Public Live Chat Camps  
 
-##Technical Details
+## Technical Details
 - Real Time Duplex Connection Rooms with [Socket.IO](socket.io)
 - Secure Chat Data Encryption with [CryptoJS])(https://www.npmjs.com/package/crypto-js)
 - Data Storage in [MongoDB](http://mongodb.github.io/node-mongodb-native/)
