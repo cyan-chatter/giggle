@@ -13,6 +13,19 @@
 
 <body>
 
+<script id = "chatTemplate" type="template">
+    <li class="chatItem">
+        <div class="chatImg">
+            <img src="https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_1280.png" class="img-circle" height="50px" width="50px" alt="">
+        </div>
+        <div class="chatBody">
+            <div class="chatName"><b>!!%!!=usernameClient=!!%!!</b></div><br/>
+            <div class="chatText">!!%!!=textClient=!!%!!</div><br/>
+        </div>
+    </li>
+</script>                            
+
+
 {{>navbar}}
 
     <div class="container">
@@ -21,7 +34,7 @@
         <div class="card">                
             <div class="content">
                 <div class="infoImg">
-                    <img src="https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_1280.png" class="img-circle" alt="">
+                    <img src="https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_1280.png" class="img-circle" height="100px" width="100px" alt="">
                 </div>
                 <div class="infoTxt">
                     <h4 class="name">{{fName}}</h4>        
@@ -43,42 +56,14 @@
 
      <div class="chatSection">
         <ul id="messages" class="list-unstyled">            
-            <li class="left">       
-                <script id = "savedFromServerTemplate" type="template">
-                    <li class="left">
-                        <span class="chat-img1 pull-left">
-                            <img src="https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_1280.png" class="img-circle" alt="">
-                        </span>
-                        <div class="chat-body1">
-                            <span class="chat-name"><b>!!%!!=usernameClient=!!%!!</b></span>
-                            <br>
-                            <p>!!%!!=textClient=!!%!!</p>
-                            <br>
-                        </div>
-                    </li>
-                </script>                            
-            </li>                       
-            <li class="left">                
-                <script id = "directFromServerTemplate" type="template">
-                    <li class="left">
-                        <span class="chat-img1 pull-left">
-                            <img src="https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_1280.png" class="img-circle" alt="">
-                        </span>
-                        <div class="chat-body1">
-                            <span class="chat-name"><b>!%!=usernameClient=!%!</b></span>
-                            <br>
-                            <p>!%!=textClient=!%!</p>
-                            <br>
-                        </div>
-                    </li>
-                </script>
-            </li>                    
+            <li><ul class="savedMessages"></ul></li>                       
+            <li><ul class="newMessages"></ul></li>                    
         </ul>
      </div>
 
      <div class="sendMessage">
         <form action="#" id="message_form" method="post">
-            <textarea class="form-control" name="message" id="msg" placeholder="Type a message"></textarea>
+            <textarea class="form-control" name="message" id="msg" placeholder="Type your message here"></textarea>
             <div class="clearfix"></div>
             <div class="chat_bottom">
                 <button id="send-message" class="pull-right btn btn-primary" style="background: #4aa1f3; border: #4aa1f3; "> Send </button>

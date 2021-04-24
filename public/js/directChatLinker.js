@@ -10,6 +10,7 @@ function directChatLinkage(e){
         data: JSON.stringify({Username, fUsername}),
         contentType: 'application/json',
         success: function(res){
+            //to work here
             location.replace("/private/")
         }
     })

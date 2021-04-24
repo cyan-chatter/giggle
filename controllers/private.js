@@ -44,8 +44,8 @@ const routeHandlers = {
                 pchat[i].message = bytes.toString(CryptoJS.enc.Utf8);
 
             }
-
-            const dataObj = {
+            
+            const passedDetails = {
                     myName, 
                     fName, 
                     fAbout,
@@ -53,8 +53,13 @@ const routeHandlers = {
                     usernameH: req.user.username,
                     friendsList,
                     username: req.user.username,
-                    pchat,
-                    action
+            }            
+            sessionStorage.setItem("passedDetails",JSON.stringify(passedDetails))
+
+            const dataObj = {
+                ...passedDetails,
+                pchat,
+                action
             }
 
             return res.send(JSON.stringify(dataObj))
@@ -85,7 +90,10 @@ const routeHandlers = {
     },
 
     loadDirectChat: async(req,res)=>{
-        return res.render('private')
+        
+        const passedDetails = JSON.parse(sessionStorage.getItem("passedDetails"))
+        return res.render('private',passedDetails) 
+
     },
     saveDirectChatData: async(req,res)=>{
         
