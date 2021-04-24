@@ -16,7 +16,7 @@ Giggle Chat is a chat application with a Node.js backend which provides a blazin
 - [Express](http://expressjs.com/) used as Node Server and Routing framework 
 - Server-side Rendering with [Handlebars](https://handlebarsjs.com/) Rendering Engine
 
-###Sidenote:
+### Sidenote:
 Currently, [I](https://github.com/cyan-chatter) am modifying the data flow design of the application to implement Diffie Hellman Key Exchange Algorithm to provide secure end to end encryption. The work for this is in progress in the branch: Encrypt of this Repository. 
 Any open source enthusiast is welcome to contribute :smiley:
 
