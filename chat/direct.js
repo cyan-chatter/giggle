@@ -10,10 +10,10 @@ const socketServer = (io)=>{
             callback()
         })
 
-        socket.on('newDirectMessage', async (incoming, callback)=>{
-            io.to(incoming.direct).emit('incomingDirect', {
-                text : incoming.text,
-                sender: incoming.sender
+        socket.on('newDirectMessage', async (message, callback)=>{
+            io.to(message.direct).emit('incomingDirect', {
+                text : message.text,
+                sender: message.sender
             })
             callback()
         })

@@ -7,8 +7,8 @@ const auth = require('../middleware/autho')
 const formidable = require('formidable')
 const Camp = require('../db/camp')
 const Direct = require('../db/direct')
-var CryptoJS = require("crypto-js");
 const chalk = require('chalk') 
+var CryptoJS = require("crypto-js");
 
 const routeHandlers = {
     generateDirectChat: async(req,res)=>{
@@ -37,13 +37,6 @@ const routeHandlers = {
             var pchat = dchat.slice().sort((x, y)=>{
                 return x.createdAt - y.createdAt;
             })
-            
-            for(var i = 0; i<pchat.length; ++i ){
-                
-                var bytes  = CryptoJS.AES.decrypt(pchat[i].message, 'secret key 123');
-                pchat[i].message = bytes.toString(CryptoJS.enc.Utf8);
-
-            }
             
             const passedDetails = {
                     myName, 
@@ -99,26 +92,18 @@ const routeHandlers = {
         
         try{
                 const senderData = await User.findOne({username: req.user.username})
-            
                 const recUser = (req.params.room.split('.'))[1]
-                console.log(recUser)
                 const receiverData = await User.findOne({username: recUser})
-             
-
-                // Encrypt
-                var ciphertext = CryptoJS.AES.encrypt(req.body.text, 'secret key 123').toString();
-                
-                //add encryption
-                const newDirect = new Direct();
-
-                newDirect.createdAt = new Date();
+            
+                const newDirect = new Direct()
+                newDirect.createdAt = new Date()
                 newDirect.senderName = senderData.username
                 newDirect.receiverName = receiverData.username
                 newDirect.senderId = senderData._id
                 newDirect.receiverId = receiverData._id
-                newDirect.message = ciphertext;
+                newDirect.message = req.body.text
                 
-                await newDirect.save();
+                await newDirect.save()
         }catch(e){
                 res.redirect('/friends')                
         }
