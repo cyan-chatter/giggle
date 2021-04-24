@@ -11,7 +11,7 @@ Giggle Chat is a chat application with a Node.js backend which provides a blazin
 
 ## Technical Details
 - Real Time Duplex Connection Rooms with [Socket.IO](socket.io)
-- Secure Chat Data Encryption with [CryptoJS])(https://www.npmjs.com/package/crypto-js)
+- Chat Data securely saved with AES Encryption implemented by [CryptoJS](https://www.npmjs.com/package/crypto-js)
 - Data Storage in [MongoDB](http://mongodb.github.io/node-mongodb-native/)
 - [Express](http://expressjs.com/) used as Node Server and Routing framework 
 - Server-side Rendering with [Handlebars](https://handlebarsjs.com/) Rendering Engine
