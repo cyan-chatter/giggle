@@ -1,4 +1,4 @@
-# Giggle 
+# [Giggle](https://giggle-chat-web.herokuapp.com/) 
 ### Private Chat and Public Live Chat
 
 Giggle Chat is a chat application with a Node.js backend which provides a blazingly fast and secure communication line for text-based chatting.
