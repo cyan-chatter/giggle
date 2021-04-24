@@ -1,4 +1,5 @@
-//E:\Apps\mongodb\bin\mongod.exe --dbpath="E:\Apps\mongodata"
+//  E:\Apps\mongodb\bin\mongod.exe --dbpath="E:\Apps\mongodata"
+
 const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
@@ -11,14 +12,11 @@ const socket = require('socket.io')
 const validator = require('express-validator')
 const _ = require('lodash')
 const {Campers} = require('./utils/camper')
-//const MongoStore = require('connect-mongo')(session)
 
-///////////////////////////////////////////////
+
 require('./db/mongoose')
 const Camp = require('./db/camp')
 
-
-///////////////////////////////////////////////
 const users = require('./controllers/users')
 const admins = require('./controllers/admins')
 const home = require('./controllers/home')
@@ -28,38 +26,28 @@ const findUser = require('./controllers/findUser')
 const friends = require('./controllers/friends')
 const private = require('./controllers/private')
 
-
-
-
-
-
-
-////////////////////////////////////////////
-
 sessionStorage.setItem("m"," ")
 sessionStorage.setItem("mT"," ")
 
-////////////////////////////////////////////
-
 setServer = (users)=>{
 
-    ///////////////////////////
-    //Create this a server -Express server setup
+    
+    //Express server setup
     const app = express()
     app.use(express.json())
     const server = http.createServer(app);
     const io = socket(server)
     
-    ////////////////////////////////
+    //configure Express 
     configExpress(app)
-    //configure Express here  
+    
     
     require('./chat/discuss')(io)
     require('./chat/direct')(io)
     
     
-    ////////////////////////////////
-    //Use the Routers created -Express Routing
+    
+    //Use the Routers 
     app.use(users)
     app.use(admins) 
     app.use(home) 
@@ -68,7 +56,7 @@ setServer = (users)=>{
     app.use(findUser)
     app.use(friends) 
     app.use(private)       
-    ///////////////////////////////
+    
     //Set cookie config
     app.get('/clcookie',(req,res) => {
         res.clearCookie('token')
@@ -90,14 +78,12 @@ setServer = (users)=>{
     })
 
     
-
-    ////////////////////////////////
-    
+    //listen at port
     const port = process.env.PORT || 5500
     server.listen(port, ()=>{
         console.log('Server is Up on Port '+port)
     })
-    //app.listen->server.listen
+    
 }
 
 //Express Config
@@ -113,6 +99,8 @@ configExpress = (app)=>{
     app.set('views', viewsPath)
     const partialsPath = path.join(__dirname, './templates/partials' )
     hbs.registerPartials(partialsPath)
+    
+    //register helper(if needed)
     // hbs.registerHelper("printItems", function(items) {
     //     var html = "<ul>";
     //     items.forEach(function(entry) {
@@ -122,11 +110,11 @@ configExpress = (app)=>{
     //     return html;
     //   });
 
-    // public path
+    // set public path
     const publicDirectoryPath = path.join(__dirname, './public')
     app.use(express.static(publicDirectoryPath))
     
-    //parse out the cookie 
+    //parse cookies
     app.use(cookieParser())
 
     app.use(session({ 
@@ -137,14 +125,7 @@ configExpress = (app)=>{
     })); 
 
     app.locals._ = _    
-
-
-    // need to use passport session function after the use of express session function
     
 }
 
 setServer(users);
-////////////////////////////////
-
-
-    

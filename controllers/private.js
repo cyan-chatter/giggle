@@ -8,32 +8,18 @@ const formidable = require('formidable')
 const Camp = require('../db/camp')
 const Direct = require('../db/direct')
 var CryptoJS = require("crypto-js");
- 
+const chalk = require('chalk') 
 
 const routeHandlers = {
-    generateDirectChatURI : async(req,res)=>{
-        const myName1 = sessionStorage.getItem("myName").replace(/ /g, "-")
-        const fName1 = sessionStorage.getItem("fName").replace(/ /g, "-")
-        const action = '/direct/' + myName1 + '.' + fName1  
-        return res.redirect(action)        
-    },
-
-    linkDirectChat: async(req,res)=>{
-        const x = JSON.stringify(req.body)
-        const y = JSON.parse(x)
-        const friendName = y.fUsername
-        sessionStorage.setItem("fName", friendName)
-        sessionStorage.setItem("myName", req.user.username)
-        res.send('The Usernames are Set')        
-    
-    },
-
-    loadDirectChat: async(req,res)=>{
+    generateDirectChat: async(req,res)=>{
+        
         const myName = sessionStorage.getItem("myName")
         const fName = sessionStorage.getItem("fName")
+
+        const action = '/direct/' + myName.replace(/ /g, "-") + '.' + fName.replace(/ /g, "-")  
         
-        const fUser = await User.findOne({username:fName}) 
         try{
+        const fUser = await User.findOne({username:fName}) 
             const fFullname = fUser.fullname 
             const fAbout = fUser.about    
             var friendsList = []
@@ -52,42 +38,64 @@ const routeHandlers = {
                 return x.createdAt - y.createdAt;
             })
             
-            
-            console.log('private chat messages :::: ')
             for(var i = 0; i<pchat.length; ++i ){
                 
-                console.log('Before Decrypt:' + pchat[i].message); // my message
-                // Decrypt
                 var bytes  = CryptoJS.AES.decrypt(pchat[i].message, 'secret key 123');
                 pchat[i].message = bytes.toString(CryptoJS.enc.Utf8);
-    
-                console.log('After Decrypt:' + pchat[i].message); // my message
+
             }
-            
-            return res.render('private',{
-                myName, 
-                fName, 
-                fAbout,
-                fFullname,
-                usernameH: req.user.username,
-                friendsList,
-                username: req.user.username,
-                pchat
-            })
-        }catch(e){
-            console.log('message loader routte: '+e)
-            res.redirect('/friends')
-        } 
+
+            const dataObj = {
+                    myName, 
+                    fName, 
+                    fAbout,
+                    fFullname,
+                    usernameH: req.user.username,
+                    friendsList,
+                    username: req.user.username,
+                    pchat,
+                    action
+            }
+
+            return res.send(JSON.stringify(dataObj))
         
+    }catch(e){
+        res.redirect('/friends')
+    } 
+    },
+
+    linkDirectChat: async(req,res)=>{
+        const x = JSON.stringify(req.body)
+        const y = JSON.parse(x)
+        const friendName = y.fUsername
+
+        try{
+            let q = await User.find({"friends.username" : friendName})
+            console.log(chalk.redBright('friend search : ' + q))
+            if(!q.length){
+                res.send("NO")        
+                return 
+            }
+            sessionStorage.setItem("fName", friendName)
+            sessionStorage.setItem("myName", req.user.username)
+            res.send('The Usernames are Set')        
+        }catch(e){
+            res.send('Database Error: '+ e)        
+        }
+    },
+
+    loadDirectChat: async(req,res)=>{
+        return res.render('private')
     },
     saveDirectChatData: async(req,res)=>{
         
-        const senderData = await User.findOne({username: req.user.username})
-            try{
+        try{
+                const senderData = await User.findOne({username: req.user.username})
+            
                 const recUser = (req.params.room.split('.'))[1]
                 console.log(recUser)
                 const receiverData = await User.findOne({username: recUser})
-             try{
+             
 
                 // Encrypt
                 var ciphertext = CryptoJS.AES.encrypt(req.body.text, 'secret key 123').toString();
@@ -103,23 +111,13 @@ const routeHandlers = {
                 newDirect.message = ciphertext;
                 
                 await newDirect.save();
-                try{
-                    console.log('message data saved to the database: ' + newDirect)
-                }catch(e){
-                    res.redirect('/friends')
-                }
-                
-             }catch(e){
-                res.redirect('/friends')
-             }
-
-            }catch(e){
+        }catch(e){
                 res.redirect('/friends')                
-            }
+        }
     }
 }
 
-router.get('/private', auth('users'), routeHandlers.generateDirectChatURI)
+router.get('/private', auth('users'), routeHandlers.generateDirectChat)
 router.post('/private', auth('users'), routeHandlers.linkDirectChat)    
 router.get('/direct/:room', auth('users'), routeHandlers.loadDirectChat)
 router.post('/direct/:room', auth('users'), routeHandlers.saveDirectChatData)

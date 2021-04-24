@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>giggle</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/discuss.css">
+</head>
+
+<body>
+
+{{>navbar}}
+
+    <div class="col-md-12">
+        <input type="hidden" id="name-image" value="">
+
+        <div class="col-md-12">
+            <div class="chat_container">
+                <div class="row">
+                    <div class="col-sm-4 col-md-3 mob-clearfix">
+                        
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-md-12">
+                                <div class="card-container">
+                                    <div class="card">
+                                        <div class="front">
+
+                                            <div class="content main-scroll">
+                                                <div class="main" id="main_scroll">
+                                                    <p class="friends" style="margin-bottom:0px;">
+                                                        Friends
+                                                    </p>
+                                                    <p style="display: none;" id="myUsername">{{username}}</p>
+                                                    <hr style="margin-top:10px" />
+                                                    <div class="onlineFriends" id="onlineFriendsList">
+                                                        {{#each friendsList}}
+                                                            <p><button onclick="directChatLinkage(this)" class="directChatLinkerBtn">{{this}}</button></p>
+                                                        {{/each}}
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+
+                    <div class="col-sm-5 col-md-6 message_section">
+                        <div style="display: none;" id="savedMessages">{{pchat}}</div>
+                        <div class="row">
+                            <p id = "loadError"></p>
+                            <div class="chat_area">
+                                <ul id="messages" class="list-unstyled">
+                                   
+                                    <li class="left">
+                                      
+                                      <script id = "savedFromServerTemplate" type="template">
+                                    <li class="left">
+                                       <span class="chat-img1 pull-left">
+                                           <img src="https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_1280.png" class="img-circle" alt="">
+                                       </span>
+                                       <div class="chat-body1">
+                                           <span class="chat-name"><b>!!%!!=usernameClient=!!%!!</b></span>
+                                           <br>
+                                           <p>!!%!!=textClient=!!%!!</p>
+                                           <br>
+                                       </div>
+                                    </li>
+                                    </script>
+                                      
+                                    
+                                    </li>
+                                   
+                                </ul>
+                                
+                                <script id = "directFromServerTemplate" type="template">
+                                    <li class="left">
+                                       <span class="chat-img1 pull-left">
+                                           <img src="https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_1280.png" class="img-circle" alt="">
+                                       </span>
+                                       <div class="chat-body1">
+                                           <span class="chat-name"><b>!%!=usernameClient=!%!</b></span>
+                                           <br>
+                                           <p>!%!=textClient=!%!</p>
+                                           <br>
+                                       </div>
+                                    </li>
+                                </script>
+
+                            </div>
+
+                            <div class="message_write">
+                              <form action="#" id="message_form" method="post">
+                                  <textarea class="form-control" name="message" id="msg" placeholder="Type a message"></textarea>
+                                  <div class="clearfix"></div>
+                                  <div class="chat_bottom">
+                                      <button id="send-message" class="pull-right btn btn-primary" style="background: #4aa1f3; border: #4aa1f3; ">
+                                          Send
+                                      </button>
+                                  </div>
+                              </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-md-3 mob-clearfix">
+                        <div class="col-md-12">
+                                <div class="card-container">
+                                    <div class="card">
+                                        <div class="front">
+                                            <div class="cover">
+                                                <h5 class="name">{{fName}}</h5>
+                                            </div>
+                                            
+                                            <div class="user cover-img">
+                                                <img src="https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_1280.png" class="img-circle" alt="">
+                                            </div>
+                                            <div class="content">
+                                                <div class="main">
+                                                    
+                                                    <h2 class="name">{{fFullname}}</h2>
+                                                    <br>
+                                                    <p class="text-center">
+                                                    	{{fAbout}}
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                        </div>
+
+                    </div>
+
+
+
+                    
+                </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.js" integrity="sha512-vGcPDqyonHb0c11UofnOKdSAt5zYRpKI4ow+v6hat4i96b7nHSn8PQyk0sT5L9RECyksp+SztCPP6bqeeGaRKg==" crossorigin="anonymous"></script>
+<script src="/js/deparam.js"></script>
+<script src="/js/private/directCS.js"></script>
+<script src="/js/directChatLinker.js"></script>
+</body>
+
+</html>

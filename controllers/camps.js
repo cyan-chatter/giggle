@@ -38,10 +38,14 @@ const routeHandlers = {
         const c = JSON.stringify(req.body)
         const d = JSON.parse(c)
         const del = d.campToDelName
-        //console.log(del)
-        const delCamp = await Camp.findOne({name: del})
-        await delCamp.remove()
-        res.send('D');
+        try{
+            const delCamp = await Camp.findOne({name: del})
+            await delCamp.remove()
+            res.send('D')
+        }catch(e){
+            console.log("Error in deleting camp: " + e)
+        }
+        
     }
     
 }

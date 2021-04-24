@@ -16,9 +16,7 @@ const socketServer = (io)=>{
                 sender: incoming.sender
             })
             callback()
-            //incoming -- text sender receiver direct    
         })
-
     })
 }
 

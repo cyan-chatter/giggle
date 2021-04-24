@@ -34,9 +34,9 @@ const routeHandlers = {
     
         
         register : async(req, res)=>{
-            const alreadyPresent = await User.findOne({email: req.body.email})
             
             try{
+                const alreadyPresent = await User.findOne({email: req.body.email})
                 console.log('executed')
                 if(alreadyPresent){
                     sessionStorage.setItem("m", 'Email already registered')

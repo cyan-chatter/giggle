@@ -53,8 +53,8 @@ const routeHandlers = {
             }
         }
         
-        await newCamp.save()
         try{
+            await newCamp.save()
             res.redirect('/home')
         }
         catch{

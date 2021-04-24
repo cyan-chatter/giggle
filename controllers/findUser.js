@@ -27,9 +27,8 @@ const routeHandlers = {
     findUserLoad : async (req,res)=>{
         
     const searchedUser = req.body.sUsername
-    const foundUser = await User.find({username: searchedUser})
-    
     try{
+        const foundUser = await User.find({username: searchedUser})
         if(!foundUser[0]){
             return res.render('tempPage',{
                 username: req.user.username,
@@ -53,7 +52,7 @@ const routeHandlers = {
     try{
         const username = req.params.user
         const user = await User.findOne({username})
-        try{
+        
             res.render('publicProfile', {
                 username: user.username,
                 about: user.about,
@@ -62,18 +61,13 @@ const routeHandlers = {
                 usernameH: req.user.username
                 
             })
-        }catch(e){
-            console.log(e)
-        }
         
     }catch(e){
-       console.log(e)
+        console.log("Error in fishing user profile: " + e)
     }
  }
 
 }
-
- 
 
 router.get('/findUser', auth('users'), routeHandlers.loadFindUserPage)
 router.post('/findUser', auth('users'), routeHandlers.findUserLoad)

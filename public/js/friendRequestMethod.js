@@ -15,12 +15,10 @@ const friendRequestMethod = ()=>{
             
         }
         else if(friendBtn.innerHTML === "Revoke Friend Request"){
-            
                 messageIdentifier.innerHTML = "Revoking...."
                 friendBtn.innerHTML = "Send Friend Request"
                 console.log('revoking')
                 actionURL = "/revokeFriendRequest"
-            
         }
             var receiverUsername = {receiverUserName}
         $.ajax({
@@ -32,7 +30,6 @@ const friendRequestMethod = ()=>{
                 console.log(JSON.stringify(res))
                 const x = JSON.stringify(res)
                 const y = JSON.parse(x)
-                console.log(y)
                 messageIdentifier.innerHTML = y.str
                 if(y.act === 'e'){
                     friendBtn.style.display = 'none';

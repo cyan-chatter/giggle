@@ -53,9 +53,8 @@ router.post('/profile/avatar', auth('users'), uploadS.single('avatar'), async (r
   const buffer = await sharp(req.file.buffer).resize({ width: 250, height: 250}).png().toBuffer()
   try{
    req.user.avatar = buffer
-   
-  await req.user.save() 
-  res.redirect('/profile/patch')
+   await req.user.save() 
+   res.redirect('/profile/patch')
   }
   catch{
    res.render('400',{
@@ -73,8 +72,8 @@ router.post('/profile/avatar', auth('users'), uploadS.single('avatar'), async (r
 
 router.get('/profile/avatar/delete', auth('users'), async (req,res)=>{
    req.user.avatar = undefined 
-   await req.user.save()
    try{
+      await req.user.save()
       res.redirect('/profile/patch')
    }catch(e){
       res.render('400',{

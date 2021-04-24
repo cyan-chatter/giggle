@@ -14,23 +14,20 @@ const Camp = require('../db/camp')
 const routeHandlers = {
   loadHomePage : async (req,res)=>{
         
-    const foundCamps = await Camp.find({})
     try{
+    const foundCamps = await Camp.find({})
         const rowNum = 2
         var campTents = []
         for(var t=0; t<foundCamps.length; t += rowNum){
             const tent = foundCamps.slice(t, t + rowNum)
             campTents.push(tent)
         } 
-        
         const filterSubjects = await Camp.aggregate([{
             $group: {
                 _id: "$subject"
             }    
         }])
 
-        
-        
         const filterSubjectsLexico = _.sortBy(filterSubjects, '_id')
         
         return res.render('home',{
@@ -55,10 +52,7 @@ const routeHandlers = {
     const y2 = JSON.parse(x2)
     const name = y2.campName
     console.log('server of add to camps: '+name)
-
-
     res.send({name})
-
   }
 }
 
