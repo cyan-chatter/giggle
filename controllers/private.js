@@ -2,13 +2,14 @@ const _ = require('lodash')
 const express = require('express')
 const User = require('../db/user')
 const router = new express.Router()
-var sessionStorage = require('sessionstorage');
+var sessionStorage = require('sessionstorage')
 const auth = require('../middleware/autho')
 const formidable = require('formidable')
 const Camp = require('../db/camp')
 const Direct = require('../db/direct')
 const chalk = require('chalk') 
-var CryptoJS = require("crypto-js");
+
+var CryptoJS = require("crypto-js")
 
 const routeHandlers = {
     generateDirectChat: async(req,res)=>{
@@ -105,7 +106,7 @@ const routeHandlers = {
                 
                 await newDirect.save()
         }catch(e){
-                res.redirect('/friends')                
+                res.redirect('/friends')             
         }
     }
 }

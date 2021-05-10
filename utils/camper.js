@@ -1,5 +1,3 @@
-const { authenticate } = require("passport")
-
 class Campers {
     constructor(){
         this.campers = []

@@ -1,19 +1,14 @@
-function Encrypt(word, key = 'secret key 123') {
+function Encrypt(word, key = 'blackswan1999') {
     let encJson = CryptoJS.AES.encrypt(JSON.stringify(word), key).toString()
     let encData = CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(encJson))
     return encData
 }
 
-function Decrypt(word, key = 'secret key 123') {
+function Decrypt(word, key = 'blackswan1999') {
     let decData = CryptoJS.enc.Base64.parse(word).toString(CryptoJS.enc.Utf8)
     let bytes = CryptoJS.AES.decrypt(decData, key).toString(CryptoJS.enc.Utf8)
     return JSON.parse(bytes)
 }
-
-
-////these fns doesnt always work -- need to write RSA encrytion fns and implement DH Key exchange
-///check : https://github.com/travist/jsencrypt
-//logs present for debugging help
 
 
 $(document).ready(()=>{
@@ -34,16 +29,8 @@ $(document).ready(()=>{
         }
 
         for(var i=0; i< schat.length; ++i){
-            
-            const secretKey = 'secret key 123' //SECRET KEY 
-            
-            console.log('1') //////////////////
-            console.log(schat[i].message) /////////////////
-
-            schat[i].message = Decrypt(schat[i].message, secretKey)
-            
-            console.log('2') /////////////////
-            
+                    
+            schat[i].message = Decrypt(schat[i].message)
             var messageBlock = $.trim($('#chatTemplate').html())
             var newMessage = messageBlock.replace(/!!%!!=usernameClient=!!%!!/ig, schat[i].senderName).replace(/!!%!!=textClient=!!%!!/ig, schat[i].message)
             $('.savedMessages').append(newMessage)
@@ -55,17 +42,12 @@ $(document).ready(()=>{
     })
 
     $('#send-message').on('click', function(e){
-        e.preventDefault();
-        console.log('3') ////////////////
+        
         var sendingMessageText = MessageDOM.val();
         
         if(sendingMessageText.toString().trim().length > 0){
 
-            const secretKey = 'secret key 123' //SECRET KEY 
-            
-            var ciphertext = Encrypt(sendingMessageText, secretKey)
-            console.log('4') ///////////////////
-
+            var ciphertext = Encrypt(sendingMessageText)
             var message = {
                 text: '',
                 sender: rooms[0],
@@ -95,11 +77,7 @@ $(document).ready(()=>{
     });
 
     socket.on('incomingDirect', (rnm)=>{
-        
-        const secretKey = 'secret key 123' //SECRET KEY 
-
-        rnm.text = Decrypt(rnm.text, secretKey)
-
+        rnm.text = Decrypt(rnm.text)
         var messageBlock = $.trim($('#chatTemplate').html());
         var newMessage = messageBlock.replace(/!!%!!=usernameClient=!!%!!/ig, rnm.sender).replace(/!!%!!=textClient=!!%!!/ig, rnm.text);
         $('.newMessages').append(newMessage);
@@ -111,5 +89,4 @@ $(document).ready(()=>{
         console.log('client error catcher')
         //location.replace("/friends")
     })
-
 })

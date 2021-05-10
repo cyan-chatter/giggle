@@ -9,12 +9,13 @@ const http = require('http')
 var sessionStorage = require('sessionstorage');
 const session = require('express-session')
 const socket = require('socket.io')
-const validator = require('express-validator')
 const _ = require('lodash')
 const {Campers} = require('./utils/camper')
 
-
+require('dotenv').config()
 require('./db/mongoose')
+
+
 const Camp = require('./db/camp')
 
 const users = require('./controllers/users')
