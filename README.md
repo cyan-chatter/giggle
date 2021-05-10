@@ -21,5 +21,3 @@ Currently, [I](https://github.com/cyan-chatter) am modifying the data flow desig
 Any open source enthusiast is welcome to contribute :smiley:
 
 For the current Dependencies of the appplication, check [package.json](https://github.com/cyan-chatter/giggle/blob/master/package.json) file.
-
-

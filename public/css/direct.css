@@ -1,0 +1,101 @@
+.container{
+    border : 5px solid black;
+}
+
+.currentChatFriend{
+    border : 5px solid black;
+    min-height: 150px;
+    min-width: 150px;
+}
+
+.card{
+    border : 2px solid black;
+}
+
+.infoImg{
+    border : 2px solid black;
+}
+
+.infoTxt{
+    border : 2px solid black;
+}
+
+.infoTxt > .fullname{
+    border : 2px solid black;
+}
+
+.infoTxt > .username{
+    border : 2px solid black;
+}
+
+.infoTxt > .about{
+    border : 2px solid black;
+}
+
+.moreFriends{
+    border : 5px solid black;
+    min-height: 150px;
+    min-width: 150px;
+    
+}
+
+.directChatLinkerBtn{
+    border : 2px solid black;
+}
+
+.chatSection{
+    border : 2px solid black;
+    
+}
+
+.messageContent{
+    border : 5px solid black;
+    list-style: none;
+    min-height: 150px;
+    min-width: 150px;
+}
+
+.savedMessages{
+    border : 2px solid black;
+    list-style: none;
+}
+.newMessages{
+    border : 2px solid black;
+    list-style: none;
+}
+
+
+.sendMessage{
+    border : 5px solid black;
+    min-height: 150px;
+    min-width: 150px;
+}
+
+#message_form{
+    border : 2px solid black;
+}
+
+#msg{
+    border : 2px solid black;
+}
+
+#send-message{
+    border : 2px solid black;
+}
+
+
+.chatItem{
+    border : 2px solid black;
+}
+.chatImg{
+    border : 2px solid black;
+}
+.chatBody{
+    border : 2px solid black;
+}
+.chatName{
+    border : 2px solid black;
+}
+.chatText{
+    border : 2px solid black;
+}

@@ -8,6 +8,7 @@
     <title>giggle</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/direct.css">
 </head>
 
@@ -19,8 +20,8 @@
             <img src="https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_1280.png" class="img-circle" height="50px" width="50px" alt="">
         </div>
         <div class="chatBody">
-            <div class="chatName"><b>!!%!!=usernameClient=!!%!!</b></div><br/>
-            <div class="chatText">!!%!!=textClient=!!%!!</div><br/>
+            <div class="chatName"><b>!!%!!=usernameClient=!!%!!</b></div>
+            <div class="chatText">!!%!!=textClient=!!%!!</div>
         </div>
     </li>
 </script>                            
@@ -28,20 +29,18 @@
 
 {{>navbar}}
 
-    <div class="container">
+<div class="container">
      
      <div class="currentChatFriend">
         <div class="card">                
-            <div class="content">
                 <div class="infoImg">
                     <img src="https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_1280.png" class="img-circle" height="100px" width="100px" alt="">
                 </div>
                 <div class="infoTxt">
-                    <h4 class="name">{{fName}}</h4>        
-                    <h2 class="name">{{fFullname}}</h2>
-                    <p class="text-center">{{fAbout}}</p>
+                    <h4 class="fullname">{{fName}}</h4>        
+                    <h2 class="username">{{fFullname}}</h2>
+                    <p class="about">{{fAbout}}</p>
                 </div>
-            </div>
         </div>
      </div>
      
@@ -55,23 +54,18 @@
      </div>
 
      <div class="chatSection">
-        <ul id="messages" class="list-unstyled">            
+        <ul id="messages" class="messageContent">            
             <li><ul class="savedMessages"></ul></li>                       
             <li><ul class="newMessages"></ul></li>                    
         </ul>
      </div>
 
      <div class="sendMessage">
-        <form action="#" id="message_form" method="post">
-            <textarea class="form-control" name="message" id="msg" placeholder="Type your message here"></textarea>
-            <div class="clearfix"></div>
-            <div class="chat_bottom">
-                <button id="send-message" class="pull-right btn btn-primary" style="background: #4aa1f3; border: #4aa1f3; "> Send </button>
-            </div>
-        </form>
+            <textarea name="message" id="msg" placeholder="Type your message here"></textarea>
+            <button id="send-message" class="action-btn"> Send </button>
      </div>
 
-    </div>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>  
