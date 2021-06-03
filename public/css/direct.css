@@ -1,11 +1,46 @@
 .container{
-    border : 5px solid black;
+    height: 88vh;
+    border : 1px solid black;
+    display : flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.auxOptions{
+    border : 1px solid black;
+    height: 100%;
+    width: 28%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.mainOptions{
+    border : 1px solid black;
+    width: 68%;
+    min-height: 70vh;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .currentChatFriend{
-    border : 5px solid black;
-    min-height: 150px;
-    min-width: 150px;
+    border : 1px solid black;
+    min-height: 30%;
+    width: 95%;
+    margin: 5px 2.5% 5px 2.5%;
+    padding: 5px 5px 5px 5px;
+}
+
+
+.moreFriends{
+    border : 1px solid black;
+    width: 95%;
+    flex:1;
+    overflow-y: scroll;
+    margin: 5px 2.5% 5px 2.5%;
+    padding: 5px 5px 5px 5px;
 }
 
 .card{
@@ -17,7 +52,7 @@
 }
 
 .infoTxt{
-    border : 2px solid black;
+    border : 2px solid rgb(109, 63, 63);
 }
 
 .infoTxt > .fullname{
@@ -32,63 +67,68 @@
     border : 2px solid black;
 }
 
-.moreFriends{
-    border : 5px solid black;
-    min-height: 150px;
-    min-width: 150px;
-    
-}
 
 .directChatLinkerBtn{
     border : 2px solid black;
 }
 
-.chatSection{
-    border : 2px solid black;
-    
-}
 
 .messageContent{
-    border : 5px solid black;
     list-style: none;
-    min-height: 150px;
-    min-width: 150px;
+    padding-left: 2px;
+    flex: 1;
+    overflow-y: scroll;
+    width: 100%;
 }
 
-.savedMessages{
-    border : 2px solid black;
+.savedMessages, .newMessages{
     list-style: none;
+    padding-left: 2px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    width: 100%;
+    margin-top: 1px;
+    margin-bottom: 4px;
+    margin-left: 2px;
+    margin-right: 2px;
 }
-.newMessages{
-    border : 2px solid black;
-    list-style: none;
-}
-
 
 .sendMessage{
-    border : 5px solid black;
-    min-height: 150px;
-    min-width: 150px;
-}
-
-#message_form{
-    border : 2px solid black;
+    min-height: 100px;
+    
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
 }
 
 #msg{
-    border : 2px solid black;
+    flex: 1;
+    height: 100%;
+    margin: 2px 0px 2px 2px;
 }
 
 #send-message{
     border : 2px solid black;
+    height: 100%;
+    margin: 2px 2px 2px 0px;
 }
 
 
 .chatItem{
     border : 2px solid black;
+    background:cornsilk;
+    margin-top: 1px;
+    margin-bottom: 4px;
+    margin-left: 2px;
+    margin-right: 2px;
+    padding : 2px 2px 2px 2px;
 }
 .chatImg{
     border : 2px solid black;
+    width: 100%;
 }
 .chatBody{
     border : 2px solid black;

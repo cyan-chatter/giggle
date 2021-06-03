@@ -30,6 +30,7 @@
 {{>navbar}}
 
 <div class="container">
+    <div class="auxOptions">
      
      <div class="currentChatFriend">
         <div class="card">                
@@ -44,7 +45,6 @@
         </div>
      </div>
      
-     
      <div class="moreFriends">
          
         {{#each friendsList}}
@@ -52,18 +52,24 @@
         {{/each}}
 
      </div>
+    
+    </div> 
 
-     <div class="chatSection">
-        <ul id="messages" class="messageContent">            
-            <li><ul class="savedMessages"></ul></li>                       
-            <li><ul class="newMessages"></ul></li>                    
-        </ul>
-     </div>
+    <div class="mainOptions">
+
+     
+    <ul id="messages" class="messageContent">            
+        <li><ul class="savedMessages"></ul></li>                       
+        <li><ul class="newMessages"></ul></li>                    
+    </ul>
+     
 
      <div class="sendMessage">
             <textarea name="message" id="msg" placeholder="Type your message here"></textarea>
             <button id="send-message" class="action-btn"> Send </button>
      </div>
+
+    </div>
 
 </div>
 
