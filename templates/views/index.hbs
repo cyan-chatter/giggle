@@ -2,20 +2,38 @@
 <head>  
     <title>giggle</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="./css/login.css">
 </head>
 <body>
         <div class="main-content">
-                <div class = "notify">
+
+        <div class = "notify">
                 {{>messages}}
-                </div>
-                <h1 class="outHead">giggle</h1>
-                <div class="inset">
-                <span><button  class = "login-btn" ><a href="{{gotoLogin}}">{{login}}</a></button></span>
-                <span><button class = "register-btn" ><a href="{{gotoRegister}}">{{register}}</a></button></span> 
-                <br>
-                <br>
-                </div>    
         </div>
+        
+        <div class="mainWrapper">
+                <div class="bigHead">giggle</div>
+
+                <div class = "register-btn"><button class = "action-btn" id="register-btn"><a href="{{gotoRegister}}">{{register}}</a></button></div>
+
+                <div class="loginWrapper">
+                        <h2 class="mainHead">Login</h2>
+                        <form id="loginForm" method ="POST" action = "{{goto}}" class="formMain">
+                                <div class="lib">
+                                        <label for="email">Email</label><br>
+                                        <input type="email" name="email" required  autocomplete="off" ><br>
+                                </div>
+                                <div class="lib">
+                                        <label for="password">Password</label><br>
+                                        <input type="password" name="password" required  autocomplete="off" ><br>
+                                </div>
+                                <input type="submit" form="loginForm" value="Login" class="action-btn" id="login-btn">
+                        </form>
+                </div>
+        </div>
+        
+        </div>
+
 </body>
 <script src = "../../utils/message-loader.js"></script>
 </html>

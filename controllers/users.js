@@ -17,6 +17,7 @@ const routeHandlers = {
                 message : sessionStorage.getItem("m"),
                 messageType : sessionStorage.getItem("mT"),
                 gotoLogin : '/login',
+                goto: '/login',
                 login : 'Login Here',
                 gotoRegister: '/signup',
                 register: 'Sign Up Here'
@@ -110,13 +111,6 @@ const routeHandlers = {
             return res.redirect(500,'/')
         }
      },
-     loadLogin : async(req,res)=>{
-        return res.render('login',{
-            goto: '/login',
-            message : sessionStorage.getItem("m"),
-            messageType : sessionStorage.getItem("mT")
-        })
-     },   
 
      login : async(req,res)=>{
         try{    
@@ -142,7 +136,6 @@ router.get('/signup', routeHandlers.loadSignUp)
 router.post('/signup',routeHandlers.register)
 router.get('/logout', auth('users'), routeHandlers.logout)
 router.post('/logoutAll', auth('users'), routeHandlers.logoutAll )
-router.get('/login', isloggedin('users'), routeHandlers.loadLogin)
 router.post('/login', routeHandlers.login)
  
 module.exports = router

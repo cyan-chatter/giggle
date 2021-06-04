@@ -11,55 +11,56 @@
 <body>
 
 <div class="main-content">
-<div class = "notify">
-{{>messages}}
-</div>
-<div id="main" class="registerMain">
     
-        <form action="/signup" method="post">
-          <div id="errorsSignup"> 
-          {{#if hasErrors}}
-                <div class="alert alert-danger text-center">
-                   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                   <ul>
-                   {{#each ab}}
-                       <li>{{Errors}}</li><br>
-                   {{/each}}
-                   </ul>>    
-                </div>
-            {{/if}}
-            </div> 
-            <h1 class="outHead">Register</h1>
-            <br>
-            <div class="inset">
-                <p class="insetObject">
-                  <label class="outLabel" for="username">USERNAME</label>
-                  <br>
-                  <input type="text" name="username" class="" placeholder="unique username" autocomplete="off" >
-                </p>
-                
-                <p class="insetObject">
-                  <label class="outLabel" for="fullname">NAME</label>
-                  <br>
-                  <input type="text" name="fullname" class="" placeholder="enter full name" autocomplete="off" >
-                </p>
+    <div class = "notify">
+    {{>messages}}
+    </div>
 
-                <p class="insetObject">
-                    <label class="outLabel" for="email">EMAIL ADDRESS</label>
-                    <br>
+    <div id="main" class="mainWrapper">
+        
+        <div class="loginWrapper">
+            
+            <h2 class="mainHead">Register</h2>
+
+            <form action="/signup" method="post" class="formMain">
+                
+                <div id="errorsSignup"> 
+                    {{#if hasErrors}}
+                        <div class="alert alert-danger text-center">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <ul>
+                        {{#each ab}}
+                            <li>{{Errors}}</li><br>
+                        {{/each}}
+                        </ul>>    
+                        </div>
+                    {{/if}}
+                </div>
+
+                <div class="lib">
+                    <label for="username">USERNAME</label>
+                    <input type="text" name="username" class="" placeholder="unique username" autocomplete="off" >
+                </div>
+                
+                <div class="lib">
+                    <label for="fullname">NAME</label>
+                    <input type="text" name="fullname" class="" placeholder="enter full name" autocomplete="off" >
+                </div>
+
+                <div class="lib">
+                    <label for="email">EMAIL ADDRESS</label>
                     <input type="text" name="email" placeholder="unique email" autocomplete="off" />
-                </p>
-                <p class="insetObject">
-                    <label class="outLabel" for="password">PASSWORD</label>
-                    <br>
+                </div>
+                <div class="lib">
+                    <label for="password">PASSWORD</label>
                     <input type="password" name="password" placeholder="atleast 8 letters"  autocomplete="off" />
-                </p>
-                <p class="insetObject">
-                    <input type="submit" class="action-btn" style=" background: rgba(26, 163, 111, 0.788); border: rgba(26, 163, 111, 0.788);" value="Register">
-                </p>
-                <p id="loginFromSignupPage">Already have an account? <span><button><a href="/login">Login</a></button></span></p>
-            </div>
-        </form>
+                </div>
+                
+                <input type="submit" class="action-btn" value="Register" id="register-btn">
+                
+            </form>
+        <div id="loginFromSignupPage">Already have an account? <button class="action-btn" id="login-btn"><a href="/login"> Login </a></button></div>
+        </div>
     </div>
 </div>
    
