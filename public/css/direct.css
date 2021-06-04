@@ -23,33 +23,34 @@
 }
 
 .currentChatFriend{
-    border : 1px solid black;
     min-height: 30%;
     width: 95%;
     margin: 0px 2.5% 5px 2.5%;
-    padding: 5px 5px 5px 5px;    
     color: seashell;
-    background:rgb(30, 168, 138);
 }
 
 .moreFriends{
-    border : 1px solid black;
     width: 95%;
     flex:1;
     overflow-y: scroll;
     margin: 5px 2.5% 5px 2.5%;
     padding: 5px 5px 5px 5px;
     background: rgb(30, 168, 138);
+    box-shadow: 1px 1px 2px 1px #016e5c3d,
+                -1px -1px 3px 1px #0257493d;
+    background-color: #060f0d94;
 }
 
 .messageContent{
-    border : 1px solid black;
+    
     list-style: none;
     padding-left: 2px;
     flex: 1;
     overflow-y: scroll;
     width: 100%;
-    background: rgb(30, 168, 138);
+    box-shadow: 1px 1px 2px 1px #016e5c3d,
+                -1px -1px 3px 1px #0257493d;
+    background-color: #060f0d94;
 }
 
 .savedMessages, .newMessages{
@@ -79,27 +80,27 @@
     height: 100%;
     margin: 2px 1px 2px 2px;
     background: rgba(159, 231, 217, 0.588);
-    border : 1px solid black;
+    box-shadow: 1px 1px 2px 1px #016e5c3d,
+                -1px -1px 3px 1px #0257493d;
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
 }
 
 #send-message{
-    border : 2px solid black;
+    box-shadow: 1px 1px 2px 1px #016e5c3d,
+                -1px -1px 3px 1px #0257493d;
     height: 100%;
     margin: 2px 2px 2px 1px;
-    background:rgb(30, 168, 138);
+    background:#caf8edda;
 }
 
 .chatItem{
-    margin-top: 1px;
-    margin-bottom: 4px;
-    margin-left: 2px;
-    margin-right: 2px;
-    padding : 2px 2px 2px 2px;
+    padding : 2px 4px 4px 4px;
     display: flex;
     flex-direction: row;
     justify-content: start;
+    margin: 4px 0px 4px 0px;
+    border-top-left-radius: 10px;
 }
 
 .chatHead{
@@ -117,50 +118,60 @@
     display: flex;
     flex-direction: row;
     justify-content: start;
+    margin-top: 4px;
 }
 .chatName{
-    background:rgb(23, 119, 98);
-    color: cornsilk;
+    background:rgb(0, 255, 170);
+    color: black;
     width : fit-content;
-    margin: 1px;
-    padding: 2px;
+    margin: 1px 1px 5px 1px;
+    padding: 1px 5px 1px 5px;
     border-bottom-right-radius: 3px;
     border-top-left-radius: 3px;
 }
 .chatText{
-    border : 1px solid black;
+    
+    box-shadow: 1px 1px 5px 3px #07e6c1;
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
-    background:rgba(180, 250, 236, 0.705);
+    background:rgba(235, 250, 247, 0.986);
     padding: 5px;
 }
 
 
-
-
-.card{
-    border : 2px solid black;
+.card{    
     display: flex;
     flex-direction: column;
+    align-items: center;
     background: rgb(53, 197, 166);
     margin-bottom: 5px;
-    padding: 2px;
+    padding: 15px;
+    box-shadow: 3px 3px 3px 6px #0257493d inset,
+                -3px -3px 3px 3px #02a080dc inset,
+                1px 1px 2px 1px #016e5c3d,
+                -1px -1px 3px 1px #0257493d;
+
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .card > .username{
     margin: 1px 2px 1px 2px;
     text-align: center;
-    min-height: 30px;
+    min-height: 25px;
     background: rgb(23, 119, 98);
+    width: fit-content;
     margin: 1px;
-    padding: 2px;
+    padding: 2px 4px 2px 4px;
     border-radius: 2px;
+    font-size: 1.25em;
 }
 
-.infoImg{
+.card > .infoImg{
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin-bottom: 4px;
 }
 
 .infoTxt{
@@ -169,11 +180,10 @@
 }
 .infoTxt > .fullname{
     min-height: 50px;
-    font-size: 2em;
+    font-size: 1.5em;
     margin: 3px;
     display: contents;
     align-items: center;
-    color:rgba(196, 247, 236, 0.979);
 }
 .infoTxt > .about{
     background: rgb(53, 197, 166);
