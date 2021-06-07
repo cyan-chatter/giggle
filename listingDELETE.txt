@@ -1,41 +1,21 @@
-1
-in 
+1 
 discuss.hbs
-in 
-<script id = ""CampersListTemplate"">
-line
-<li class="right"> 
-message 
-right css class has to be set
 
 2
-
-findUser
-also send the image of the person found
-
-before displaying add friend on findUser page Check if a Friend Request is already received by the same user 
+findUser : also send the image of the person found
 
 3
-put navbar on update profile page
+before displaying add friend on findUser page Check if a Friend Request is already received by the same user 
 
 4
-in friendRequests.hbs
-update totalRequests on each button event
+fix navbar styles
 
-5.
+5
+user input validation at signup
+
+6
 When a friend request is accepted, remove the option of revoking the friend request immediately
 
-6.
-fix register page
-
-7.
-fix navbar profile name displaying
-
-8.
-fix navbar Camps link (campers->camps <- /home) 
-
-9. 
-fix navbar Username Dropdown Links Text and Actions
-
-
+7
+friendRequests.hbs : update totalRequests on each button event
 
