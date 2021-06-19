@@ -59,10 +59,6 @@ const userSchema = new mongoose.Schema({
         username: {type: String, default: ''}
     }],
 
-    favcamps: [{
-        favcamp: {type: mongoose.Schema.Types.ObjectId, ref: 'Camp'}
-    }]
-
 });
 
 userSchema.statics.findByCredentials = async (email, password) =>{

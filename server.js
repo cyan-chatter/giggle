@@ -10,22 +10,18 @@ var sessionStorage = require('sessionstorage');
 const session = require('express-session')
 const socket = require('socket.io')
 const _ = require('lodash')
-const {Campers} = require('./utils/camper')
+
 
 require('dotenv').config()
 require('./db/mongoose')
 
 
-const Camp = require('./db/camp')
-
 const users = require('./controllers/users')
-const admins = require('./controllers/admins')
-const home = require('./controllers/home')
-const camps = require('./controllers/camps')
 const profile = require('./controllers/profile')
 const findUser = require('./controllers/findUser')
 const friends = require('./controllers/friends')
 const private = require('./controllers/private')
+const home = require('./controllers/home')
 
 sessionStorage.setItem("m"," ")
 sessionStorage.setItem("mT"," ")
@@ -42,17 +38,11 @@ setServer = (users)=>{
     //configure Express 
     configExpress(app)
     
-    
-    require('./chat/discuss')(io)
     require('./chat/direct')(io)
-    
-    
     
     //Use the Routers 
     app.use(users)
-    app.use(admins) 
-    app.use(home) 
-    app.use(camps) 
+    app.use(home)
     app.use(profile)
     app.use(findUser)
     app.use(friends) 
