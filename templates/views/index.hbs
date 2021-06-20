@@ -7,6 +7,10 @@
 </head>
 <body>
         <div class="main-content">
+
+        <div class = "notify">
+                {{>messages}}
+        </div>
         
         <div class="mainWrapper">
                 <div class="bigHead">giggle</div>
@@ -14,7 +18,6 @@
                 <div class = "register-btn"><button class = "action-btn" id="register-btn-link">Sign Up</button></div>
 
                 <div class="loginWrapper">
-                        <h2 class="mainHead">Login</h2>
                         <form id="loginForm" method ="POST" action = "{{goto}}" class="formMain">
                                 <div class="lib">
                                         <label for="email">Email</label><br>
