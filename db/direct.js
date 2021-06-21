@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const directSchema = mongoose.Schema({
     message: {type: String},
+    dtype: {type: String, default: 'text', required: true, trim: true, lowercase: true},
     senderId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     receiverId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     senderName: {type: String},

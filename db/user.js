@@ -53,7 +53,8 @@ const userSchema = new mongoose.Schema({
     friends: [{
         userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
         username: {type: String, default: ''},
-        fullname: {type: String, default: ''}
+        fullname: {type: String, default: ''},
+        recentDirect: {type: mongoose.Schema.Types.ObjectId, ref: 'Direct'}
     }],
     sentRequests: [{
         username: {type: String, default: ''}

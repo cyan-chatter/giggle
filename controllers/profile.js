@@ -1,7 +1,6 @@
 const _ = require('lodash')
 const express = require('express')
 const User = require('../db/user')
-const jwt = require('jsonwebtoken')
 const router = new express.Router()
 const auth = require('../middleware/autho')
 const bodyParser = require('body-parser')

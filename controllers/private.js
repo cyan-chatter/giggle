@@ -100,9 +100,28 @@ const routeHandlers = {
                 newDirect.receiverName = receiverData.username
                 newDirect.senderId = senderData._id
                 newDirect.receiverId = receiverData._id
+
+
                 newDirect.message = req.body.text
                 
                 await newDirect.save()
+
+                for(let i=0; i<senderData.friends.length; ++i){
+                    if(senderData.friends[i].username === receiverData.username){
+                        senderData.friends[i].recentDirect = newDirect
+                        break;
+                    }
+                }
+
+                for(let i=0; i<receiverData.friends.length; ++i){
+                    if(receiverData.friends[i].username === senderData.username){
+                        receiverData.friends[i].recentDirect = newDirect
+                        break;
+                    }
+                }
+                
+                await senderData.save(); 
+                await receiverData.save();
         }catch(e){
                 res.redirect('/friends')             
         }
