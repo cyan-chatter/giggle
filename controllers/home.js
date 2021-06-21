@@ -33,8 +33,14 @@ const routeHandlers = {
               isRead : rd.isRead,
               createdAt : rd.createdAt,
               friendUsername : curUser.friends[i].username,
-              friendName : curUser.friends[i].fullname
+              friendName : curUser.friends[i].fullname,
+              showDate : rd.createdAt.toDateString(),
+              showTime : rd.createdAt.toLocaleTimeString()
             }
+            const rn = new Date()
+            if(rd.createdAt.getDate() === rn.getDate() && rd.createdAt.getMonth() === rn.getMonth() && rd.createdAt.getFullYear() === rn.getFullYear()){
+              rc.showDate = 'Today'
+            } 
             recentDirects.push(rc)
         }
 

@@ -10,18 +10,22 @@
 
 
 <body>
-
 {{> navbar}}
 <div class="main-content">
-<div class = "notify">
-{{>messages}}
-</div>
-<div id="container">
-    Hello World!
-</div>
+    <div class = "notify">
+    {{>messages}}
+    </div>
+    <div id="container">
+        {{#each recentDirects}}
+            <div class="recentChatBlock">
+            <div id="friendUsername"> {{this.friendUsername}} </div>
+            <div id="directDate"> {{this.showDate}} </div>
+            <div id="directTime"> {{this.showTime}} </div>
+            </div>
+        {{/each}}
+    </div>
 </div> 
 <div class="footer">
-    <p id = "message"></p>
     <form action="/logoutAll" method='post'>
         <input type='submit' value='Logout of All Devices'>
     </form>
