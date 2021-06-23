@@ -18,15 +18,17 @@
     <div class="recentDirects">
         {{#each recentDirects}}
             <div class="recentChatBlock">
-            <div id="friendUsername"> {{this.friendUsername}} </div>
-            <div id="timestamp">
-                <div id="directDate"> {{this.showDate}} </div>
-                <div id="directTime"> {{this.showTime}} </div>
-            </div>
+                <div class="friendUsername"> {{this.friendUsername}} </div>
+                <div class="timestamp">
+                    <div class="directDate"> {{this.showDate}} </div>
+                    <div class="directTime"> {{this.showTime}} </div>
+                </div>
             </div>
         {{/each}}
     </div>
 </div> 
+<p style="display: none;" id = "myUsername">{{username}}</p>
+
 <div class="footer">
     <form action="/logoutAll" method='post'>
         <input type='submit' value='Logout of All Devices' class="action-btn">
@@ -34,6 +36,8 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>  
+<script src = "/js/directLinker.js" type="module"></script>        
+<script src = "/js/recentChatLinker.js" type="module"></script>        
 
 </body>
 </html>

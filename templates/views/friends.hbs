@@ -22,7 +22,7 @@
             <div class= "friendsLoopBlock">
                 <h3 class = "friendName">{{this.fullname}}</h3>
                 <h4><a href="/findUser/{{this.username}}" style="text-decoration: none;" class ="friendUserName">{{this.username}}</a></h4>
-                <button class="privateChatBtn action-btn" onclick="privateChatLinkage(this)">Chat</button>
+                <button id="directChatBtn" class="privateChatBtn action-btn">Chat</button>
                 <button class="cancelFriendButton action-btn" onclick="cancelFriendshipBtnWork(this)">Remove</button>
             </div>
             {{/each}}
@@ -39,7 +39,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>  
 <script src="/js/cancelFriendship.js"></script>
-<script src = "/js/privateChatLinker.js"></script>        
+<script src = "/js/directLinker.js" type="module"></script>        
+<script src = "/js/privateChatLinker.js" type="module"></script>        
            
     </body>
 </html>

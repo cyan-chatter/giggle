@@ -15,6 +15,8 @@
 
 <body>
 
+<div id="myUsername" display='none'>{{username}}</div>
+
 <script id = "chatTemplate" type="template">
     <li class="chatItem">
         <div class="chatHead">
@@ -55,7 +57,7 @@
      <div class="moreFriends">
          
         {{#each friendsList}}
-            <p><button onclick="directChatLinkage(this)" class="directChatLinkerBtn">{{this}}</button></p>
+            <p><button class="directChatLinkerBtn">{{this}}</button></p>
         {{/each}}
 
      </div>
@@ -89,7 +91,8 @@
 
 <script src="/js/deparam.js"></script>
 <script src="/js/private/directCS.js"></script>
-<script src="/js/directChatLinker.js"></script>
+<script src="/js/directLinker.js" type="module"></script>
+<script src="/js/directChatLinker.js" type="module"></script>
 
 </body>
 </html>
