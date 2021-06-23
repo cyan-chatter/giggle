@@ -15,19 +15,21 @@
     <div class = "notify">
     {{>messages}}
     </div>
-    <div id="container">
+    <div class="recentDirects">
         {{#each recentDirects}}
             <div class="recentChatBlock">
             <div id="friendUsername"> {{this.friendUsername}} </div>
-            <div id="directDate"> {{this.showDate}} </div>
-            <div id="directTime"> {{this.showTime}} </div>
+            <div id="timestamp">
+                <div id="directDate"> {{this.showDate}} </div>
+                <div id="directTime"> {{this.showTime}} </div>
+            </div>
             </div>
         {{/each}}
     </div>
 </div> 
 <div class="footer">
     <form action="/logoutAll" method='post'>
-        <input type='submit' value='Logout of All Devices'>
+        <input type='submit' value='Logout of All Devices' class="action-btn">
     </form>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
