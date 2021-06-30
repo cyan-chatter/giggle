@@ -1,3 +1,20 @@
+:root{
+    --chatcontentcolor:rgba(235, 250, 247, 0.986);
+    --sendchattextboxcolor:rgba(159, 231, 217, 0.588);
+    --chattextcolor:black;
+    --charbordercolor:#07e6c1;
+    --sendbtncolor:#caf8edda;
+    --directchatbackcolor:#060f0d94;
+    --chatusernamecolor:rgb(0, 255, 170);
+    --boxshadowshadedark1:#016e5c3d;
+    --boxshadowshadedark2:#0257493d;
+    --boxshadowshadeinset1:#02a080dc;
+    --boxshadowshadeinset2:#0257493d;
+    --cardcolor: rgb(53, 197, 166);
+    
+    
+}
+
 .container{
     height: 88vh;
     display : flex;
@@ -26,7 +43,7 @@
     min-height: 30%;
     width: 95%;
     margin: 0px 2.5% 5px 2.5%;
-    color: seashell;
+    color: var(--chatcontentcolor);
 }
 
 .moreFriends{
@@ -35,10 +52,15 @@
     overflow-y: scroll;
     margin: 5px 2.5% 5px 2.5%;
     padding: 5px 5px 5px 5px;
-    background: rgb(30, 168, 138);
-    box-shadow: 1px 1px 2px 1px #016e5c3d,
-                -1px -1px 3px 1px #0257493d;
-    background-color: #060f0d94;
+    background: var(--backcolor);
+    box-shadow: 1px 1px 2px 1px var(--boxshadowshadedark1),
+                -1px -1px 3px 1px var(--boxshadowshadedark2);
+    background-color: var(--directchatbackcolor);
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .messageContent{
@@ -48,9 +70,9 @@
     flex: 1;
     overflow-y: scroll;
     width: 100%;
-    box-shadow: 1px 1px 2px 1px #016e5c3d,
-                -1px -1px 3px 1px #0257493d;
-    background-color: #060f0d94;
+    box-shadow: 1px 1px 2px 1px var(--boxshadowshadedark1),
+                -1px -1px 3px 1px var(--boxshadowshadedark2);
+    background-color: var(--directchatbackcolor);
 }
 
 .savedMessages, .newMessages{
@@ -73,25 +95,31 @@
     flex-direction: row;
     justify-content: right;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 #msg{
     flex: 1;
     height: 100%;
     margin: 2px 1px 2px 2px;
-    background: rgba(159, 231, 217, 0.588);
-    box-shadow: 1px 1px 2px 1px #016e5c3d,
-                -1px -1px 3px 1px #0257493d;
+    background: var(--sendchattextboxcolor);
+    box-shadow: 1px 1px 2px 1px var(--boxshadowshadedark1),
+                -1px -1px 3px 1px var(--boxshadowshadedark2);
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
 }
 
 #send-message{
-    box-shadow: 1px 1px 2px 1px #016e5c3d,
-                -1px -1px 3px 1px #0257493d;
+    box-shadow: 1px 1px 2px 1px var(--boxshadowshadedark1),
+                -1px -1px 3px 1px var(--boxshadowshadedark2);
     height: 100%;
     margin: 2px 2px 2px 1px;
-    background:#caf8edda;
+    background:var(--sendbtncolor);
+}
+
+#send-message:hover{
+    cursor: pointer;
+    background-color: var(--hovercolor);
 }
 
 .chatItem{
@@ -121,8 +149,8 @@
     margin-top: 4px;
 }
 .chatName{
-    background:rgb(0, 255, 170);
-    color: black;
+    background:var(--chatusernamecolor);
+    color: var(--chattextcolor);
     width : fit-content;
     margin: 1px 1px 5px 1px;
     padding: 1px 5px 1px 5px;
@@ -130,24 +158,24 @@
     border-top-left-radius: 3px;
 }
 .chatText{
-    
-    box-shadow: 1px 1px 5px 3px #07e6c1;
+    color: var(--chattextcolor);
+    box-shadow: 1px 1px 5px 3px var(--chatbordercolor);
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    background:rgba(235, 250, 247, 0.986);
+    background:var(--chatcontentcolor);
     padding: 5px;
 }
 
 
 .card{    
-    background: rgb(53, 197, 166);
+    background: var(--cardcolor);
     margin-bottom: 5px;
     padding: 15px;
-    box-shadow: 3px 3px 3px 6px #0257493d inset,
-                -3px -3px 3px 3px #02a080dc inset,
-                1px 1px 2px 1px #016e5c3d,
-                -1px -1px 3px 1px #0257493d;
+    box-shadow: 3px 3px 3px 6px var(--boxshadowshadeinset2)inset,
+                -3px -3px 3px 3px var(--boxshadowshadeinset1) inset,
+                1px 1px 2px 1px var(--boxshadowshadedark1),
+                -1px -1px 3px 1px var(--boxshadowshadedark2);
 
     border-bottom-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -167,7 +195,7 @@
     margin: 1px 2px 1px 2px;
     text-align: center;
     min-height: 25px;
-    background: rgb(23, 119, 98);
+    background: var(--cardcolor);
     width: 100%;
     margin: 1px;
     padding: 2px 4px 2px 4px;
@@ -194,7 +222,7 @@
 
 .infoTxt{
     text-align: center;   
-    color: black;
+    color: var(--chattextcolor);
 }
 .infoTxt > .fullname{
     min-height: 50px;
@@ -204,10 +232,24 @@
     align-items: center;
 }
 .infoTxt > .about{
-    background: rgb(53, 197, 166);
+    background: var(--cardcolor);
     margin: 5px;
 }
 
 .directChatLinkerBtn{
-    border : 2px solid black;
+    border : 2px solid var(--chattextcolor);
+    padding: 2px 4px 2px 4px;
+    width: 90%;
+    text-align: center;
+    border-radius: 1rem;
+    background: var(--cardcolor);
+}
+
+.directChatLinkerBtn:hover{
+    cursor: pointer;
+    background: var(--hovercolor);
+}
+.directChatLinkerBtn:active {
+    box-shadow: 0 5px #666;
+    transform: translateY(2px);
 }

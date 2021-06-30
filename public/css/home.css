@@ -1,10 +1,10 @@
+
 .recentDirects{    
     margin: 5px 4px 2px 4px;
-    padding: 5px;
-    
+    padding: 5px;    
 }
 .recentChatBlock{
-    border: 1px solid rgb(6, 216, 69);
+    border: 1px solid var(--lightbordercolor);
     border-radius: 10px;
     margin: 5px 3px 20px 3px;
     padding: 4px;
@@ -12,9 +12,18 @@
     flex-direction: row;
     min-height: 60px;
     justify-content: space-between;
-    background-color: rgb(194, 255, 202);
+    background-color: var(--blockcolor);
 }
 
+.recentChatBlock:hover{
+    cursor: pointer;
+    background: var(--hovercolor);
+}
+.recentChatBlock:active {
+  background-color: var(--clickactivecolor);
+  box-shadow: 0 5px #666;
+  transform: translateY(2px);
+}
 .timestamp{
     min-width: 18%;
     display: flex;
@@ -24,31 +33,30 @@
 }
 
 .friendUsername{
-    border: 1px solid rgb(6, 216, 69);
+    border: 1px solid var(--lightbordercolor);
     border-radius: 10px;
     min-width: 70%;
     width: 80%;
     padding: 5px;
-
 }
 
 .directDate{
-    border: 1px solid rgb(6, 216, 69);
+    border: 1px solid var(--lightbordercolor);
     margin: 2px 2px 2px 2px;
     text-align: center;
     font-size: 0.8em;
-    background-color: rgba(154, 248, 77, 0.952);
+    background-color: var(--lightcapsulecolor2);
     border-radius: 10px;
     padding: 3px 6px 3px 6px;
     width: fit-content;
 }
 
 .directTime{
-    border: 1px solid rgb(6, 216, 69);
+    border: 1px solid var(--lightbordercolor);
     margin: 2px 2px 2px 2px;
     text-align: center;
     font-size: 0.8em;
-    background-color: rgba(124, 245, 24, 0.952);
+    background-color: var(--lightcapsulecolor1);
     font-weight: bold;
     border-radius: 10px;
     padding: 3px 6px 3px 6px;
