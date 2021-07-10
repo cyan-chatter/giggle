@@ -2,17 +2,10 @@
     --chatcontentcolor:rgba(235, 250, 247, 0.986);
     --sendchattextboxcolor:rgba(159, 231, 217, 0.588);
     --chattextcolor:black;
-    --charbordercolor:#07e6c1;
+    --chatbordercolor:#32f8d7;
     --sendbtncolor:#caf8edda;
     --directchatbackcolor:#060f0d94;
     --chatusernamecolor:rgb(0, 255, 170);
-    --boxshadowshadedark1:#016e5c3d;
-    --boxshadowshadedark2:#0257493d;
-    --boxshadowshadeinset1:#02a080dc;
-    --boxshadowshadeinset2:#0257493d;
-    --cardcolor: rgb(53, 197, 166);
-    
-    
 }
 
 .container{
@@ -159,7 +152,7 @@
 }
 .chatText{
     color: var(--chattextcolor);
-    box-shadow: 1px 1px 5px 3px var(--chatbordercolor);
+    box-shadow: 1px 1px 3px 3px var(--chatbordercolor);
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;

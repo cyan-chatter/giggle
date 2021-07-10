@@ -6,14 +6,14 @@
 }
 
 .t{
-    background-color: rgb(162, 238, 209);
+    background-color: var(--highbackcolor);
     padding: 4px 2px 4px 2px;
     border-radius: 2px;
     font-weight: lighter;
 }
 
 .d{
-    background-color: lightblue;
+    background-color: var(--highcontentcolor);
     text-align: center;
     font-weight: bold;
     margin-left: 10%;

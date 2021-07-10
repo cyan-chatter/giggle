@@ -10,7 +10,16 @@
     --lightbordercolor:rgb(6, 216, 69);
     --lightcapsulecolor1:rgba(124, 245, 24, 0.952);
     --lightcapsulecolor2:rgba(154, 248, 77, 0.952);
-
+    --inputtextbackcolor : rgb(183, 238, 226);
+    --lightbackcolor : rgb(175, 252, 209);
+    --dimbackcolor: rgb(191, 236, 218);
+    --highbackcolor: rgb(162, 238, 209);
+    --highcontentcolor: lightblue; 
+    --boxshadowshadedark1:#016e5c3d;
+    --boxshadowshadedark2:#0257493d;
+    --boxshadowshadeinset1:#02a080dc;
+    --boxshadowshadeinset2:#0257493d;
+    --cardcolor: rgb(53, 197, 166);
 }
 html{
     font-family: 'Segoe UI', sans-serif;
@@ -63,9 +72,10 @@ body {
 }
 
 .notify{
-    padding: 4px 4px 4px 4px;
-    margin: 2px 0px 2px 0px;
-    background-color: rgb(204, 250, 235);
+    padding: 4px 10px 4px 10px;
+    margin: 4px 10px 4px 10px;
+    background-color: var(--highbackcolor);
+    width: fit-content;
 }
 
 .outHead, .inset{

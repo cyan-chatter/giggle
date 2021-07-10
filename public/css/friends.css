@@ -5,7 +5,7 @@
 }
 .friendUserName{
     font-size: 1em;
-    background-color: rgb(175, 252, 209);
+    background-color: var(--lightbackcolor);
     padding-left: 2px;
     padding-right: 2px;
     margin-top: 7px;
@@ -16,7 +16,7 @@
     margin-right: 5%;
  }
 .friendsLoopBlock{
-    background-color: rgb(191, 236, 218);
+    background-color: var(--dimbackcolor);
     padding: 0px 5px 10px 5px; 
     margin-bottom: 2%;
     border-top-left-radius: 8px;
