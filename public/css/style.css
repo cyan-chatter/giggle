@@ -22,7 +22,7 @@
     --cardcolor: rgb(53, 197, 166);
 }
 html{
-    font-family: 'Segoe UI', sans-serif;
+    font-family:Verdana, Tahoma, sans-serif;
 }
 body {
     font-size: 16px;
@@ -33,6 +33,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     height: 100%;
+    position: relative;
 } 
 
 .main-content{
@@ -52,6 +53,7 @@ body {
     background-color: var(--actionbtncolor);
     border-top-left-radius: 8px;
     border-bottom-right-radius: 8px;
+    font-size:1.2em;
     font-weight: bold;
     width: fit-content;
     border-width: 1px;
@@ -76,6 +78,9 @@ body {
     margin: 4px 10px 4px 10px;
     background-color: var(--highbackcolor);
     width: fit-content;
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
 }
 
 .outHead, .inset{

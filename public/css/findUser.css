@@ -2,27 +2,30 @@
     display: grid;
     grid-template: 0.1fr 0.8fr 0.1fr/ 0.02fr auto 0.15fr 0.15fr auto 0.01fr auto 0.02fr;
     grid-template-areas:
-        ". . . . . . . ."
-        ". i i i i . b b"
-        ". . . . . . . .";
-            
+        ". . . . . . . . . . . ."
+        "i i i i i i i i i i b b"
+        ". . . . . . . . . . . .";    
  }
 
  .findInput{
     grid-area: i;
     background-color: var(--inputtextbackcolor);
     text-align: center;
+    font-size: 1.2em;
     border-top-left-radius: 8px;
     border-bottom-right-radius: 8px;
     font-weight: bold;
-    
+    height: 40px;
+    margin: 2px 20px 2px 20px;
  }
 
- .action-btn{
+ #searchByUsernameBtn{
     grid-area: b;
+    height: 40px;
+    width:auto;
+    font-size: 1.2em;
+    margin: 2px 20px 2px 20px;
  }
-
- 
 
 
 #sResults{

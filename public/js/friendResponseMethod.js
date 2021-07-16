@@ -1,7 +1,7 @@
             var checkForAccept = [], checkForReject = [];
             
             var senderUsernameDOM = document.querySelectorAll('.friendRequestSenderUsername')
-            var messageIdentifier1 = document.querySelector('.identifier1')
+            var messageIdentifier1 = document.querySelector('.identifier2')
             var acceptBtn = document.querySelectorAll('.acceptFriendBtn')
             var rejectBtn = document.querySelectorAll('.rejectFriendBtn')
             

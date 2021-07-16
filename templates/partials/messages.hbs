@@ -1,5 +1,38 @@
 
 <messages>
-    <div id="messages" class = "{{messageType}}"> <p>{{message}}</p></div>
+    <style>
+        .closebtn{
+            background-color:green;
+            padding: 0px 5px 0px 5px;
+            border-radius: 1rem;
+        }
+        .closebtn:hover{
+            cursor: pointer;
+            background-color:rgba(255, 0, 0, 0.603);
+        }
+        .closebtn:active{
+            background-color:black;
+        }
+    </style>
+    <div id="messages" class = "alert {{messageType}}">
+        <span class="closebtn">&times;</span>
+        <span id="NotifierContent">{{message}}</span>
+    </div>
+    <script>
+        const el = document.querySelector('#NotifierContent');
+        const notifier = document.querySelector('#messages');
+        const closebtn = document.querySelector('.closebtn');
+
+        if(el.textContent === null || el.textContent.length === 0){
+            notifier.style.display = 'none';
+        }             
+
+        closebtn.addEventListener('click', ()=>{
+            notifier.style.display = 'none';
+            el.textContent = "";
+        })
+         setTimeout(function(){ notifier.style.opacity = "0.4"; }, 3000);
+
+    </script>
 </messages>
 

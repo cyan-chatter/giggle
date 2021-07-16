@@ -19,20 +19,21 @@
             <input type = "submit" value = "Search" id = "searchByUsernameBtn" class="action-btn">
         </form>
 
-            <div id= "foundUser">
-                <div id="sResults">
-                    <p id="un"><a style="text-decoration:none" href="/findUser/{{username}}">{{username}}</a></p>
-                    <h3 id="fn">{{fullname}}</h3>
-                    <h5 id="ab">{{about}}</h5>
-                </div>
-                
-                <div id="friendRequest">
-                    <p id="identifier"></p>
-                    <div id = "friendRequestRecieverUsername"  style="display: none;">{{username}}</div>
-                    <button id = "addFriendBtn" class="action-btn">Send Friend Request</button>    
-                </div>
-
+        <div id= "foundUser">
+            
+            <div id="sResults">
+                <p id="un"><a style="text-decoration:none" href="/findUser/{{username}}">{{username}}</a></p>
+                <h3 id="fn">{{fullname}}</h3>
+                <h5 id="ab">{{about}}</h5>
             </div>
+            
+            <div id="friendRequest">
+                <p id="identifier"></p>
+                <div id = "friendRequestRecieverUsername"  style="display: none;">{{username}}</div>
+                <button id = "addFriendBtn" class="action-btn">Send Friend Request</button>    
+            </div>
+
+        </div>
             <br>
     </div>
 

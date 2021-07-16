@@ -3,10 +3,11 @@
     margin-right: 5%;
 }
 
-.identifier1, .identifier2{
+.identifier2{
     background-color: var(--lightbackcolor);
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    padding: 10px;
 }
 .friendUserName{
     font-size: 1.4em;

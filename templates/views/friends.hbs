@@ -13,9 +13,9 @@
         {{> navbar}}
 
         <div class="main-content">
-        
-        <h4 id = "punyJudge">{{message}}</h4>
-       
+        <div class = "notify">
+            {{>messages}}
+        </div>
        <div id="friendsList"> 
             {{#each friends}}
             <div class= "friendsLoopBlock">
