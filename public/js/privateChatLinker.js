@@ -5,10 +5,13 @@ $(function(){
         e.preventDefault()
         console.log(e);   
         const fUsername = e.target.parentNode.childNodes[3].textContent
+        console.log(fUsername)
         const userDOM = document.querySelector('#myUsername')
         const Username = userDOM.innerHTML
         var message = document.getElementById('punyJudge')
         directLinker(fUsername,Username,message)
     };
-    document.querySelector("#directChatBtn").addEventListener('click',privateChatLinker)
+    document.querySelectorAll("#directChatBtn").forEach((x)=>{
+        x.addEventListener('click',privateChatLinker)
+    }) 
 });
