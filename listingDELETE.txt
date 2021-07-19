@@ -1,21 +1,12 @@
-1 
-discuss.hbs
-
+1
+When a friend request is accepted, remove the option of revoking the friend request immediately
 2
 findUser : also send the image of the person found
-
 3
 before displaying add friend on findUser page Check if a Friend Request is already received by the same user 
-
 4
 fix navbar styles
-
 5
 user input validation at signup
-
 6
-When a friend request is accepted, remove the option of revoking the friend request immediately
-
-7
 friendRequests.hbs : update totalRequests on each button event
-
